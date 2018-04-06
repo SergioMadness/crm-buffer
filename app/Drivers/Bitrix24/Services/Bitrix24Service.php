@@ -115,9 +115,9 @@ class Bitrix24Service implements CRMService
      */
     public function sendLead(array $data): bool
     {
-        $fields = Cache::remember('lead-fields', 60, function () {
-            return $this->call('crm.lead.fields');
-        });
+        if (empty($fields = Cache::get('fields'))) {
+            Cache::put('fields', $fields = $this->call('crm.lead.fields'));
+        }
 
         $this->prepareData($data, $fields);
 

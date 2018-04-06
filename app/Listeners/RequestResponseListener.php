@@ -27,7 +27,7 @@ class RequestResponseListener
     {
         $this->getRequestRepository()->setStatus(
             $event->id,
-            $event->success ? Request::STATUS_SUCCESS : Request::STATUS_FAILED,
+            $event->status,
             json_encode($event->response),
             $event->system
         );

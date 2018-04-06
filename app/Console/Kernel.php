@@ -26,6 +26,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(SendPack::class)->cron('*/'.config('systems.period').' * * * *');
+        $schedule->command(SendPack::class)->cron('*/' . config('systems.period') . ' * * * *');
     }
 }

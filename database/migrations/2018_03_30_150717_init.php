@@ -28,7 +28,7 @@ class Init extends Migration
             $table->enum('status', ['new', 'queue', 'need_another_attempt', 'success', 'failed'])->default('new');
             $table->jsonb('processing_info')->nullable();
             $table->enum('request_type', ['lead', 'user']);
-            $table->binary('response')->nullable();
+            $table->text('response')->nullable();
             $table->timestamps();
 
             $table->index('status');

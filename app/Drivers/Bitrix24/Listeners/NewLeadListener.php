@@ -1,8 +1,10 @@
 <?php namespace App\Drivers\Bitrix24\Listeners;
 
+use App\Models\Request;
 use App\Events\NewLead;
-use App\Drivers\Bitrix24\Interfaces\CRMService;
 use App\Events\RequestResponse;
+use App\Drivers\Bitrix24\DriverProvider;
+use App\Drivers\Bitrix24\Interfaces\CRMService;
 
 /**
  * New lead event handler
@@ -31,10 +33,12 @@ class NewLeadListener
         try {
             $service->sendLead($event->data);
             $message = $service->getMessages();
+            $status = $service->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
         } catch (\Exception $ex) {
             $message = $ex->getMessage();
+            $status = Request::STATUS_RETRY;
         }
-        event(new RequestResponse($event->id, $service->isSuccess(), $message));
+        event(new RequestResponse($event->id, $message, DriverProvider::DRIVER_NAME, $status));
     }
 
     /**

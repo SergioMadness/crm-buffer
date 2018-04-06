@@ -3,12 +3,13 @@
 use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\Repositories\LeadRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * Methods to work with leads
@@ -29,6 +30,7 @@ class LeadController extends Controller
      * @param Request $request
      *
      * @return Response
+     * @throws \InvalidArgumentException
      */
     public function index(Request $request): Response
     {
@@ -66,6 +68,9 @@ class LeadController extends Controller
      */
     public function store(Request $request): Response
     {
+        Artisan::call('requests:pack');
+        return null;
+
         $data = $request->all();
         if (isset($data['email'])) {
             $data['email'] = (array)$data['email'];

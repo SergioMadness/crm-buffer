@@ -1,6 +1,7 @@
 <?php namespace App\Drivers\Bitrix24\Listeners;
 
 use App\Models\Lead;
+use App\Models\Request;
 use App\Events\NewLeadPack;
 use App\Events\RequestResponse;
 use App\Drivers\Bitrix24\DriverProvider;
@@ -36,12 +37,12 @@ class NewLeadPackListener
                 try {
                     $service->sendLead($lead->body);
                     $message = $service->getMessages();
-                    $success = $service->isSuccess();
+                    $status = $service->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
                 } catch (\Exception $ex) {
                     $message = $ex->getMessage();
-                    $success = false;
+                    $status = Request::STATUS_RETRY;
                 }
-                event(new RequestResponse($lead->id, $message, DriverProvider::DRIVER_NAME, $success));
+                event(new RequestResponse($lead->id, $message, DriverProvider::DRIVER_NAME, $status));
             }
         }
     }

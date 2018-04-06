@@ -158,7 +158,7 @@ class Request extends UUIDModel implements IModel
     public function incAttempts(): self
     {
         $data = $this->processing_info;
-        $data['attempts'] = isset($data['attempts']) ? $data['attempts']++ : 1;
+        $data['attempts'] = isset($data['attempts']) ? ++$data['attempts'] : 1;
         $this->processing_info = $data;
 
         return $this;
