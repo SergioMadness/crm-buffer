@@ -8,43 +8,12 @@ use App\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
  * Application repository
  * @package App\Repositories
  */
-class ApplicationRepository implements IApplicationRepository
+class ApplicationRepository extends BaseRepository implements IApplicationRepository
 {
 
-    /**
-     * Create model
-     *
-     * @param array $attributes
-     *
-     * @return Model
-     */
-    public function create(array $attributes = []): Model
+    public function __construct()
     {
-        return new Application($attributes);
-    }
-
-    /**
-     * Save model
-     *
-     * @param Model $model
-     *
-     * @return bool
-     */
-    public function save(Model $model): bool
-    {
-        return $model->save();
-    }
-
-    /**
-     * Remove model
-     *
-     * @param Model $model
-     *
-     * @return bool
-     */
-    public function remove(Model $model): bool
-    {
-        return $model->delete();
+        $this->setModelClass(Application::class);
     }
 
     /**
@@ -57,5 +26,50 @@ class ApplicationRepository implements IApplicationRepository
     public function getByClientId(string $clientId): ?Application
     {
         return Application::query()->where('client_id', $clientId)->first();
+    }
+
+    /**
+     * Create model
+     *
+     * @param array $attributes
+     *
+     * @return Model
+     */
+    public function create(array $attributes = []): Model
+    {
+        $model = parent::create($attributes);
+
+        $this->setNewKeys($model);
+
+        return $model;
+    }
+
+    /**
+     * Set new keys to model
+     *
+     * @param Application $model
+     *
+     * @return Application
+     */
+    protected function setNewKeys(Application $model): Application
+    {
+        $model->client_id = md5(time() . str_random());
+        $model->client_secret = md5(time() . str_random());
+
+        return $model;
+    }
+
+    /**
+     * Generate new tokens
+     *
+     * @param Application $model
+     *
+     * @return Application
+     */
+    public function generateKeys(Application $model): Application
+    {
+        $this->setNewKeys($model)->save();
+
+        return $model;
     }
 }

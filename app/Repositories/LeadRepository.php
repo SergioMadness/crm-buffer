@@ -7,6 +7,7 @@ class LeadRepository extends RequestRepository implements ILeadRepository
 {
     public function __construct()
     {
-        $this->modelClass = Lead::class;
+        parent::__construct();
+        $this->setModelClass(Lead::class);
     }
 }

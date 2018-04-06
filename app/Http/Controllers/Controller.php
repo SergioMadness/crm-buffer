@@ -7,18 +7,28 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    const STATUS_OK = 200;
+    public const LIST_LIMIT = 10;
+
+    public const LIST_LIMIT_MAX = 150;
+
+    public const STATUS_OK = 200;
+
+    public const STATUS_NO_CONTENT = 204;
+
+    public const STATUS_CREATED = 201;
 
     /**
      * Response
      *
      * @param mixed $data
      * @param int   $status
+     * @param array $headers
      *
      * @return Response
+     * @throws \InvalidArgumentException
      */
-    public function response($data, int $status = self::STATUS_OK): Response
+    public function response($data, array $headers = [], int $status = self::STATUS_OK): Response
     {
-        return \response()->json($data)->setStatusCode($status);
+        return \response()->json($data)->setStatusCode($status)->withHeaders($headers);
     }
 }

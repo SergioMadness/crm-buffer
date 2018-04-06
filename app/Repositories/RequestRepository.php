@@ -1,7 +1,6 @@
 <?php namespace App\Repositories;
 
 use App\Models\Request;
-use App\Interfaces\Model;
 use Illuminate\Support\Collection;
 use App\Interfaces\Repositories\RequestRepository as IRequestRepository;
 
@@ -9,11 +8,14 @@ use App\Interfaces\Repositories\RequestRepository as IRequestRepository;
  * Repository of requests
  * @package App\Repositories
  */
-class RequestRepository implements IRequestRepository
+class RequestRepository extends BaseRepository implements IRequestRepository
 {
-    protected $modelClass = Request::class;
-
     protected static $availableSystems = [];
+
+    public function __construct()
+    {
+        $this->setModelClass(Request::class);
+    }
 
     /**
      * Set list of available systems
@@ -33,44 +35,6 @@ class RequestRepository implements IRequestRepository
     public static function registerSystem(string $system): void
     {
         self::$availableSystems[] = $system;
-    }
-
-    /**
-     * Create model
-     *
-     * @param array $attributes
-     *
-     * @return Model
-     */
-    public function create(array $attributes = []): Model
-    {
-        $classname = $this->modelClass;
-
-        return new $classname($attributes);
-    }
-
-    /**
-     * Save model
-     *
-     * @param Model $model
-     *
-     * @return bool
-     */
-    public function save(Model $model): bool
-    {
-        return $model->save();
-    }
-
-    /**
-     * Remove model
-     *
-     * @param Model $model
-     *
-     * @return bool
-     */
-    public function remove(Model $model): bool
-    {
-        return $model->delete();
     }
 
     /**
