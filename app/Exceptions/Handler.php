@@ -53,9 +53,9 @@ class Handler extends ExceptionHandler
             $code = 500;
             if ($e instanceof HttpException) {
                 $code = $e->getStatusCode();
-                $data = [$this->createError($e)];
+                $data = [$this->createError($e, $code)];
             } else {
-                $data = [$this->createError(new HttpException($code, 'Unexpected error'))];
+                $data = [$this->createError(new HttpException($code, 'Unexpected error'), $code)];
             }
 
             return response()->json($data)->setStatusCode($code);
@@ -69,12 +69,14 @@ class Handler extends ExceptionHandler
      *
      * @param Exception $exception
      *
+     * @param int       $code
+     *
      * @return array
      */
-    protected function createError(Exception $exception): array
+    protected function createError(Exception $exception, int $code = 0): array
     {
         $result = [
-            'code'  => $exception->getCode(),
+            'code'  => $code,
             'error' => $exception->getMessage(),
         ];
 

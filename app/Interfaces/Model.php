@@ -7,6 +7,15 @@
 interface Model
 {
     /**
+     * Fill model
+     *
+     * @param array $attributes
+     *
+     * @return $this
+     */
+    public function fill(array $attributes);
+
+    /**
      * Save model
      *
      * @param array $options

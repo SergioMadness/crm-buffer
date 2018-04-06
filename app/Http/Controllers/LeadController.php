@@ -1,6 +1,6 @@
-<?php namespace App\Http\Controllers\Api;
+<?php namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
 use Illuminate\Validation\Validator;
@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\Repositories\LeadRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Methods to work with leads
@@ -23,11 +24,44 @@ class LeadController extends Controller
     }
 
     /**
+     * Get lead list
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function index(Request $request): Response
+    {
+        $limit = min(self::LIST_LIMIT_MAX, $request->get('limit', self::LIST_LIMIT));
+        $offset = max(0, $request->get('offset', 0));
+
+        $data = $this->getRequestRepository()->get([], [], $limit, $offset);
+
+        return $this->response($data);
+    }
+
+    /**
+     * Get model by id
+     *
+     * @param string $id
+     *
+     * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function view(string $id): Response
+    {
+        return $this->response(
+            $this->getModel($id)
+        );
+    }
+
+    /**
      * Create request
      *
      * @param Request $request
      *
      * @return Response
+     * @throws \InvalidArgumentException
      * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
      */
     public function store(Request $request): Response
@@ -73,5 +107,24 @@ class LeadController extends Controller
 
 
         return $validator;
+    }
+
+    /**
+     * Get model by id
+     *
+     * @param int|string $id
+     *
+     * @return Model
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    protected function getModel($id): Model
+    {
+        $model = $this->getRequestRepository()->model($id);
+
+        if ($model === null) {
+            throw new NotFoundHttpException();
+        }
+
+        return $model;
     }
 }

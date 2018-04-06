@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Constants\Request as IRequest;
+use App\Interfaces\Repositories\UserRepository;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,9 +34,12 @@ class AuthServiceProvider extends ServiceProvider
         // the User instance via an API token or any other method necessary.
 
         $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
-            }
+            /** @var Request $request */
+            $token = $request->header(IRequest::TOKEN_HEADER_NAME);
+            /** @var UserRepository $userRepository */
+            $userRepository = app(UserRepository::class);
+
+            return !empty($token) ? $userRepository->getByToken($token) : null;
         });
     }
 }

@@ -17,4 +17,13 @@ interface ApplicationRepository extends Repository
      * @return Application|null
      */
     public function getByClientId(string $clientId): ?Application;
+
+    /**
+     * Generate new tokens
+     *
+     * @param Application $model
+     *
+     * @return Application
+     */
+    public function generateKeys(Application $model): Application;
 }

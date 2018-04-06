@@ -16,4 +16,8 @@ use App\Interfaces\Model as IModel;
 class Application extends UUIDModel implements IModel
 {
     protected $table = 'applications';
+
+    protected $fillable = [
+        'name',
+    ];
 }
