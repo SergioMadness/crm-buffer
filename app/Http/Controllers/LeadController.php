@@ -91,6 +91,24 @@ class LeadController extends Controller
     }
 
     /**
+     * Delete request
+     *
+     * @param $id
+     *
+     * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function destroy($id): Response
+    {
+        $this->getRequestRepository()->remove(
+            $this->getModel($id)
+        );
+
+        return $this->response(null, [], self::STATUS_NO_CONTENT);
+    }
+
+    /**
      * Create validator
      *
      * @param array $data

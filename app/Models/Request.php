@@ -53,6 +53,7 @@ class Request extends UUIDModel implements IModel
         'id',
         'body',
         'status',
+        'request_type',
         'created_at',
     ];
 
@@ -162,5 +163,14 @@ class Request extends UUIDModel implements IModel
         $this->processing_info = $data;
 
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        $result = parent::toArray();
+
+        $result['application'] = $this->application;
+
+        return $result;
     }
 }

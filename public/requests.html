@@ -21,12 +21,12 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/js.cookie.min.js"></script>
     <script src="/js/app/common.js"></script>
-    <script src="/js/app/applications.js"></script>
+    <script src="/js/app/requests.js"></script>
 </head>
 
 <body class="nav-md">
 <div class="container body">
-    <div class="main_container">
+    <div class="main_container" id="request-table">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
@@ -70,7 +70,8 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="javascript:logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -80,7 +81,7 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main" id="application-table">
+        <div class="right_col" role="main">
             <div class="x_panel">
                 <div class="alert alert-danger" role="alert" data-bind="visible: isError">
                     <div data-bind="foreach: errors">
@@ -91,31 +92,30 @@
                     Запись удалена
                 </div>
                 <div class="x_title">
-                    <h2>Приложения</h2>
+                    <h2>Запросы</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <a href="/add-application.html" class="btn btn-primary"><i class="fa fa-plus"></i> Добавить</a>
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Название</th>
-                            <th>Token</th>
-                            <th>Refresh-token</th>
+                            <th>Приложение</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody data-bind="foreach: list">
                         <tr>
                             <th scope="row" data-bind="text: id"></th>
-                            <td data-bind="text: name"></td>
-                            <td data-bind="text: client_id"></td>
-                            <td data-bind="text: client_secret"></td>
+                            <td data-bind="text: application.name"></td>
+                            <td data-bind="text: status"></td>
+                            <td data-bind="text: created_at"></td>
                             <td>
-                                <a href="" data-bind="attr: {href: '/add-application.html#'+id}"
-                                   class="btn btn-success btn-xs" data-toggle="tooltip" title="Редактировать">
-                                    <i class="fa fa-pencil"></i>
+                                <a href="" data-bind="click: $parent.view"
+                                   class="btn btn-success btn-xs" data-toggle="tooltip" title="Просомтр">
+                                    <i class="fa fa-eye"></i>
                                 </a>
                                 <a href="" data-bind="click: $parent.remove"
                                    class="btn btn-danger btn-xs btn-delete" data-toggle="tooltip" title="Удалить">
@@ -125,7 +125,55 @@
                         </tr>
                         </tbody>
                     </table>
+                    <!-- Large modal -->
 
+                    <div id="request-modal" data-bind="with: selectedRequest" class="modal fade bs-example-modal-lg"
+                         tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" data-bind="if: id">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">×</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Заявка <span data-bind="text: id"></span>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <strong>Приложение</strong> <span data-bind="text: application.name"></span>
+                                    </div>
+                                    <div>
+                                        <strong>Статус</strong> <span data-bind="text: status"></span>
+                                    </div>
+                                    <div>
+                                        <strong>Тип запроса</strong> <span data-bind="text: request_type"></span>
+                                    </div>
+                                    <div>
+                                        <strong>Дата</strong> <span data-bind="text: created_at"></span>
+                                    </div>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Параметр</th>
+                                            <th>Значение</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: $parent.prepareBody(body)">
+                                        <tr>
+                                            <th scope="row" data-bind="text: index"></th>
+                                            <td data-bind="text: value"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +183,7 @@
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/js/custom.min.js"></script>
 <script>
-    ko.applyBindings(new Applications(), document.getElementById('application-table'));
+    ko.applyBindings(new Requests(), document.getElementById('request-table'));
 </script>
 </body>
 </html>
