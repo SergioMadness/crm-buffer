@@ -116,7 +116,11 @@ class Bitrix24Service implements CRMService
     public function sendLead(array $data): bool
     {
         if (empty($fields = Cache::get('fields'))) {
-            Cache::put('fields', $fields = $this->call('crm.lead.fields'));
+            Cache::put('fields', $fields = $this->call('crm.lead.fields'), 60);
+        }
+
+        if (empty($fields)) {
+            return false;
         }
 
         $this->prepareData($data, $fields);
@@ -258,6 +262,8 @@ class Bitrix24Service implements CRMService
             $this->lastRequestSuccessful = false;
         } elseif ($response && isset($response['result'])) {
             $this->setMessages((array)$response['result']);
+        } else {
+            $this->lastRequestSuccessful = false;
         }
 
         return ($response && $response['result']) ? (array)$response['result'] : [];
@@ -273,6 +279,8 @@ class Bitrix24Service implements CRMService
         try {
             $token = $this->getClient()->getNewAccessToken();
             self::saveTokens($token['access_token'], $token['refresh_token']);
+            $this->setAccessToken($token['access_token']);
+            $this->setRefreshToken($token['refresh_token']);
 
             $this->client = null;
 
