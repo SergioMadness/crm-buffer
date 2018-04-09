@@ -256,17 +256,20 @@ class Bitrix24Service implements CRMService
 
         $this->iterations = 0;
 
+        $result = [];
         $this->lastRequestSuccessful = true;
         if ($response && isset($response['error']) && !empty($response['error'])) {
             $this->setMessages((array)$response['error']);
             $this->lastRequestSuccessful = false;
+            $result = (array)$response['error'];
         } elseif ($response && isset($response['result'])) {
             $this->setMessages((array)$response['result']);
+            $result = (array)$response['result'];
         } else {
             $this->lastRequestSuccessful = false;
         }
 
-        return ($response && $response['result']) ? (array)$response['result'] : [];
+        return $result;
     }
 
     /**
