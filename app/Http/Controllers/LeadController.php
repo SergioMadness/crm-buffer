@@ -3,6 +3,7 @@
 use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\Repositories\LeadRepository;
@@ -67,6 +68,9 @@ class LeadController extends Controller
      */
     public function store(Request $request): Response
     {
+        Artisan::call('requests:pack');
+        exit;
+
         $data = $request->all();
         if (isset($data['email'])) {
             $data['email'] = (array)$data['email'];

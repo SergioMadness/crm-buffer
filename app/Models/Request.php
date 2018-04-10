@@ -47,6 +47,7 @@ class Request extends UUIDModel implements IModel
     protected $casts = [
         'body'            => 'array',
         'processing_info' => 'array',
+        'response'        => 'array',
     ];
 
     protected $visible = [
@@ -54,6 +55,8 @@ class Request extends UUIDModel implements IModel
         'body',
         'status',
         'request_type',
+        'processing_info',
+        'response',
         'created_at',
     ];
 

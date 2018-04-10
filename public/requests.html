@@ -131,7 +131,6 @@
                          tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-lg" data-bind="if: id">
                             <div class="modal-content">
-
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">×</span>
@@ -140,32 +139,75 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div>
-                                        <strong>Приложение</strong> <span data-bind="text: application.name"></span>
+                                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#request" id="request-tab"
+                                                                                role="tab" data-toggle="tab"
+                                                                                aria-expanded="true">Заявка</a>
+                                            </li>
+                                            <li role="presentation" class=""><a href="#process-info" role="tab"
+                                                                                id="process-info-tab" data-toggle="tab"
+                                                                                aria-expanded="true">Процесс
+                                                отправки</a>
+                                            </li>
+                                            <li role="presentation" class=""><a href="#response" role="tab"
+                                                                                      id="response-tab2"
+                                                                                      data-toggle="tab"
+                                                                                      aria-expanded="true">Ответ</a>
+                                            </li>
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade active in" id="request"
+                                                 aria-labelledby="home-tab">
+                                                <div>
+                                                    <strong>Приложение</strong> <span
+                                                        data-bind="text: application.name"></span>
+                                                </div>
+                                                <div>
+                                                    <strong>Статус</strong> <span data-bind="text: status"></span>
+                                                </div>
+                                                <div>
+                                                    <strong>Тип запроса</strong> <span
+                                                        data-bind="text: request_type"></span>
+                                                </div>
+                                                <div>
+                                                    <strong>Дата</strong> <span data-bind="text: created_at"></span>
+                                                </div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Параметр</th>
+                                                        <th>Значение</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody data-bind="foreach: $parent.objectToArray(body)">
+                                                    <tr>
+                                                        <th scope="row" data-bind="text: index"></th>
+                                                        <td data-bind="text: value"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="process-info"
+                                                 aria-labelledby="profile-tab">
+                                                <div>
+                                                    <strong>Кол-во попыток</strong> <span
+                                                        data-bind="text: processing_info.attempts"></span>
+                                                </div>
+                                                <div data-bind="foreach: $parent.objectToArray(processing_info.systems_statuses)">
+                                                    <strong data-bind="text: index"></strong> <span
+                                                        data-bind="text: value"></span>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="response"
+                                                 aria-labelledby="profile-tab">
+                                                <div data-bind="foreach: $parent.objectToArray(response)">
+                                                    <strong data-bind="text: index"></strong> <span
+                                                        data-bind="text: value"></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <strong>Статус</strong> <span data-bind="text: status"></span>
-                                    </div>
-                                    <div>
-                                        <strong>Тип запроса</strong> <span data-bind="text: request_type"></span>
-                                    </div>
-                                    <div>
-                                        <strong>Дата</strong> <span data-bind="text: created_at"></span>
-                                    </div>
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>Параметр</th>
-                                            <th>Значение</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody data-bind="foreach: $parent.prepareBody(body)">
-                                        <tr>
-                                            <th scope="row" data-bind="text: index"></th>
-                                            <td data-bind="text: value"></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>

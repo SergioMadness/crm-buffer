@@ -32,7 +32,7 @@ function Requests() {
             });
     };
 
-    self.prepareBody = function (body) {
+    self.objectToArray = function (body) {
         var result = [];
         for (var i in body) {
             result.push({

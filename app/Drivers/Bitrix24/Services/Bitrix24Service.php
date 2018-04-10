@@ -250,7 +250,7 @@ class Bitrix24Service implements CRMService
         } catch (Bitrix24TokenIsExpiredException $e) {
             $this->lastRequestSuccessful = false;
             if ($this->iterations < self::MAX_ITERATIONS && $this->refreshToken()) {
-                $response = $this->call($method, $params);
+                return $this->call($method, $params);
             }
         }
 
