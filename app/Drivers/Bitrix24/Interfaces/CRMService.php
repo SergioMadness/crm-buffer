@@ -16,6 +16,15 @@ interface CRMService
     public function sendLead(array $data): bool;
 
     /**
+     * Send contact to CRM
+     *
+     * @param array $data
+     *
+     * @return bool
+     */
+    public function sendContact(array $data): bool;
+
+    /**
      * Get response messages/errors
      *
      * @return array

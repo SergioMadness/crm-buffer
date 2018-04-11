@@ -1,7 +1,7 @@
 <?php namespace App\Repositories;
 
-use App\Interfaces\Repositories\LeadRepository as ILeadRepository;
 use App\Models\Lead;
+use App\Interfaces\Repositories\LeadRepository as ILeadRepository;
 
 class LeadRepository extends RequestRepository implements ILeadRepository
 {

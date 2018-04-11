@@ -68,7 +68,7 @@ class RequestRepository extends BaseRepository implements IRequestRepository
         $request = Request::find($id);
         $request->setSystemStatus($system, $status);
         if (empty($request->getSystemsNeedToBeProcessed(self::$availableSystems))) {
-            $request->status = Request::STATUS_SUCCESS;
+            $request->status = $status;
         }
         if ($status === Request::STATUS_RETRY) {
             $request->status = Request::STATUS_RETRY;

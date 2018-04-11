@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\RequestValidation;
 use App\Repositories\LeadRepository;
 use App\Repositories\UserRepository;
-use App\Services\RequestValidation;
+use App\Repositories\ContactRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\RequestRepository;
 use App\Drivers\Bitrix24\DriverProvider;
@@ -12,6 +13,7 @@ use App\Repositories\ApplicationRepository;
 use App\Interfaces\Repositories\LeadRepository as ILeadRepository;
 use App\Interfaces\Repositories\UserRepository as IUserRepository;
 use App\Interfaces\Services\RequestValidation as IRequestValidation;
+use App\Interfaces\Repositories\ContactRepository as IContactRepository;
 use App\Interfaces\Repositories\RequestRepository as IRequestRepository;
 use App\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
 
@@ -31,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(IUserRepository::class, function () {
             return new UserRepository(config('app.login'), config('app.password'));
         });
+        $this->app->singleton(IContactRepository::class, ContactRepository::class);
 
         $this->app->register(DriverProvider::class);
     }

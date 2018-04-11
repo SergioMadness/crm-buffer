@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\RequestResponse;
-use App\Models\Request;
 use App\Traits\UseRequestRepository;
 use App\Interfaces\Repositories\RequestRepository;
 
