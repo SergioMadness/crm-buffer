@@ -68,9 +68,6 @@ class LeadController extends Controller
      */
     public function store(Request $request): Response
     {
-        Artisan::call('requests:pack');
-        exit;
-
         $data = $request->all();
         if (isset($data['email'])) {
             $data['email'] = (array)$data['email'];
