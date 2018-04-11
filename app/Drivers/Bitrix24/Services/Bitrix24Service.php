@@ -1,8 +1,8 @@
 <?php namespace App\Drivers\Bitrix24\Services;
 
 use Bitrix24\Bitrix24;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 use Bitrix24\Exceptions\Bitrix24Exception;
 use Bitrix24\Exceptions\Bitrix24IoException;
 use Bitrix24\Exceptions\Bitrix24ApiException;
@@ -28,6 +28,14 @@ class Bitrix24Service implements CRMService
     protected const MULTIFIELD_DEFAULT_TYPE = 'HOME';
 
     protected const MAX_ITERATIONS = 3;
+
+    protected const METHOD_LEAD_FIELDS = 'crm.lead.fields';
+
+    protected const METHOD_CONTACT_FIELDS = 'crm.contact.fields';
+
+    protected const METHOD_ADD_LEAD = 'crm.lead.add';
+
+    protected const METHOD_ADD_CONTACT = 'crm.contact.add';
 
     /**
      * @var array
@@ -116,11 +124,54 @@ class Bitrix24Service implements CRMService
     public function sendLead(array $data): bool
     {
         if (empty($fields = Cache::get('fields'))) {
-            Cache::put('fields', $fields = $this->call('crm.lead.fields'), 60);
+            Cache::put('fields', $fields = $this->call(self::METHOD_LEAD_FIELDS), 60);
         }
 
         if (empty($fields)) {
-            return false;
+            return $this->lastRequestSuccessful = false;
+        }
+
+        $this->prepareData($data, $fields);
+
+        $validator = ValidatorFacade::make($data, $this->prepareValidatorRules($fields));
+        if ($validator->fails()) {
+            $this->setMessages($validator->errors()->all());
+
+            return $this->lastRequestSuccessful = false;
+        }
+
+        $this->call(self::METHOD_ADD_LEAD, [
+            'fields' => $data,
+        ]);
+
+        return $this->lastRequestSuccessful;
+    }
+
+    /**
+     * Send contact to CRM
+     *
+     * @param array $data
+     *
+     * @return bool
+     * @throws Bitrix24ApiException
+     * @throws Bitrix24EmptyResponseException
+     * @throws Bitrix24Exception
+     * @throws Bitrix24IoException
+     * @throws Bitrix24MethodNotFoundException
+     * @throws Bitrix24PaymentRequiredException
+     * @throws Bitrix24PortalDeletedException
+     * @throws Bitrix24SecurityException
+     * @throws Bitrix24TokenIsInvalidException
+     * @throws Bitrix24WrongClientException
+     */
+    public function sendContact(array $data): bool
+    {
+        if (empty($fields = Cache::get('contact-fields'))) {
+            Cache::put('contact-fields', $fields = $this->call(self::METHOD_CONTACT_FIELDS), 60);
+        }
+
+        if (empty($fields)) {
+            return $this->lastRequestSuccessful = false;
         }
 
         $this->prepareData($data, $fields);
@@ -130,10 +181,10 @@ class Bitrix24Service implements CRMService
             $this->lastRequestSuccessful = false;
             $this->setMessages($validator->errors()->all());
 
-            return false;
+            return $this->lastRequestSuccessful = false;
         }
 
-        $this->call('crm.lead.add', [
+        $this->call(self::METHOD_ADD_CONTACT, [
             'fields' => $data,
         ]);
 

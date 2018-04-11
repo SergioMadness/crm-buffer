@@ -2,7 +2,9 @@
 
 use App\Models\Request;
 use App\Events\NewLeadPack;
+use App\Events\NewContactPack;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use App\Interfaces\Repositories\RequestRepository;
 
 class SendPack extends Command
@@ -32,14 +34,26 @@ class SendPack extends Command
     {
         $requestPack = $requestRepository->getPack(config('systems.packSize'));
 
-        $requestPack->each(function (Request $model) use ($requestRepository) {
-            $model->status = Request::STATUS_QUEUE;
-            $requestRepository->save($model);
-        });
-
-        if ($requestPack->isNotEmpty()) {
-            event(new NewLeadPack($requestPack->all()));
-        }
+        $requestPack
+            ->each(function (Request $model) use ($requestRepository) {
+                $model->status = Request::STATUS_QUEUE;
+                $requestRepository->save($model);
+            })
+            ->groupBy('request_type')
+            ->each(function (Collection $group, string $type) {
+                switch ($type) {
+                    case Request::TYPE_LEAD:
+                        if ($group->isNotEmpty()) {
+                            event(new NewLeadPack($group->all()));
+                        }
+                        break;
+                    case Request::TYPE_USER:
+                        if ($group->isNotEmpty()) {
+                            event(new NewContactPack($group->all()));
+                        }
+                        break;
+                }
+            });
 
         return true;
     }

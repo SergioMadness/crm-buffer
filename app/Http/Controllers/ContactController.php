@@ -6,20 +6,20 @@ use App\Traits\UseRequestRepository;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
-use App\Interfaces\Repositories\LeadRepository;
+use App\Interfaces\Repositories\ContactRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
- * Methods to work with leads
+ * Methods to work with contacts
  * @package App\Http\Controllers
  */
-class LeadController extends Controller
+class ContactController extends Controller
 {
     use UseRequestRepository;
 
-    public function __construct(LeadRepository $repository)
+    public function __construct(ContactRepository $repository)
     {
         $this->setRequestRepository($repository);
     }
@@ -119,10 +119,11 @@ class LeadController extends Controller
     public function getValidator(array $data): Validator
     {
         $validator = ValidatorFacade::make($data, [
-            'title'   => 'required',
-            'name'    => 'required',
-            'email.*' => 'required_without:phone|email',
-            'phone'   => 'required_without:email|array',
+            'name'        => 'required',
+            'last_name'   => 'required',
+            'second_name' => 'required',
+            'email.*'     => 'required_without:phone|email',
+            'phone'       => 'required_without:email|array',
         ]);
 
 
