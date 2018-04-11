@@ -142,18 +142,20 @@
                                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                             <li role="presentation" class="active"><a href="#request" id="request-tab"
-                                                                                role="tab" data-toggle="tab"
-                                                                                aria-expanded="true">Заявка</a>
+                                                                                      role="tab" data-toggle="tab"
+                                                                                      aria-expanded="true">Заявка</a>
                                             </li>
-                                            <li role="presentation" class=""><a href="#process-info" role="tab"
-                                                                                id="process-info-tab" data-toggle="tab"
-                                                                                aria-expanded="true">Процесс
+                                            <li role="presentation" class="" data-bind="if:status!='new'"><a
+                                                    href="#process-info" role="tab"
+                                                    id="process-info-tab" data-toggle="tab"
+                                                    aria-expanded="true">Процесс
                                                 отправки</a>
                                             </li>
-                                            <li role="presentation" class=""><a href="#response" role="tab"
-                                                                                      id="response-tab2"
-                                                                                      data-toggle="tab"
-                                                                                      aria-expanded="true">Ответ</a>
+                                            <li role="presentation" class="" data-bind="if:status!='new'"><a
+                                                    href="#response" role="tab"
+                                                    id="response-tab2"
+                                                    data-toggle="tab"
+                                                    aria-expanded="true">Ответ</a>
                                             </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
@@ -189,7 +191,7 @@
                                                 </table>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="process-info"
-                                                 aria-labelledby="profile-tab">
+                                                 aria-labelledby="profile-tab" data-bind="if:status!='new'">
                                                 <div>
                                                     <strong>Кол-во попыток</strong> <span
                                                         data-bind="text: processing_info.attempts"></span>
@@ -200,7 +202,7 @@
                                                 </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="response"
-                                                 aria-labelledby="profile-tab">
+                                                 aria-labelledby="profile-tab" data-bind="if:status!='new'">
                                                 <div data-bind="foreach: $parent.objectToArray(response)">
                                                     <strong data-bind="text: index"></strong> <span
                                                         data-bind="text: value"></span>
