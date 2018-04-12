@@ -44,3 +44,22 @@ function post(url, data) {
 function del(url, data) {
     return request('delete', url, data);
 }
+
+function objectToArray(body) {
+    var result = [];
+    if (typeof body === 'object') {
+        for (var i in body) {
+            result.push({
+                index: i,
+                value: body[i]
+            });
+        }
+    }
+    if (typeof body === 'string') {
+        result.push({
+            index: 0,
+            value: body
+        });
+    }
+    return result;
+}

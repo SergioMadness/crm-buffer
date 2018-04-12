@@ -36,16 +36,7 @@ function Contacts() {
             });
     };
 
-    self.objectToArray = function (body) {
-        var result = [];
-        for (var i in body) {
-            result.push({
-                index: i,
-                value: body[i]
-            });
-        }
-        return result;
-    };
+    self.objectToArray = objectToArray;
 
     function load(limit, offset) {
         return get('/api/v1/contacts', {
