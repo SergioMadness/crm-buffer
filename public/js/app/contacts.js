@@ -56,7 +56,7 @@ function Contacts() {
 
     function updateList() {
         load(limit, offset)
-            .done(function (response) {
+            .done(function (response, status, xhr) {
                 self.list(response);
                 self.currentPage(parseInt(xhr.getResponseHeader(HEADER_PAGINATION_PAGE)));
                 self.total(parseInt(xhr.getResponseHeader(HEADER_PAGINATION_TOTAL)));
