@@ -39,7 +39,7 @@ class ContactController extends Controller
 
         $repository = $this->getRequestRepository();
         $cnt = $repository->count();
-        $data = $cnt > 0 ? $repository->get([], [], $limit, $offset) : collect([]);
+        $data = $cnt > 0 ? $repository->get([], ['created_at' => 'desc'], $limit, $offset) : collect([]);
 
         return $this->listResponse($data, $cnt, $limit, $offset);
     }

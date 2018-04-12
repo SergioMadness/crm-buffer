@@ -57,12 +57,12 @@ class RequestRepository extends BaseRepository implements IRequestRepository
      *
      * @param string $id
      * @param string $status
-     * @param string $message
+     * @param mixed  $message
      * @param string $system
      *
      * @return bool
      */
-    public function setStatus(string $id, string $status, string $message = '', string $system = ''): bool
+    public function setStatus(string $id, string $status, $message = '', string $system = ''): bool
     {
         /** @var Request $request */
         $request = Request::find($id);

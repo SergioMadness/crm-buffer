@@ -27,7 +27,7 @@ class RequestResponseListener
         $this->getRequestRepository()->setStatus(
             $event->id,
             $event->status,
-            json_encode($event->response),
+            $event->response,
             $event->system
         );
     }
