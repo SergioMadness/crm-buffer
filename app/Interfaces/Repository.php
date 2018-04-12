@@ -65,4 +65,13 @@ interface Repository
      * @return Model|null
      */
     public function model($id): ?Model;
+
+    /**
+     * Count items by filter
+     *
+     * @param array $filters
+     *
+     * @return int
+     */
+    public function count(array $filters = []): int;
 }

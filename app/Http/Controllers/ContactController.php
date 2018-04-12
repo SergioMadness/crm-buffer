@@ -37,7 +37,9 @@ class ContactController extends Controller
         $limit = min(self::LIST_LIMIT_MAX, $request->get('limit', self::LIST_LIMIT));
         $offset = max(0, $request->get('offset', 0));
 
-        $data = $this->getRequestRepository()->get([], [], $limit, $offset);
+        $repository = $this->getRequestRepository();
+        $cnt = $repository->count();
+        $data = $cnt > 0 ? $repository->get([], [], $limit, $offset) : collect([]);
 
         return $this->response($data);
     }
@@ -48,6 +50,7 @@ class ContactController extends Controller
      * @param string $id
      *
      * @return Response
+     * @throws \InvalidArgumentException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function view(string $id): Response

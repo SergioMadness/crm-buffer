@@ -1,6 +1,14 @@
 var tokenHeader = 'x-cbs-token';
 var refreshTokenHeader = 'x-cbs-refresh-token';
 
+const HEADER_PAGINATION_TOTAL = 'x-pagination-total';
+
+const HEADER_PAGINATION_LIMIT = 'x-pagination-limit';
+
+const HEADER_PAGINATION_PAGES = 'x-pagination-pages';
+
+const HEADER_PAGINATION_PAGE = 'x-pagination-page';
+
 function logout() {
     Cookies.remove('token');
     Cookies.remove('refreshToken');

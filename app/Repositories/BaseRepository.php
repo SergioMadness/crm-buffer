@@ -17,6 +17,26 @@ abstract class BaseRepository implements Repository
     private $modelClass;
 
     /**
+     * Count items by filter
+     *
+     * @param array $filters
+     *
+     * @return int
+     */
+    public function count(array $filters = []): int
+    {
+        $modelClass = $this->getModelClass();
+        /** @var Builder $query */
+        $query = $modelClass::query();
+
+        if (!empty($filters)) {
+            $query->where($filters);
+        }
+
+        return $query->count();
+    }
+
+    /**
      * Get data
      *
      * @param array    $filters

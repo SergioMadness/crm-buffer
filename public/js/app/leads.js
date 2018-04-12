@@ -1,7 +1,7 @@
-function Requests() {
+function Leads() {
     var self = this;
 
-    var limit = 150;
+    var limit = 20;
     var offset = 0;
 
     self.isError = ko.observable(false);
@@ -10,9 +10,13 @@ function Requests() {
     self.selectedRequest = ko.observable();
 
     self.list = ko.observableArray([]);
+    self.pageQty = ko.observable(0);
+    self.currentPage = ko.observable(0);
+    self.total = ko.observable(0);
 
-    self.page = function () {
-
+    self.page = function (page) {
+        offset = limit * page;
+        updateList();
     };
 
     self.view = function (item) {
@@ -52,8 +56,11 @@ function Requests() {
 
     function updateList() {
         load(limit, offset)
-            .done(function (response) {
+            .done(function (response, status, xhr) {
                 self.list(response);
+                self.currentPage(parseInt(xhr.getResponseHeader(HEADER_PAGINATION_PAGE)));
+                self.total(parseInt(xhr.getResponseHeader(HEADER_PAGINATION_TOTAL)));
+                self.pageQty(parseInt(xhr.getResponseHeader(HEADER_PAGINATION_PAGES)));
             })
             .fail(logout);
     }
