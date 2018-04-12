@@ -41,7 +41,7 @@ class ContactController extends Controller
         $cnt = $repository->count();
         $data = $cnt > 0 ? $repository->get([], [], $limit, $offset) : collect([]);
 
-        return $this->response($data);
+        return $this->listResponse($data, $cnt, $limit, $offset);
     }
 
     /**
