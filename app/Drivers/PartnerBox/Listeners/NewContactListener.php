@@ -1,23 +1,24 @@
-<?php namespace App\Drivers\Bitrix24\Listeners;
+<?php namespace App\Drivers\PartnerBox\Listeners;
 
 use App\Models\Request;
-use App\Events\NewLead;
+use App\Events\NewContact;
 use App\Events\RequestResponse;
-use App\Drivers\Bitrix24\DriverProvider;
-use App\Drivers\Bitrix24\Interfaces\Bitrix24Service;
+use App\Drivers\PartnerBox\DriverProvider;
+use App\Drivers\PartnerBox\Interfaces\PartnerBoxService;
 
 /**
- * New lead event handler
- * @package App\Drivers\Bitrix24\Listeners
+ * New contact event handler
+ * @package App\Drivers\PartnerBox\Listeners
  */
-class NewLeadListener
+class NewContactListener
 {
+
     /**
-     * @var Bitrix24Service
+     * @var PartnerBoxService
      */
     private $crmService;
 
-    public function __construct(Bitrix24Service $crmService)
+    public function __construct(PartnerBoxService $crmService)
     {
         $this->setCrmService($crmService);
     }
@@ -25,13 +26,13 @@ class NewLeadListener
     /**
      * handle event
      *
-     * @param NewLead $event
+     * @param NewContact $event
      */
-    public function handle(NewLead $event): void
+    public function handle(NewContact $event): void
     {
         $service = $this->getCrmService();
         try {
-            $service->sendLead($event->data);
+            $service->sendContact($event->data);
             $message = $service->getMessages();
             $status = $service->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
         } catch (\Exception $ex) {
@@ -44,9 +45,9 @@ class NewLeadListener
     /**
      * Get CRM service
      *
-     * @return Bitrix24Service
+     * @return PartnerBoxService
      */
-    public function getCrmService(): Bitrix24Service
+    public function getCrmService(): PartnerBoxService
     {
         return $this->crmService;
     }
@@ -54,11 +55,11 @@ class NewLeadListener
     /**
      * Set CRM service
      *
-     * @param Bitrix24Service $crmService
+     * @param PartnerBoxService $crmService
      *
-     * @return NewLeadListener
+     * @return NewContactListener
      */
-    public function setCrmService(Bitrix24Service $crmService): self
+    public function setCrmService(PartnerBoxService $crmService): self
     {
         $this->crmService = $crmService;
 

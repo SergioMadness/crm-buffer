@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Cache;
 use Bitrix24\Exceptions\Bitrix24Exception;
 use Bitrix24\Exceptions\Bitrix24IoException;
 use Bitrix24\Exceptions\Bitrix24ApiException;
-use App\Drivers\Bitrix24\Interfaces\CRMService;
 use Bitrix24\Exceptions\Bitrix24SecurityException;
 use Bitrix24\Exceptions\Bitrix24WrongClientException;
 use Bitrix24\Exceptions\Bitrix24PortalDeletedException;
@@ -16,12 +15,13 @@ use Bitrix24\Exceptions\Bitrix24TokenIsInvalidException;
 use Bitrix24\Exceptions\Bitrix24MethodNotFoundException;
 use Bitrix24\Exceptions\Bitrix24PaymentRequiredException;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
+use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 /**
  * Service to work with Bitrix24 API
  * @package App\Drivers\Bitrix24\Services
  */
-class Bitrix24Service implements CRMService
+class Bitrix24Service implements IBitrix24Service
 {
     public const TYPE_CRM_MULTIFIELD = 'crm_multifield';
 

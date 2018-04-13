@@ -5,7 +5,7 @@ use App\Models\Request;
 use App\Events\NewContactPack;
 use App\Events\RequestResponse;
 use App\Drivers\Bitrix24\DriverProvider;
-use App\Drivers\Bitrix24\Interfaces\CRMService;
+use App\Drivers\Bitrix24\Interfaces\Bitrix24Service;
 
 /**
  * New contact event handler
@@ -14,11 +14,11 @@ use App\Drivers\Bitrix24\Interfaces\CRMService;
 class NewContactPackListener
 {
     /**
-     * @var CRMService
+     * @var Bitrix24Service
      */
     private $crmService;
 
-    public function __construct(CRMService $crmService)
+    public function __construct(Bitrix24Service $crmService)
     {
         $this->setCrmService($crmService);
     }
@@ -50,9 +50,9 @@ class NewContactPackListener
     /**
      * Get CRM service
      *
-     * @return CRMService
+     * @return Bitrix24Service
      */
-    public function getCrmService(): CRMService
+    public function getCrmService(): Bitrix24Service
     {
         return $this->crmService;
     }
@@ -60,11 +60,11 @@ class NewContactPackListener
     /**
      * Set CRM service
      *
-     * @param CRMService $crmService
+     * @param Bitrix24Service $crmService
      *
      * @return $this
      */
-    public function setCrmService(CRMService $crmService): self
+    public function setCrmService(Bitrix24Service $crmService): self
     {
         $this->crmService = $crmService;
 

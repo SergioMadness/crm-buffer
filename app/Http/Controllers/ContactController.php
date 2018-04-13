@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Events\NewContact;
 use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
@@ -89,7 +90,7 @@ class ContactController extends Controller
         ]);
         $repository->save($model);
 
-//        event(new NewLead($model->id, $model->body));
+        event(new NewContact($model->id, $model->body));
 
         return $this->response($model);
     }

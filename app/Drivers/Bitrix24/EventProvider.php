@@ -1,12 +1,8 @@
 <?php namespace App\Drivers\Bitrix24;
 
-use App\Events\NewLead;
-use App\Events\NewContact;
 use App\Events\NewLeadPack;
 use App\Events\NewContactPack;
 use Laravel\Lumen\Providers\EventServiceProvider;
-use App\Drivers\Bitrix24\Listeners\NewLeadListener;
-use App\Drivers\Bitrix24\Listeners\NewContactListener;
 use App\Drivers\Bitrix24\Listeners\NewLeadPackListener;
 use App\Drivers\Bitrix24\Listeners\NewContactPackListener;
 
@@ -18,15 +14,15 @@ class EventProvider extends EventServiceProvider
      * @var array
      */
     protected $listen = [
-        NewLead::class        => [
-            NewLeadListener::class,
-        ],
+//        NewLead::class        => [
+//            NewLeadListener::class,
+//        ],
         NewLeadPack::class    => [
             NewLeadPackListener::class,
         ],
-        NewContact::class     => [
-            NewContactListener::class,
-        ],
+//        NewContact::class     => [
+//            NewContactListener::class,
+//        ],
         NewContactPack::class => [
             NewContactPackListener::class,
         ],

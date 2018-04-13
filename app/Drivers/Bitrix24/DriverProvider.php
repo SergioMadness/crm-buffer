@@ -2,8 +2,8 @@
 
 use App\Repositories\RequestRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Drivers\Bitrix24\Interfaces\CRMService;
 use App\Drivers\Bitrix24\Services\Bitrix24Service;
+use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 class DriverProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class DriverProvider extends ServiceProvider
             Bitrix24Service::loadRefreshToken(),
             config('systems.bitrix24.scope')
         );
-        $this->app->instance(CRMService::class, $bitrix24ServiceInstance);
+        $this->app->instance(IBitrix24Service::class, $bitrix24ServiceInstance);
         $this->app->register(EventProvider::class);
 
         RequestRepository::registerSystem(self::DRIVER_NAME);

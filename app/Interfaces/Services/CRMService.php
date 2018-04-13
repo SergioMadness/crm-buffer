@@ -1,8 +1,8 @@
-<?php namespace App\Drivers\Bitrix24\Interfaces;
+<?php namespace App\Interfaces\Services;
 
 /**
  * Interface to work with crm
- * @package App\Drivers\Bitrix24\Interfaces
+ * @package App\Interfaces\Services
  */
 interface CRMService
 {

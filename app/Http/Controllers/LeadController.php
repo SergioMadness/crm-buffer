@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use App\Events\NewLead;
 use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\Repositories\LeadRepository;
@@ -89,7 +89,7 @@ class LeadController extends Controller
         ]);
         $repository->save($model);
 
-//        event(new NewLead($model->id, $model->body));
+        event(new NewLead($model->id, $model->body));
 
         return $this->response($model);
     }
