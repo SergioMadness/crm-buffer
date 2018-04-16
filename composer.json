@@ -17,6 +17,9 @@
     "ramsey/uuid": "^3.5"
   },
   "autoload": {
+    "classmap": [
+      "app/Drivers/PartnerBox/Lib/PapApi.class.php"
+    ],
     "psr-4": {
       "App\\": "app/"
     }
