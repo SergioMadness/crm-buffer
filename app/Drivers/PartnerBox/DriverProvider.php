@@ -13,23 +13,31 @@ class DriverProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->register(EventProvider::class);
+        $accountId = config('systems.pap.account_id');
+        $login = config('systems.pap.login');
+        $password = config('systems.pap.password');
+        $saleUrl = config('systems.pap.sale_url');
+        $serverUrl = config('systems.pap.server_url');
 
-        $integrationService = (new PartnerBoxIntegrationService())
-            ->setAccountId(config('systems.pap.account_id'))
-            ->setLogin(config('systems.pap.login'))
-            ->setPassword(config('systems.pap.password'))
-            ->setSaleUrl(config('systems.pap.sale_url'))
-            ->setServerUrl(config('systems.pap.server_url'));
-        $this->app->instance(IPartnerBoxIntegrationService::class, $integrationService);
+        if (!empty($accountId) && !empty($login) && !empty($password) && !empty($saleUrl) && !empty($serverUrl)) {
+            $this->app->register(EventProvider::class);
 
-        $papService = (new PartnerBoxService($integrationService))
-            ->setContactEventName(config('systems.pap.contact_event_name'))
-            ->setContactEventProductId(config('systems.pap.contact_event_product_id'))
-            ->setLeadEventName(config('systems.pap.lead_event_name'))
-            ->setLeadEventProductId(config('systems.pap.lead_event_product_id'));
-        $this->app->instance(IPartnerBoxService::class, $papService);
+            $integrationService = (new PartnerBoxIntegrationService())
+                ->setAccountId($accountId)
+                ->setLogin($login)
+                ->setPassword($password)
+                ->setSaleUrl($saleUrl)
+                ->setServerUrl($serverUrl);
+            $this->app->instance(IPartnerBoxIntegrationService::class, $integrationService);
 
-        RequestRepository::registerSystem(self::DRIVER_NAME);
+            $papService = (new PartnerBoxService($integrationService))
+                ->setContactEventName(config('systems.pap.contact_event_name'))
+                ->setContactEventProductId(config('systems.pap.contact_event_product_id'))
+                ->setLeadEventName(config('systems.pap.lead_event_name'))
+                ->setLeadEventProductId(config('systems.pap.lead_event_product_id'));
+            $this->app->instance(IPartnerBoxService::class, $papService);
+
+            RequestRepository::registerSystem(self::DRIVER_NAME);
+        }
     }
 }

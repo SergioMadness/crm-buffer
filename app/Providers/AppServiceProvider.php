@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->singleton(IContactRepository::class, ContactRepository::class);
 
-//        $this->app->register(DriverProvider::class);
+        $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);
     }
 }
