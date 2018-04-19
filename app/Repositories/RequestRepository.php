@@ -73,7 +73,9 @@ class RequestRepository extends BaseRepository implements IRequestRepository
         if ($status === Request::STATUS_RETRY) {
             $request->status = Request::STATUS_RETRY;
         }
-        $request->response = $message;
+        $response = $request->response;
+        $response[$system] = $message;
+        $request->response = $response;
         $request->incAttempts();
 
         return $request->save();

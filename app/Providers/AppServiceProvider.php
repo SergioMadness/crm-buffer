@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\RequestRepository;
 use App\Drivers\Bitrix24\DriverProvider;
 use App\Repositories\ApplicationRepository;
+use App\Drivers\PartnerBox\DriverProvider as PAPDriverProvider;
 use App\Interfaces\Repositories\LeadRepository as ILeadRepository;
 use App\Interfaces\Repositories\UserRepository as IUserRepository;
 use App\Interfaces\Services\RequestValidation as IRequestValidation;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->singleton(IContactRepository::class, ContactRepository::class);
 
-        $this->app->register(DriverProvider::class);
+//        $this->app->register(DriverProvider::class);
+        $this->app->register(PAPDriverProvider::class);
     }
 }

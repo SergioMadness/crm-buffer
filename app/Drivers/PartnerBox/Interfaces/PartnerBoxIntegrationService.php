@@ -34,12 +34,11 @@ interface PartnerBoxIntegrationService
      * @param string     $eventName
      * @param string|int $productId
      * @param string|int $orderId
-     * @param string     $data1
-     * @param string     $data2
+     * @param array      $data
      *
-     * @return bool
+     * @return mixed
      */
-    public function sendEvent(string $eventName, $productId, $orderId, $data1, $data2 = null): bool;
+    public function sendEvent(string $eventName, $productId, $orderId, ...$data);
 
     /**
      * Set status to transaction
@@ -47,7 +46,7 @@ interface PartnerBoxIntegrationService
      * @param int|string $orderId
      * @param string     $status
      *
-     * @return bool
+     * @return mixed
      */
-    public function setTransactionStatus($orderId, string $status): bool;
+    public function setTransactionStatus($orderId, string $status);
 }

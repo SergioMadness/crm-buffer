@@ -22,6 +22,11 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
     /**
      * @var string
      */
+    private $saleUrl;
+
+    /**
+     * @var string
+     */
     private $login;
 
     /**
@@ -38,6 +43,11 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      * @var \Pap_Api_ClickTracker
      */
     private $clickTracker;
+
+    /**
+     * @var \Pap_Api_SaleTracker
+     */
+    private $saleTracker;
 
     /**
      * @var string|int
@@ -82,27 +92,37 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
     }
 
     /**
+     * Create sale tracker
+     *
+     * @return \Pap_Api_SaleTracker
+     * @throws WrongCredentialsException
+     */
+    protected function createSaleTracker(): \Pap_Api_SaleTracker
+    {
+        if ($this->saleTracker === null) {
+            $this->saleTracker = new \Pap_Api_SaleTracker($this->getSaleUrl());
+            $this->saleTracker->setAccountId($this->getAccountId());
+            $this->saleTracker->setVisitorId($this->getVisitorId());
+        }
+
+        return $this->saleTracker;
+    }
+
+    /**
      * Track visitor
      *
      * @return bool
      */
     public function track(): bool
     {
-        ob_start();
-
         try {
             $this->createClickTracker()->track();
             $this->clickTracker->saveCookies();
+
+            return true;
         } catch (\Exception $e) {
-            Log::error("PAP Track" . $e->getMessage());
+            return false;
         }
-
-        if ($devNull) {
-            $devNull = ob_get_contents();
-            ob_end_clean();
-        }
-
-
     }
 
     /**
@@ -111,14 +131,26 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      * @param string     $eventName
      * @param string|int $productId
      * @param string|int $orderId
-     * @param string     $data1
-     * @param string     $data2
+     * @param array      $data
      *
-     * @return bool
+     * @return mixed
+     * @throws WrongCredentialsException
      */
-    public function sendEvent(string $eventName, $productId, $orderId, $data1, $data2 = null): bool
+    public function sendEvent(string $eventName, $productId, $orderId, ...$data)
     {
-        // TODO: Implement sendEvent() method.
+        $saleTracker = $this->createSaleTracker();
+        $action = $saleTracker->createAction($eventName)
+            ->setProductId($productId)
+            ->setOrderId($orderId);
+        $dataParamsQty = min(5, \count($data));
+        for ($i = 0; $i < $dataParamsQty; $i++) {
+            $methodName = 'setData' . ($i + 1);
+            $action->$methodName($data[$i]);
+        }
+
+        $saleTracker->register();
+
+        return $saleTracker->getTrackerResponse();
     }
 
     /**
@@ -127,21 +159,41 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      * @param int|string $orderId
      * @param string     $status
      *
-     * @return bool
+     * @return mixed
      */
-    public function setTransactionStatus($orderId, string $status): bool
+    public function setTransactionStatus($orderId, string $status)
     {
-        // TODO: Implement setTransactionStatus() method.
+        $request = new \Pap_Api_TransactionsGrid($this->session);
+        $request->addFilter('orderid', \Gpf_Data_Filter::EQUALS, $orderId);
+        $request->sendNow();
+        $grid = $request->getGrid();
+        $recordSet = $grid->getRecordset();
+        if ($rec = $recordSet->get(0)) {
+            try {
+                $sale = new \Pap_Api_Transaction($this->session);
+                $sale->setTransid($rec->get('id'));
+                if ($sale->load()) {
+                    $sale->setStatus($status);
+                    if ($sale->save()) {
+                        return true;
+                    }
+                }
+            } catch (\Exception $ex) {
+                return false;
+            }
+        }
+
+        return false;
     }
 
-    //<editor-fold desc="Getters and setters">
+    //<editor-fold desc="Getters and setters" defaultstate="collapsed">
 
     /**
      * Set server url
      *
      * @param string $url
      *
-     * @return IPartnerBoxIntegrationService
+     * @return $this
      */
     public function setServerUrl(string $url): IPartnerBoxIntegrationService
     {
@@ -165,7 +217,7 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      *
      * @param string $login
      *
-     * @return IPartnerBoxIntegrationService
+     * @return $this
      */
     public function setLogin(string $login): IPartnerBoxIntegrationService
     {
@@ -189,7 +241,7 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      *
      * @param string $password
      *
-     * @return IPartnerBoxIntegrationService
+     * @return $this
      */
     public function setPassword(string $password): IPartnerBoxIntegrationService
     {
@@ -213,7 +265,7 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      *
      * @param mixed $visitorId
      *
-     * @return IPartnerBoxIntegrationService
+     * @return $this
      */
     public function setVisitorId($visitorId): IPartnerBoxIntegrationService
     {
@@ -255,6 +307,31 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
 
         return $this;
     }
+
+    /**
+     * Get sale url
+     *
+     * @return string
+     */
+    public function getSaleUrl(): string
+    {
+        return $this->saleUrl;
+    }
+
+    /**
+     * Set sale url
+     *
+     * @param string $saleUrl
+     *
+     * @return $this
+     */
+    public function setSaleUrl(string $saleUrl): self
+    {
+        $this->saleUrl = $saleUrl;
+
+        return $this;
+    }
+
 
     //</editor-fold>
 }

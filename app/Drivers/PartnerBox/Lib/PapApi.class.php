@@ -1433,9 +1433,9 @@ if (!class_exists('Gpf_Rpc_GridRequest', false)) {
         /**
          * adds filter to grid
          *
-         * @param unknown_type $code
-         * @param unknown_type $operator
-         * @param unknown_type $value
+         * @param string $code
+         * @param string $operator
+         * @param string $value
          */
         public function addFilter($code, $operator, $value)
         {
@@ -6393,14 +6393,18 @@ if (!class_exists('Pap_Tracking_Action_RequestActionObject', false)) {
             $this->f = $value;
         }
 
-        public function setOrderId($value)
+        public function setOrderId($value): self
         {
             $this->o = $value;
+
+            return $this;
         }
 
-        public function setProductId($value)
+        public function setProductId($value): self
         {
             $this->p = $value;
+
+            return $this;
         }
 
         public function setData1($value)
@@ -6973,6 +6977,11 @@ if (!class_exists('Pap_Api_Tracker', false)) {
             $this->visitorId = @$_COOKIE[self::VISITOR_COOKIE_NAME];
         }
 
+        public function getTrackerResponse()
+        {
+            return $this->trackingResponse;
+        }
+
         public function setVisitorId($visitorId)
         {
             $this->visitorId = $visitorId;
@@ -7138,9 +7147,9 @@ if (!class_exists('Pap_Api_Tracker', false)) {
         /**
          * Creates and returns new sale
          *
-         * @return Pap_Tracking_ActionObject
+         * @return Pap_Tracking_Action_RequestActionObject
          */
-        public function createSale()
+        public function createSale(): \Pap_Tracking_Action_RequestActionObject
         {
             return $this->createAction('');
         }
@@ -7150,9 +7159,9 @@ if (!class_exists('Pap_Api_Tracker', false)) {
          *
          * @param string $actionCode
          *
-         * @return Pap_Tracking_ActionObject
+         * @return Pap_Tracking_Action_RequestActionObject
          */
-        public function createAction($actionCode = '')
+        public function createAction($actionCode = ''): \Pap_Tracking_Action_RequestActionObject
         {
             $sale = new Pap_Tracking_Action_RequestActionObject();
             $sale->setActionCode($actionCode);
