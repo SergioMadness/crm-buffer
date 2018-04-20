@@ -2,8 +2,8 @@
 
 use App\Repositories\RequestRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Drivers\Bitrix24\Interfaces\CRMService;
 use App\Drivers\Bitrix24\Services\Bitrix24Service;
+use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 class DriverProvider extends ServiceProvider
 {
@@ -11,17 +11,24 @@ class DriverProvider extends ServiceProvider
 
     public function register()
     {
-        $bitrix24ServiceInstance = new Bitrix24Service(
-            config('systems.bitrix24.url'),
-            config('systems.bitrix24.client_id'),
-            config('systems.bitrix24.client_secret'),
-            Bitrix24Service::loadAccessToken(),
-            Bitrix24Service::loadRefreshToken(),
-            config('systems.bitrix24.scope')
-        );
-        $this->app->instance(CRMService::class, $bitrix24ServiceInstance);
-        $this->app->register(EventProvider::class);
+        $url = config('systems.bitrix24.url');
+        $clientId = config('systems.bitrix24.client_id');
+        $clientSecret = config('systems.bitrix24.client_secret');
+        $accessToken = Bitrix24Service::loadAccessToken();
+        $refreshToken = Bitrix24Service::loadRefreshToken();
+        if (!empty($url) && !empty($clientId) && !empty($clientSecret) && !empty($accessToken) && !empty($refreshToken)) {
+            $bitrix24ServiceInstance = new Bitrix24Service(
+                $url,
+                $clientId,
+                $clientSecret,
+                $accessToken,
+                $refreshToken,
+                config('systems.bitrix24.scope')
+            );
+            $this->app->instance(IBitrix24Service::class, $bitrix24ServiceInstance);
+            $this->app->register(EventProvider::class);
 
-        RequestRepository::registerSystem(self::DRIVER_NAME);
+            RequestRepository::registerSystem(self::DRIVER_NAME);
+        }
     }
 }

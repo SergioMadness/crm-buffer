@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Events\NewLead;
 use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
@@ -89,7 +90,7 @@ class LeadController extends Controller
         ]);
         $repository->save($model);
 
-//        event(new NewLead($model->id, $model->body));
+        event(new NewLead($model->id, $model->body));
 
         return $this->response($model);
     }

@@ -1,27 +1,23 @@
-<?php namespace App\Drivers\Bitrix24\Listeners;
+<?php namespace App\Listeners;
 
+use App\Interfaces\Services\CRMService;
 use App\Models\Lead;
 use App\Models\Request;
 use App\Events\NewLeadPack;
 use App\Events\RequestResponse;
-use App\Drivers\Bitrix24\DriverProvider;
-use App\Drivers\Bitrix24\Interfaces\Bitrix24Service;
+use App\Drivers\PartnerBox\DriverProvider;
+use App\Drivers\PartnerBox\Interfaces\CRMService;
 
 /**
  * New lead event handler
- * @package App\Drivers\Bitrix24\Listeners
+ * @package App\Listeners
  */
-class NewLeadPackListener
+class BaseNewLeadPackListener
 {
     /**
-     * @var Bitrix24Service
+     * @var CRMService
      */
     private $crmService;
-
-    public function __construct(Bitrix24Service $crmService)
-    {
-        $this->setCrmService($crmService);
-    }
 
     /**
      * handle event
@@ -50,9 +46,9 @@ class NewLeadPackListener
     /**
      * Get CRM service
      *
-     * @return Bitrix24Service
+     * @return CRMService
      */
-    public function getCrmService(): Bitrix24Service
+    public function getCrmService(): CRMService
     {
         return $this->crmService;
     }
@@ -60,11 +56,11 @@ class NewLeadPackListener
     /**
      * Set CRM service
      *
-     * @param Bitrix24Service $crmService
+     * @param CRMService $crmService
      *
      * @return $this
      */
-    public function setCrmService(Bitrix24Service $crmService): self
+    public function setCrmService(CRMService $crmService): self
     {
         $this->crmService = $crmService;
 
