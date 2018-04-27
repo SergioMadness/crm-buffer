@@ -206,8 +206,9 @@ class Bitrix24Service implements IBitrix24Service
             if (isset($fieldInfo[$newKey])) {
                 $data[$newKey] = isset($fieldInfo[$newKey]) ? $this->formatField($value, $fieldInfo[$newKey]) : $value;
             }
-            unset($data[$key]);
-
+            if ($key !== $newKey) {
+                unset($data[$key]);
+            }
         }
 
         return $data;

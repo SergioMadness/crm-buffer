@@ -4,7 +4,6 @@ use App\Events\NewLead;
 use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use App\Traits\UseRequestRepository;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\Repositories\LeadRepository;
