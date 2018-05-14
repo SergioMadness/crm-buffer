@@ -37,6 +37,10 @@ class Bitrix24Service implements IBitrix24Service
 
     protected const METHOD_ADD_CONTACT = 'crm.contact.add';
 
+    protected const FIELD_MAP = [
+        'comment' => 'comments',
+    ];
+
     /**
      * @var array
      */
@@ -201,6 +205,13 @@ class Bitrix24Service implements IBitrix24Service
      */
     protected function prepareData(array &$data, array $fieldInfo): array
     {
+        $mappedFields = array_keys(self::FIELD_MAP);
+        foreach ($data as $key => $value) {
+            if (\in_array($key, $mappedFields)) {
+                $data[self::FIELD_MAP[$key]] = $value;
+                unset($data[$key]);
+            }
+        }
         foreach ($data as $key => $value) {
             $newKey = mb_strtoupper($key);
             if (isset($fieldInfo[$newKey])) {
