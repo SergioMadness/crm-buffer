@@ -84,11 +84,11 @@
         <div class="right_col" role="main">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Редактирование приложения</h2>
+                    <h2>Настройка интеграции</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form id="application-form" data-parsley-validate="" class="form-horizontal form-label-left"
+                    <form id="integration-form" data-parsley-validate="" class="form-horizontal form-label-left"
                           novalidate="" data-bind="submit: save">
                         <div class="alert alert-danger" role="alert" data-bind="visible: isError">
                             <div data-bind="foreach: errors">
@@ -108,30 +108,39 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client_id">Client ID</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="driver">Драйвер</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="client_id" name="client_id" data-bind="value: clientId" disabled
-                                       class="form-control col-md-7 col-xs-12">
+                                <select class="form-control" id="driver"
+                                        data-bind="options: objectToArray(drivers()), optionsText:function(item){return item.index;}, optionsValue:function(item){return item.index;}, value: driver, event: {change: setCurrentDriver}"></select>
+                            </div>
+                        </div>
+                        <div class="well" style="overflow: auto" data-bind="visible: currentDriverSettings()">
+                            <h4>Настройки</h4>
+                            <div data-bind="foreach: objectToArray(currentDriverSettings())">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                           data-bind="text: value.name, attr: {for: index}">
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" required="required"
+                                               data-bind="attr: {id: index}, value:$parent.settingsValues()[index]"
+                                               class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="client_secret">Client
-                                secret</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                   for="is_active">Активность</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="client_secret" name="client_secret"
-                                       data-bind="value: clientSecret" disabled
-                                       class="form-control col-md-7 col-xs-12">
+                                <input type="checkbox" value="1" id="is_active" data-bind="checked: isActive">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <button type="submit" class="btn btn-success" data-bind="click: save">Сохранить</button>
-                                <button type="submit" class="btn btn-warning"
-                                        data-bind="click: regenerateKeys, visible: id">
-                                    Перегенерировать ключи
-                                </button>
-                                <a href="/" class="btn btn-primary">Назад</a>
+                                <a href="/integrations.html" class="btn btn-primary">Назад</a>
                             </div>
                         </div>
 
@@ -146,11 +155,11 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/js.cookie.min.js"></script>
 <script src="/js/app/common.js"></script>
-<script src="/js/app/application.js"></script>
+<script src="/js/app/integration.js"></script>
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/js/custom.min.js"></script>
 <script>
-    ko.applyBindings(new Application(), document.getElementById('application-form'));
+    ko.applyBindings(new Integration(), document.getElementById('integration-form'));
 </script>
 </body>
 </html>

@@ -7,6 +7,15 @@
 interface CRMService
 {
     /**
+     * Set service settings
+     *
+     * @param array $settings
+     *
+     * @return CRMService
+     */
+    public function setSettings(array $settings): self;
+
+    /**
      * Send lead to CRM
      *
      * @param array $data

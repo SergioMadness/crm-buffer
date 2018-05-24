@@ -3,6 +3,7 @@
 use Bitrix24\Bitrix24;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use App\Interfaces\Services\CRMService;
 use Bitrix24\Exceptions\Bitrix24Exception;
 use Bitrix24\Exceptions\Bitrix24IoException;
 use Bitrix24\Exceptions\Bitrix24ApiException;
@@ -98,7 +99,7 @@ class Bitrix24Service implements IBitrix24Service
      */
     private $iterations = 0;
 
-    public function __construct(string $url, string $clientId, string $clientSecret, string $accessToken, string $refreshToken, array $scope = ['crm'])
+    public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
     {
         $this
             ->setUrl($url)
@@ -433,7 +434,7 @@ class Bitrix24Service implements IBitrix24Service
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -453,7 +454,7 @@ class Bitrix24Service implements IBitrix24Service
     /**
      * @return string
      */
-    public function getClientId(): string
+    public function getClientId(): ?string
     {
         return $this->clientId;
     }
@@ -493,7 +494,7 @@ class Bitrix24Service implements IBitrix24Service
     /**
      * @return string
      */
-    public function getAccessToken(): string
+    public function getAccessToken(): ?string
     {
         return $this->accessToken;
     }
@@ -505,7 +506,7 @@ class Bitrix24Service implements IBitrix24Service
      */
     public function setAccessToken(string $accessToken): self
     {
-        $this->accessToken = $accessToken;
+        $this->accessToken = self::loadAccessToken() ?? $accessToken;
 
         return $this;
     }
@@ -513,7 +514,7 @@ class Bitrix24Service implements IBitrix24Service
     /**
      * @return string
      */
-    public function getRefreshToken(): string
+    public function getRefreshToken(): ?string
     {
         return $this->refreshToken;
     }
@@ -525,7 +526,7 @@ class Bitrix24Service implements IBitrix24Service
      */
     public function setRefreshToken(string $refreshToken): self
     {
-        $this->refreshToken = $refreshToken;
+        $this->refreshToken = self::loadRefreshToken() ?? $refreshToken;
 
         return $this;
     }
@@ -578,5 +579,24 @@ class Bitrix24Service implements IBitrix24Service
     public function isSuccess(): bool
     {
         return $this->lastRequestSuccessful;
+    }
+
+    /**
+     * Set service settings
+     *
+     * @param array $settings
+     *
+     * @return $this
+     */
+    public function setSettings(array $settings): CRMService
+    {
+        foreach ($settings as $key => $value) {
+            $methodName = 'set' . camel_case($key);
+            if (method_exists($this, $methodName)) {
+                $this->$methodName($value);
+            }
+        }
+
+        return $this;
     }
 }
