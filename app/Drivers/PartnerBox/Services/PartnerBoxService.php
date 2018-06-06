@@ -1,12 +1,13 @@
 <?php namespace App\Drivers\PartnerBox\Services;
 
 use Illuminate\Validation\Validator;
+use App\Interfaces\Services\CRMService;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
 
 /**
- * Service to work with Post Affiliate Network (http://partnerbox.org/)
+ * Service to work with Post Affiliate Network (https://www.postaffiliatepro.com/)
  * @package App\Drivers\PartnerBox\Services
  */
 class PartnerBoxService implements IPartnerBoxService
@@ -45,11 +46,6 @@ class PartnerBoxService implements IPartnerBoxService
      * @var bool
      */
     private $lastRequestSuccessful = false;
-
-    public function __construct(PartnerBoxIntegrationService $integrationService)
-    {
-        $this->setIntegrationService($integrationService);
-    }
 
     /**
      * Send lead to CRM
@@ -197,7 +193,7 @@ class PartnerBoxService implements IPartnerBoxService
      *
      * @return string
      */
-    public function getLeadEventName(): string
+    public function getLeadEventName(): ?string
     {
         return $this->leadEventName;
     }
@@ -221,7 +217,7 @@ class PartnerBoxService implements IPartnerBoxService
      *
      * @return string
      */
-    public function getContactEventName(): string
+    public function getContactEventName(): ?string
     {
         return $this->contactEventName;
     }
@@ -245,7 +241,7 @@ class PartnerBoxService implements IPartnerBoxService
      *
      * @return string
      */
-    public function getLeadEventProductId(): string
+    public function getLeadEventProductId(): ?string
     {
         return $this->leadEventProductId;
     }
@@ -269,7 +265,7 @@ class PartnerBoxService implements IPartnerBoxService
      *
      * @return string
      */
-    public function getContactEventProductId(): string
+    public function getContactEventProductId(): ?string
     {
         return $this->contactEventProductId;
     }
@@ -288,4 +284,27 @@ class PartnerBoxService implements IPartnerBoxService
         return $this;
     }
     //</editor-fold>
+
+    /**
+     * Set service settings
+     *
+     * @param array $settings
+     *
+     * @return $this
+     */
+    public function setSettings(array $settings): CRMService
+    {
+        $newIntegrationService = app(PartnerBoxIntegrationService::class);
+        foreach ($settings as $key => $value) {
+            $methodName = 'set' . camel_case($key);
+            if (method_exists($this, $methodName)) {
+                $this->$methodName($value);
+            } elseif (method_exists($newIntegrationService, $methodName)) {
+                $newIntegrationService->$methodName($value);
+            }
+        }
+        $this->setIntegrationService($newIntegrationService);
+
+        return $this;
+    }
 }

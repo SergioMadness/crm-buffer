@@ -32,6 +32,13 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
         $router->post('/applications[/{id}]', 'ApplicationController@store');
         $router->delete('/applications/{id}', 'ApplicationController@destroy');
         $router->post('/applications/{id}/regenerate-keys', 'ApplicationController@regenerateTokens');
+
+        $router->get('/integrations', 'IntegrationController@index');
+        $router->get('/integrations/{id}', 'IntegrationController@view');
+        $router->post('/integrations[/{id}]', 'IntegrationController@store');
+        $router->delete('/integrations/{id}', 'IntegrationController@destroy');
+
+        $router->get('/drivers', 'DriverController@index');
     });
 });
 

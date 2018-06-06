@@ -1,7 +1,7 @@
 <?php namespace App\Drivers\PartnerBox;
 
-use App\Repositories\RequestRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\Services\IntegrationsPool;
 use App\Drivers\PartnerBox\Services\PartnerBoxService;
 use App\Drivers\PartnerBox\Services\PartnerBoxIntegrationService;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
@@ -11,33 +11,52 @@ class DriverProvider extends ServiceProvider
 {
     public const DRIVER_NAME = 'partnerbox';
 
+    public function boot(): void
+    {
+        app(IntegrationsPool::class)->registerDriver(self::DRIVER_NAME, [
+            'server_url'               => [
+                'name' => 'Url сервиса',
+                'type' => 'string',
+            ],
+            'sale_url'                 => [
+                'name' => 'Sales url',
+                'type' => 'string',
+            ],
+            'login'                    => [
+                'name' => 'Логин',
+                'type' => 'string',
+            ],
+            'password'                 => [
+                'name' => 'Пароль',
+                'type' => 'password',
+            ],
+            'account_id'               => [
+                'name' => 'Account id',
+                'type' => 'string',
+            ],
+            'lead_event_name'          => [
+                'name' => 'Lead event name',
+                'type' => 'string',
+            ],
+            'lead_event_product_id'    => [
+                'name' => 'Lead event product id',
+                'type' => 'string',
+            ],
+            'contact_event_name'       => [
+                'name' => 'Contact event name',
+                'type' => 'string',
+            ],
+            'contact_event_product_id' => [
+                'name' => 'Contact event product id',
+                'type' => 'string',
+            ],
+        ]);
+    }
+
     public function register(): void
     {
-        $accountId = config('systems.pap.account_id');
-        $login = config('systems.pap.login');
-        $password = config('systems.pap.password');
-        $saleUrl = config('systems.pap.sale_url');
-        $serverUrl = config('systems.pap.server_url');
-
-        if (!empty($accountId) && !empty($login) && !empty($password) && !empty($saleUrl) && !empty($serverUrl)) {
-            $this->app->register(EventProvider::class);
-
-            $integrationService = (new PartnerBoxIntegrationService())
-                ->setAccountId($accountId)
-                ->setLogin($login)
-                ->setPassword($password)
-                ->setSaleUrl($saleUrl)
-                ->setServerUrl($serverUrl);
-            $this->app->instance(IPartnerBoxIntegrationService::class, $integrationService);
-
-            $papService = (new PartnerBoxService($integrationService))
-                ->setContactEventName(config('systems.pap.contact_event_name'))
-                ->setContactEventProductId(config('systems.pap.contact_event_product_id'))
-                ->setLeadEventName(config('systems.pap.lead_event_name'))
-                ->setLeadEventProductId(config('systems.pap.lead_event_product_id'));
-            $this->app->instance(IPartnerBoxService::class, $papService);
-
-            RequestRepository::registerSystem(self::DRIVER_NAME);
-        }
+        $this->app->bind(IPartnerBoxIntegrationService::class, PartnerBoxIntegrationService::class);
+        $this->app->bind(IPartnerBoxService::class, PartnerBoxService::class);
+        $this->app->bind(self::DRIVER_NAME, PartnerBoxService::class);
     }
 }

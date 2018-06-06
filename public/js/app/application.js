@@ -11,7 +11,8 @@ function Application() {
     self.errors = ko.observableArray([]);
 
     self.save = function () {
-        post('/api/v1/applications' + (self.id !== null ? '/' + self.id : ''), {
+        var id = self.id();
+        post('/api/v1/applications' + (id !== null ? '/' + id : ''), {
             name: self.name(),
             client_id: self.clientId(),
             client_secret: self.clientSecret()
@@ -19,7 +20,7 @@ function Application() {
             .done(function (response) {
                 self.isSaved(true);
                 self.id(response.id);
-                window.location.hash = self.id;
+                window.location.hash = response.id;
             })
             .fail(function (response) {
                 self.isError(true);
@@ -28,7 +29,8 @@ function Application() {
     };
 
     self.regenerateKeys = function () {
-        post('/api/v1/applications/' + self.id + '/regenerate-keys')
+        var id = self.id();
+        post('/api/v1/applications/' + id + '/regenerate-keys')
             .done(function (response) {
                 self.isSaved(true);
                 self.name(response.name);
@@ -41,9 +43,9 @@ function Application() {
             });
     };
 
-    self.id = window.location.hash.replace('#', '');
+    self.id(window.location.hash.replace('#', ''));
 
-    get('/api/v1/applications/' + self.id)
+    get('/api/v1/applications/' + self.id())
         .done(function (response) {
             self.name(response.name);
             self.clientId(response.client_id);

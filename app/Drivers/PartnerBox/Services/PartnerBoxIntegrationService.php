@@ -207,7 +207,7 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      *
      * @return string
      */
-    public function getServerUrl(): string
+    public function getServerUrl(): ?string
     {
         return $this->serverUrl;
     }
@@ -231,7 +231,7 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      *
      * @return string
      */
-    public function getLogin(): string
+    public function getLogin(): ?string
     {
         return $this->login;
     }
@@ -255,7 +255,7 @@ class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
      *
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }

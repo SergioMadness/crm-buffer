@@ -1,7 +1,7 @@
 <?php namespace App\Drivers\Bitrix24;
 
-use App\Repositories\RequestRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\Services\IntegrationsPool;
 use App\Drivers\Bitrix24\Services\Bitrix24Service;
 use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
@@ -9,26 +9,35 @@ class DriverProvider extends ServiceProvider
 {
     public const DRIVER_NAME = 'bitrix';
 
+    public function boot()
+    {
+        app(IntegrationsPool::class)->registerDriver(self::DRIVER_NAME, [
+            'url'           => [
+                'name' => 'Домен',
+                'type' => 'string',
+            ],
+            'client_id'     => [
+                'name' => 'Client id',
+                'type' => 'string',
+            ],
+            'client_secret' => [
+                'name' => 'Client secret',
+                'type' => 'string',
+            ],
+            'access_token'  => [
+                'name' => 'Access token',
+                'type' => 'string',
+            ],
+            'refresh_token' => [
+                'name' => 'Refresh token',
+                'type' => 'string',
+            ],
+        ]);
+    }
+
     public function register()
     {
-        $url = config('systems.bitrix24.url');
-        $clientId = config('systems.bitrix24.client_id');
-        $clientSecret = config('systems.bitrix24.client_secret');
-        $accessToken = Bitrix24Service::loadAccessToken();
-        $refreshToken = Bitrix24Service::loadRefreshToken();
-        if (!empty($url) && !empty($clientId) && !empty($clientSecret) && !empty($accessToken) && !empty($refreshToken)) {
-            $bitrix24ServiceInstance = new Bitrix24Service(
-                $url,
-                $clientId,
-                $clientSecret,
-                $accessToken,
-                $refreshToken,
-                config('systems.bitrix24.scope')
-            );
-            $this->app->instance(IBitrix24Service::class, $bitrix24ServiceInstance);
-            $this->app->register(EventProvider::class);
-
-            RequestRepository::registerSystem(self::DRIVER_NAME);
-        }
+        $this->app->bind(IBitrix24Service::class, Bitrix24Service::class);
+        $this->app->bind(self::DRIVER_NAME, Bitrix24Service::class);
     }
 }

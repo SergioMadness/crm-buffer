@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\IntegrationsPool;
 use App\Services\RequestValidation;
 use App\Repositories\LeadRepository;
 use App\Repositories\UserRepository;
@@ -9,13 +10,16 @@ use App\Repositories\ContactRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\RequestRepository;
 use App\Drivers\Bitrix24\DriverProvider;
+use App\Repositories\IntegrationRepository;
 use App\Repositories\ApplicationRepository;
 use App\Drivers\PartnerBox\DriverProvider as PAPDriverProvider;
+use App\Interfaces\Services\IntegrationsPool as IIntegrationsPool;
 use App\Interfaces\Repositories\LeadRepository as ILeadRepository;
 use App\Interfaces\Repositories\UserRepository as IUserRepository;
 use App\Interfaces\Services\RequestValidation as IRequestValidation;
 use App\Interfaces\Repositories\ContactRepository as IContactRepository;
 use App\Interfaces\Repositories\RequestRepository as IRequestRepository;
+use App\Interfaces\Repositories\IntegrationRepository as IIntegrationRepository;
 use App\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
             return new UserRepository(config('app.login'), config('app.password'));
         });
         $this->app->singleton(IContactRepository::class, ContactRepository::class);
+        $this->app->singleton(IIntegrationRepository::class, IntegrationRepository::class);
+        $this->app->singleton(IIntegrationsPool::class, IntegrationsPool::class);
 
         $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);
