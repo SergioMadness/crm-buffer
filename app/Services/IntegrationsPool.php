@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use App\Interfaces\Model;
 use App\Repositories\RequestRepository;
 use App\Interfaces\Services\IntegrationsPool as IIntegrationsPool;
 
@@ -15,6 +16,13 @@ class IntegrationsPool implements IIntegrationsPool
      * @var array
      */
     private $pool = [];
+
+    /**
+     * Event callbacks
+     *
+     * @var array
+     */
+    private $callbacks = [];
 
     /**
      * Register driver
@@ -68,5 +76,51 @@ class IntegrationsPool implements IIntegrationsPool
     public function getDrivers(): array
     {
         return $this->pool;
+    }
+
+    /**
+     * Add callback
+     *
+     * @param string   $event
+     * @param callable $callback
+     * @param string   $driver
+     *
+     * @return IIntegrationsPool
+     */
+    public function on(string $event, callable $callback, string $driver = '*'): IIntegrationsPool
+    {
+        if (empty($driver)) {
+            $driver = '*';
+        }
+        if (!isset($this->callbacks[$event])) {
+            $this->callbacks[$event] = [];
+        }
+        if (!isset($this->callbacks[$event][$driver])) {
+            $this->callbacks[$event][$driver] = [];
+        }
+        $this->callbacks[$event][$driver][] = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Fire event
+     *
+     * @param string $event
+     * @param Model  $model
+     *
+     * @return IIntegrationsPool
+     */
+    public function fire(string $event, Model $model): IIntegrationsPool
+    {
+        if (isset($this->callbacks[$event])) {
+            foreach ($this->callbacks[$event] as $driver => $callbacks) {
+                foreach ($callbacks as $callback) {
+                    $callback($model);
+                }
+            }
+        }
+
+        return $this;
     }
 }

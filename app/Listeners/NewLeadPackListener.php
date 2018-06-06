@@ -32,12 +32,13 @@ class NewLeadPackListener
      */
     public function handle(NewLeadPack $event): void
     {
-        $drivers = $this->getIntegrationsPool()->getDrivers();
+        $pool = $this->getIntegrationsPool();
+        $drivers = $pool->getDrivers();
 
         foreach ($drivers as $alias => $settings) {
             $this->getIntegrationRepository()->get([
                 'driver' => $alias,
-            ])->each(function (Integration $integration) use ($event, $alias, $settings) {
+            ])->each(function (Integration $integration) use ($event, $alias, $settings, $pool) {
                 /** @var CRMService $crmService */
                 $crmService = app($alias);
                 $crmService->setSettings($integration->settings);
@@ -46,7 +47,9 @@ class NewLeadPackListener
                     /** @var Lead $lead */
                     if ($lead->needIToProcess($system)) {
                         try {
+                            $pool->fire(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, $lead);
                             $crmService->sendLead($lead->body);
+                            $pool->fire(IntegrationsPool::EVENT_AFTER_SEND_LEAD, $lead);
                             $message = $crmService->getMessages();
                             $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
                         } catch (\Exception $ex) {
