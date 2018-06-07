@@ -4,10 +4,11 @@ use App\Models\Lead;
 use App\Interfaces\Model;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\Services\IntegrationsPool;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
 use App\Drivers\Bitrix24LeadDistribution\Algorithms\RoundRobin;
 use App\Drivers\Bitrix24LeadDistribution\Services\UserFilterService;
 use App\Drivers\Bitrix24LeadDistribution\Services\DistributionService;
-use App\Drivers\Bitrix24LeadDistribution\DistributionService as IDistributionService;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
 
 class DriverProvider extends ServiceProvider
 {
@@ -15,10 +16,12 @@ class DriverProvider extends ServiceProvider
     {
         app(IntegrationsPool::class)->on(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, function (Model $lead) {
             /** @var Lead $lead */
-            $lead->body['ASSIGNED_BY_ID'] = app(IDistributionService::class)->getUserId(
+            $body = $lead->body;
+            $body['ASSIGNED_BY_ID'] = app(IDistributionService::class)->getUserId(
                 config('systems.bitrix24.filter', []),
-                $lead->body
+                $body
             );
+            $lead->body = $body;
         });
     }
 

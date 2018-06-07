@@ -1,7 +1,7 @@
 <?php namespace App\Drivers\Bitrix24LeadDistribution\Algorithms;
 
 use Illuminate\Support\Facades\Cache;
-use App\Drivers\Bitrix24LeadDistribution\DistributionAlgorithm;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionAlgorithm;
 
 /**
  * Round robin implementation
@@ -17,8 +17,8 @@ class RoundRobin implements DistributionAlgorithm
     protected function getMap(): array
     {
         $map = Cache::get('rr_map', [
-            'value' => [],
-            'date'  => date('d.m.Y'),
+            'values' => [],
+            'date'   => date('d.m.Y'),
         ]);
         if ($map['date'] !== date('d.m.Y')) {
             $map['values'] = [];
@@ -40,6 +40,8 @@ class RoundRobin implements DistributionAlgorithm
             'values' => $map,
             'date'   => date('d.m.Y'),
         ]);
+
+        return $this;
     }
 
     /**

@@ -1,10 +1,13 @@
 <?php namespace App\Drivers\Bitrix24LeadDistribution\Services;
 
-use App\Drivers\Bitrix24LeadDistribution\Algorithms\RoundRobin;
-use App\Drivers\Bitrix24LeadDistribution\DistributionAlgorithm;
-use App\Drivers\Bitrix24LeadDistribution\DistributionService as IDistributionService;
-use App\Drivers\Bitrix24LeadDistribution\Filter;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionAlgorithm;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
 
+/**
+ * Service to distribute leads between users
+ * @package App\Drivers\Bitrix24LeadDistribution\Services
+ */
 class DistributionService implements IDistributionService
 {
 

@@ -16,6 +16,10 @@ class DriverProvider extends ServiceProvider
                 'name' => 'Домен',
                 'type' => 'string',
             ],
+            'hook'          => [
+                'name' => 'Hook',
+                'type' => 'string',
+            ],
             'client_id'     => [
                 'name' => 'Client id',
                 'type' => 'string',

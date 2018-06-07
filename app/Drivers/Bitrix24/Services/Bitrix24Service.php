@@ -1,6 +1,6 @@
 <?php namespace App\Drivers\Bitrix24\Services;
 
-use Bitrix24\Bitrix24;
+use App\Drivers\Bitrix24\Bitrix24;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use App\Interfaces\Services\CRMService;
@@ -99,7 +99,14 @@ class Bitrix24Service implements IBitrix24Service
      */
     private $iterations = 0;
 
-    public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
+    /**
+     * Hook
+     *
+     * @var string
+     */
+    private $hook;
+
+    public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'], string $hook = '')
     {
         $this
             ->setUrl($url)
@@ -107,7 +114,8 @@ class Bitrix24Service implements IBitrix24Service
             ->setClientSecret($clientSecret)
             ->setAccessToken($accessToken)
             ->setRefreshToken($refreshToken)
-            ->setScope($scope);
+            ->setScope($scope)
+            ->setHook($hook);
     }
 
     /**
@@ -278,8 +286,10 @@ class Bitrix24Service implements IBitrix24Service
             $this->client->setApplicationId($this->getClientId());
             $this->client->setApplicationSecret($this->getClientSecret());
             $this->client->setDomain($this->getUrl());
-            $this->client->setAccessToken($this->getAccessToken());
-            $this->client->setRefreshToken($this->getRefreshToken());
+            if (empty($this->getHook())) {
+                $this->client->setAccessToken($this->getAccessToken());
+                $this->client->setRefreshToken($this->getRefreshToken());
+            }
             $this->client->setApplicationScope($this->getScope());
             $this->client->setRedirectUri('https://fake.crm.local');
         }
@@ -310,7 +320,7 @@ class Bitrix24Service implements IBitrix24Service
         $response = null;
         $this->iterations++;
         try {
-            $response = $this->getClient()->call($method, $params);
+            $response = $this->getClient()->call($this->getHook() . $method, $params);
         } catch (Bitrix24TokenIsExpiredException $e) {
             $this->lastRequestSuccessful = false;
             if ($this->iterations < self::MAX_ITERATIONS && $this->refreshToken()) {
@@ -402,7 +412,7 @@ class Bitrix24Service implements IBitrix24Service
      *
      * @return string
      */
-    public static function loadAccessToken(): string
+    public static function loadAccessToken(): ?string
     {
         $settings = static::loadDynamicCredentials();
 
@@ -414,7 +424,7 @@ class Bitrix24Service implements IBitrix24Service
      *
      * @return string
      */
-    public static function loadRefreshToken(): string
+    public static function loadRefreshToken(): ?string
     {
         $settings = static::loadDynamicCredentials();
 
@@ -596,6 +606,30 @@ class Bitrix24Service implements IBitrix24Service
                 $this->$methodName($value);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get hook
+     *
+     * @return string
+     */
+    public function getHook(): string
+    {
+        return $this->hook;
+    }
+
+    /**
+     * Set hook
+     *
+     * @param string $hook
+     *
+     * @return $this
+     */
+    public function setHook(string $hook): self
+    {
+        $this->hook = $hook;
 
         return $this;
     }

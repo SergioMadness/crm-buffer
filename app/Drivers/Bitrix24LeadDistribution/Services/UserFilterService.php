@@ -1,6 +1,6 @@
 <?php namespace App\Drivers\Bitrix24LeadDistribution\Services;
 
-use App\Drivers\Bitrix24LeadDistribution\Filter;
+use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
 
 /**
  * Service for user filtration
@@ -19,29 +19,22 @@ class UserFilterService implements Filter
      */
     public function getUserIds(array $filter, array $params): array
     {
-        $result = [];
-        $conditions = $filter['conditions'] ?? [];
-
-        if (!empty($conditions)) {
-            foreach ($conditions as $condition) {
+        if (!empty($filter)) {
+            foreach ($filter as $condition) {
                 $field = $condition['field'] ?? null;
                 $operation = $condition['operation'] ?? null;
-                $value1 = $condition['value'] ?? null;
+                $value1 = $condition['value1'] ?? null;
                 $value2 = $condition['value2'] ?? null;
                 $success = $condition['success'] ?? null;
                 $filterResult = $condition['result'] ?? null;
 
-                if ($field !== null && isset($params[$field]) && $this->checkCondition($params[$field], $operation, $value1, $value2)) {
-                    if ($success !== null) {
-                        $result = array_merge($result, $this->getUserIds($success, $params));
-                    } else {
-                        $result = array_merge($result, $filterResult);
-                    }
+                if ($field !== null && $this->checkCondition($params[$field] ?? '', $operation, $value1, $value2)) {
+                    return $success !== null ? $this->getUserIds($success, $params) : $filterResult;
                 }
             }
         }
 
-        return array_unique($result);
+        return [];
     }
 
     /**
@@ -57,6 +50,11 @@ class UserFilterService implements Filter
     protected function checkCondition($value, $condition, $value1, $value2): bool
     {
         $result = false;
+        $value = mb_strtolower($value);
+        $value1 = mb_strtolower($value1);
+        if ($value2 !== null) {
+            $value2 = mb_strtolower($value2);
+        }
         $conditions = explode('|', $condition);
         $invert = \in_array(self::CONDITION_NOT, $conditions);
         switch ($condition) {

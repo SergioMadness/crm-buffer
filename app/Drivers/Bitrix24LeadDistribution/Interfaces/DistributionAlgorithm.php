@@ -1,8 +1,8 @@
-<?php namespace App\Drivers\Bitrix24LeadDistribution;
+<?php namespace App\Drivers\Bitrix24LeadDistribution\Interfaces;
 
 /**
  * Interface for distribution algorithms
- * @package App\Drivers\Bitrix24LeadDistribution
+ * @package App\Drivers\Bitrix24LeadDistribution\Interfaces
  */
 interface DistributionAlgorithm
 {

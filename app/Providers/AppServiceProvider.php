@@ -44,5 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);
+
+        $this->app->register(\App\Drivers\Bitrix24LeadDistribution\DriverProvider::class);
     }
 }
