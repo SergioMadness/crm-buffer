@@ -16,11 +16,15 @@ function Integration() {
 
     self.save = function () {
         var id = self.id();
+        var settings = self.settingsValues();
+        for (var i in settings) {
+            settings[i] = settings[i] === true ? 1 : (settings[i] === false ? 0 : settings[i]);
+        }
         post('/api/v1/integrations' + (id !== null ? '/' + id : ''), {
             name: self.name(),
             driver: self.driver(),
-            is_active: self.isActive(),
-            settings: self.settingsValues()
+            is_active: self.isActive() ? 1 : 0,
+            settings: settings
         })
             .done(function (response) {
                 self.isSaved(true);

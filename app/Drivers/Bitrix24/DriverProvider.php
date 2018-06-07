@@ -36,6 +36,10 @@ class DriverProvider extends ServiceProvider
                 'name' => 'Refresh token',
                 'type' => 'string',
             ],
+            'check_duplicates' => [
+                'name' => 'Помечать дубликаты',
+                'type' => 'bool',
+            ],
         ]);
     }
 

@@ -37,7 +37,8 @@ class NewLeadPackListener
 
         foreach ($drivers as $alias => $settings) {
             $this->getIntegrationRepository()->get([
-                'driver' => $alias,
+                'driver'    => $alias,
+                'is_active' => true,
             ])->each(function (Integration $integration) use ($event, $alias, $settings, $pool) {
                 /** @var CRMService $crmService */
                 $crmService = app($alias);

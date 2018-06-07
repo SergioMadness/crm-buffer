@@ -106,7 +106,14 @@ class Bitrix24Service implements IBitrix24Service
      */
     private $hook;
 
-    public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'], string $hook = '')
+    /**
+     * Check duplicate
+     *
+     * @var bool
+     */
+    private $checkDuplicates = false;
+
+    public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
     {
         $this
             ->setUrl($url)
@@ -114,8 +121,7 @@ class Bitrix24Service implements IBitrix24Service
             ->setClientSecret($clientSecret)
             ->setAccessToken($accessToken)
             ->setRefreshToken($refreshToken)
-            ->setScope($scope)
-            ->setHook($hook);
+            ->setScope($scope);
     }
 
     /**
@@ -151,6 +157,10 @@ class Bitrix24Service implements IBitrix24Service
             $this->setMessages($validator->errors()->all());
 
             return $this->lastRequestSuccessful = false;
+        }
+
+        if ($this->needCheckDuplicates() && $this->hasDuplicates($data)) {
+            $data['STATUS_ID'] = 'duplicate';
         }
 
         $this->call(self::METHOD_ADD_LEAD, [
@@ -195,6 +205,10 @@ class Bitrix24Service implements IBitrix24Service
             $this->setMessages($validator->errors()->all());
 
             return $this->lastRequestSuccessful = false;
+        }
+
+        if ($this->needCheckDuplicates() && $this->hasDuplicates($data, 'CONTACT')) {
+            $data['STATUS_ID'] = 'duplicate';
         }
 
         $this->call(self::METHOD_ADD_CONTACT, [
@@ -367,6 +381,46 @@ class Bitrix24Service implements IBitrix24Service
         }
 
         return false;
+    }
+
+    /**
+     * Check
+     *
+     * @param array  $data
+     * @param string $entityType
+     *
+     * @return bool
+     */
+    protected function hasDuplicates(array $data, string $entityType = 'LEAD'): bool
+    {
+        $result = false;
+
+        try {
+            if (isset($data['EMAIL'])) {
+                $checkResult = $this->call('crm.duplicate.findbycomm', [
+                    'type'        => 'EMAIL',
+                    'values'      => array_map(function ($item) {
+                        return $item['VALUE'];
+                    }, $data['EMAIL']),
+                    'entity_type' => $entityType,
+                ]);
+                $result |= !empty($checkResult);
+            }
+            if (isset($data['PHONE'])) {
+                $checkResult = $this->call('crm.duplicate.findbycomm', [
+                    'type'        => 'PHONE',
+                    'values'      => array_map(function ($item) {
+                        return $item['VALUE'];
+                    }, $data['PHONE']),
+                    'entity_type' => $entityType,
+                ]);
+                $result |= !empty($checkResult);
+            }
+        } catch (\Exception $ex) {
+
+        }
+
+        return $result;
     }
 
     /**
@@ -615,7 +669,7 @@ class Bitrix24Service implements IBitrix24Service
      *
      * @return string
      */
-    public function getHook(): string
+    public function getHook(): ?string
     {
         return $this->hook;
     }
@@ -630,6 +684,30 @@ class Bitrix24Service implements IBitrix24Service
     public function setHook(string $hook): self
     {
         $this->hook = $hook;
+
+        return $this;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return bool
+     */
+    public function needCheckDuplicates(): bool
+    {
+        return $this->checkDuplicates;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param bool $checkDuplicates
+     *
+     * @return $this
+     */
+    public function setCheckDuplicates(bool $checkDuplicates): self
+    {
+        $this->checkDuplicates = $checkDuplicates;
 
         return $this;
     }
