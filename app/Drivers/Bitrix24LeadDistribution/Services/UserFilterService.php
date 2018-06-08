@@ -50,10 +50,10 @@ class UserFilterService implements Filter
     protected function checkCondition($value, $condition, $value1, $value2): bool
     {
         $result = false;
-        $value = mb_strtolower($value);
-        $value1 = mb_strtolower($value1);
+        $value = \is_string($value) ? mb_strtolower($value) : $value;
+        $value1 = \is_string($value1) ? mb_strtolower($value1) : $value1;
         if ($value2 !== null) {
-            $value2 = mb_strtolower($value2);
+            $value2 = \is_string($value2) ? mb_strtolower($value2) : $value2;
         }
         $conditions = explode('|', $condition);
         $invert = \in_array(self::CONDITION_NOT, $conditions);
