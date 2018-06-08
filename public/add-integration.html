@@ -122,15 +122,15 @@
                                            data-bind="text: value.name, attr: {for: index}">
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- ko if:value.type=='string' -->
-                                        <input type="text"
-                                               data-bind="attr: {id: index}, value:$parent.settingsValues()[index]"
-                                               class="form-control col-md-7 col-xs-12">
-                                        <!-- /ko -->
-                                        <!-- ko if:value.type=='bool' -->
-                                        <input type="checkbox" value="1"
-                                               data-bind="attr: {id: index}, checked: $parent.settingsValues()[index]">
-                                        <!-- /ko -->
+                                        <div data-bind="if:value.type=='string'">
+                                            <input type="text"
+                                                   data-bind="attr: {id: index}, value:$parent.settingsValues()[index]"
+                                                   class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                        <div data-bind="if:value.type=='bool'">
+                                            <input type="checkbox" value="1"
+                                                   data-bind="attr: {id: index}, checked: $parent.settingsValues()[index]">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
