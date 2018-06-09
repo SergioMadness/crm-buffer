@@ -80,8 +80,9 @@ interface IntegrationsPool
      *
      * @param string $event
      * @param Model  $model
+     * @param array  $settings
      *
      * @return IntegrationsPool
      */
-    public function fire(string $event, Model $model): self;
+    public function fire(string $event, Model $model, array $settings): self;
 }

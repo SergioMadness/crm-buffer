@@ -108,15 +108,16 @@ class IntegrationsPool implements IIntegrationsPool
      *
      * @param string $event
      * @param Model  $model
+     * @param array  $settings
      *
      * @return IIntegrationsPool
      */
-    public function fire(string $event, Model $model): IIntegrationsPool
+    public function fire(string $event, Model $model, array $settings): IIntegrationsPool
     {
         if (isset($this->callbacks[$event])) {
             foreach ($this->callbacks[$event] as $driver => $callbacks) {
                 foreach ($callbacks as $callback) {
-                    $callback($model);
+                    $callback($model, $settings);
                 }
             }
         }

@@ -48,9 +48,9 @@ class NewLeadPackListener
                     /** @var Lead $lead */
                     if ($lead->needIToProcess($system)) {
                         try {
-                            $pool->fire(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, $lead);
+                            $pool->fire(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, $lead, $settings);
                             $crmService->sendLead($lead->body);
-                            $pool->fire(IntegrationsPool::EVENT_AFTER_SEND_LEAD, $lead);
+                            $pool->fire(IntegrationsPool::EVENT_AFTER_SEND_LEAD, $lead, $settings);
                             $message = $crmService->getMessages();
                             $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
                         } catch (\Exception $ex) {

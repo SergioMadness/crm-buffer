@@ -113,6 +113,16 @@ class Bitrix24Service implements IBitrix24Service
      */
     private $checkDuplicates = false;
 
+    /**
+     * @var string
+     */
+    private $duplicateStatus;
+
+    /**
+     * @var string
+     */
+    private $distributedStatus;
+
     public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
     {
         $this
@@ -208,7 +218,7 @@ class Bitrix24Service implements IBitrix24Service
         }
 
         if ($this->needCheckDuplicates() && $this->hasDuplicates($data, 'CONTACT')) {
-            $data['STATUS_ID'] = 'duplicate';
+            $data['STATUS_ID'] = $this->getDistributedStatus();
         }
 
         $this->call(self::METHOD_ADD_CONTACT, [
@@ -708,6 +718,46 @@ class Bitrix24Service implements IBitrix24Service
     public function setCheckDuplicates(bool $checkDuplicates): self
     {
         $this->checkDuplicates = $checkDuplicates;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDuplicateStatus(): ?string
+    {
+        return $this->duplicateStatus;
+    }
+
+    /**
+     * @param string $duplicateStatus
+     *
+     * @return $this
+     */
+    public function setDuplicateStatus(string $duplicateStatus): self
+    {
+        $this->duplicateStatus = $duplicateStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDistributedStatus(): ?string
+    {
+        return $this->distributedStatus;
+    }
+
+    /**
+     * @param string $distributedStatus
+     *
+     * @return $this
+     */
+    public function setDistributedStatus(string $distributedStatus): self
+    {
+        $this->distributedStatus = $distributedStatus;
 
         return $this;
     }

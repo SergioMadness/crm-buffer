@@ -14,13 +14,16 @@ class DriverProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        app(IntegrationsPool::class)->on(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, function (Model $lead) {
+        app(IntegrationsPool::class)->on(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, function (Model $lead, array $settings) {
             /** @var Lead $lead */
             $body = $lead->body;
             $body['ASSIGNED_BY_ID'] = app(IDistributionService::class)->getUserId(
                 config('systems.bitrix24.filter', []),
                 $body
             );
+            if (!empty($body['ASSIGNED_BY_ID'])) {
+                $body['STATUS_ID'] = $settings['distributed_status'];
+            }
             $lead->body = $body;
         });
     }
