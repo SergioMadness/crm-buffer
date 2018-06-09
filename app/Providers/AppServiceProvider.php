@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Integration;
 use App\Services\IntegrationsPool;
 use App\Services\RequestValidation;
 use App\Repositories\LeadRepository;
@@ -24,12 +25,23 @@ use App\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function boot(): void
+    {
+        /** @var IIntegrationRepository $requestRepository */
+        $requestRepository = app(IIntegrationRepository::class);
+        RequestRepository::setAvailableSystems(
+            $requestRepository->get(['is_active' => true])->map(function (Integration $model) {
+                return $model->driver . '_' . $model->id;
+            })->all()
+        );
+    }
+
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton(IRequestValidation::class, RequestValidation::class);
         $this->app->singleton(IApplicationRepository::class, ApplicationRepository::class);

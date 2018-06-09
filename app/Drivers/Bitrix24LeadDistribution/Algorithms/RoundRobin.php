@@ -12,11 +12,13 @@ class RoundRobin implements DistributionAlgorithm
     /**
      * Get map user->leadQty
      *
+     * @param string $key
+     *
      * @return array
      */
-    protected function getMap(): array
+    protected function getMap(string $key): array
     {
-        $map = Cache::get('rr_map', [
+        $map = Cache::get('rr_map_' . $key, [
             'values' => [],
             'date'   => date('d.m.Y'),
         ]);
@@ -30,13 +32,14 @@ class RoundRobin implements DistributionAlgorithm
     /**
      * Remember map
      *
-     * @param array $map
+     * @param string $key
+     * @param array  $map
      *
      * @return RoundRobin
      */
-    protected function setMap(array $map): self
+    protected function setMap(string $key, array $map): self
     {
-        Cache::forever('rr_map', [
+        Cache::forever('rr_map_' . $key, [
             'values' => $map,
             'date'   => date('d.m.Y'),
         ]);
@@ -53,7 +56,8 @@ class RoundRobin implements DistributionAlgorithm
      */
     public function getUserId(array $ids)
     {
-        $map = $this->getMap();
+        $key = md5(implode('', array_sort($ids)));
+        $map = $this->getMap($key);
 
         $result = null;
         $minQty = null;
@@ -71,7 +75,7 @@ class RoundRobin implements DistributionAlgorithm
         }
         $map[$result]++;
 
-        $this->setMap($map);
+        $this->setMap($key, $map);
 
         return $result;
     }
