@@ -1,7 +1,8 @@
 <?php namespace App\Drivers\Bitrix24\Services;
 
+use App\Events\EventDataWrapper;
+use App\Traits\HandleEvents;
 use App\Drivers\Bitrix24\Bitrix24;
-use App\Interfaces\Services\IntegrationsPool;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use App\Interfaces\Services\CRMService;
@@ -25,6 +26,8 @@ use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
  */
 class Bitrix24Service implements IBitrix24Service
 {
+    use HandleEvents;
+
     public const TYPE_CRM_MULTIFIELD = 'crm_multifield';
 
     protected const MULTIFIELD_DEFAULT_TYPE = 'HOME';
@@ -177,14 +180,16 @@ class Bitrix24Service implements IBitrix24Service
 
         if ($this->needCheckDuplicates() && $this->hasDuplicates($data)) {
             $data['STATUS_ID'] = $this->getDistributedStatus();
-            if (!empty($duplicateUserId = $this->getUserOnDuplicate())) {
-                $data['ASSIGNED_BY_ID'] = $duplicateUserId;
-            }
         }
 
+        $event = new EventDataWrapper($data);
+        $this->fire(self::EVENT_BEFORE_SEND_LEAD, $event);
+
         $this->call(self::METHOD_ADD_LEAD, [
-            'fields' => $data,
+            'fields' => $event->getData(),
         ]);
+
+        $this->fire(self::EVENT_AFTER_SEND_LEAD, $event);
 
         return $this->lastRequestSuccessful;
     }
@@ -226,9 +231,14 @@ class Bitrix24Service implements IBitrix24Service
             return $this->lastRequestSuccessful = false;
         }
 
+        $event = new EventDataWrapper($data);
+        $this->fire(self::EVENT_BEFORE_SEND_CONTACT, $event);
+
         $this->call(self::METHOD_ADD_CONTACT, [
             'fields' => $data,
         ]);
+
+        $this->fire(self::EVENT_AFTER_SEND_CONTACT, $event);
 
         return $this->lastRequestSuccessful;
     }

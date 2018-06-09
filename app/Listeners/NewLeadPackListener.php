@@ -33,34 +33,25 @@ class NewLeadPackListener
     public function handle(NewLeadPack $event): void
     {
         $pool = $this->getIntegrationsPool();
-        $drivers = $pool->getDrivers();
+        $integrations = $pool->getIntegrations();
 
-        foreach ($drivers as $alias => $settings) {
-            $this->getIntegrationRepository()->get([
-                'driver'    => $alias,
-                'is_active' => true,
-            ])->each(function (Integration $integration) use ($event, $alias, $settings, $pool) {
-                /** @var CRMService $crmService */
-                $crmService = app($alias);
-                $crmService->setSettings($integration->settings);
-                $system = $alias . '_' . $integration->id;
-                foreach ($event->leadsData as $lead) {
-                    /** @var Lead $lead */
-                    if ($lead->needIToProcess($system)) {
-                        try {
-                            $pool->fire(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, $lead, $settings);
-                            $crmService->sendLead($lead->body);
-                            $pool->fire(IntegrationsPool::EVENT_AFTER_SEND_LEAD, $lead, $settings);
-                            $message = $crmService->getMessages();
-                            $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
-                        } catch (\Exception $ex) {
-                            $message = $ex->getMessage();
-                            $status = Request::STATUS_RETRY;
-                        }
-                        event(new RequestResponse($lead->id, $message, $system, $status));
+        foreach ($integrations as $alias) {
+            /** @var CRMService $crmService */
+            $crmService = app($alias);
+            foreach ($event->leadsData as $lead) {
+                /** @var Lead $lead */
+                if ($lead->needIToProcess($alias)) {
+                    try {
+                        $crmService->sendLead($lead->body);
+                        $message = $crmService->getMessages();
+                        $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
+                    } catch (\Exception $ex) {
+                        $message = $ex->getMessage();
+                        $status = Request::STATUS_RETRY;
                     }
+                    event(new RequestResponse($lead->id, $message, $alias, $status));
                 }
-            });
+            }
         }
     }
 }

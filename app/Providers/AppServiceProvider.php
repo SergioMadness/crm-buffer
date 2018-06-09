@@ -7,6 +7,7 @@ use App\Services\IntegrationsPool;
 use App\Services\RequestValidation;
 use App\Repositories\LeadRepository;
 use App\Repositories\UserRepository;
+use App\Interfaces\Services\CRMService;
 use App\Repositories\ContactRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\RequestRepository;
@@ -27,13 +28,18 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        /** @var IIntegrationsPool $integrationPool */
+        $integrationPool = app(IIntegrationsPool::class);
         /** @var IIntegrationRepository $requestRepository */
         $requestRepository = app(IIntegrationRepository::class);
-        RequestRepository::setAvailableSystems(
-            $requestRepository->get(['is_active' => true])->map(function (Integration $model) {
-                return $model->driver . '_' . $model->id;
-            })->all()
-        );
+        $requestRepository->get(['is_active' => true])->each(function (Integration $item) use ($integrationPool) {
+            $alias = $item->driver . '_' . $item->id;
+            $integrationPool->registerIntegration($alias);
+            /** @var CRMService $driver */
+            $driver = app($item->driver);
+            $driver->setSettings($item->settings);
+            $this->app->instance($alias, $driver);
+        });
     }
 
     /**

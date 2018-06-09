@@ -1,33 +1,11 @@
 <?php namespace App\Interfaces\Services;
 
-use App\Interfaces\Model;
-
 /**
  * Interface for integrations pool
  * @package App\Interfaces\Services
  */
 interface IntegrationsPool
 {
-    /**
-     * Event name fired before lead sending
-     */
-    public const EVENT_BEFORE_SEND_LEAD = 'before:send:lead';
-
-    /**
-     * Event name fired before contact sending
-     */
-    public const EVENT_BEFORE_SEND_CONTACT = 'before:send:contact';
-
-    /**
-     * Event name fired when lead was sent
-     */
-    public const EVENT_AFTER_SEND_LEAD = 'after:send:lead';
-
-    /**
-     * Event name fired when contact was sent
-     */
-    public const EVENT_AFTER_SEND_CONTACT = 'after:send:contact';
-
     /**
      * Register driver
      *
@@ -38,6 +16,15 @@ interface IntegrationsPool
      * @return IntegrationsPool
      */
     public function registerDriver(string $driver, array $settings = []): self;
+
+    /**
+     * Register integration
+     *
+     * @param string $alias
+     *
+     * @return IntegrationsPool
+     */
+    public function registerIntegration(string $alias): self;
 
     /**
      * Remove driver
@@ -65,24 +52,9 @@ interface IntegrationsPool
     public function getDrivers(): array;
 
     /**
-     * Add callback
+     * Get integration list
      *
-     * @param string   $event
-     * @param callable $callback
-     * @param string   $driver
-     *
-     * @return IntegrationsPool
+     * @return array
      */
-    public function on(string $event, callable $callback, string $driver = '*'): self;
-
-    /**
-     * Fire event
-     *
-     * @param string $event
-     * @param Model  $model
-     * @param array  $settings
-     *
-     * @return IntegrationsPool
-     */
-    public function fire(string $event, Model $model, array $settings): self;
+    public function getIntegrations(): array;
 }

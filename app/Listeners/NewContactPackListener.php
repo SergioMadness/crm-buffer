@@ -2,7 +2,6 @@
 
 use App\Models\Lead;
 use App\Models\Request;
-use App\Models\Integration;
 use App\Events\NewContactPack;
 use App\Events\RequestResponse;
 use App\Traits\UseIntegrationPool;
@@ -33,34 +32,25 @@ class NewContactPackListener
     public function handle(NewContactPack $event): void
     {
         $pool = $this->getIntegrationsPool();
-        $drivers = $pool->getDrivers();
+        $integrations = $pool->getIntegrations();
 
-        foreach ($drivers as $alias => $settings) {
-            $this->getIntegrationRepository()->get([
-                'driver'    => $alias,
-                'is_active' => true,
-            ])->each(function (Integration $integration) use ($event, $alias, $settings, $pool) {
-                /** @var CRMService $crmService */
-                $crmService = app($alias);
-                $crmService->setSettings($integration->settings);
-                $system = $alias . '_' . $integration->id;
-                foreach ($event->contactsData as $contact) {
-                    /** @var Lead $contact */
-                    if ($contact->needIToProcess($system)) {
-                        try {
-                            $pool->fire(IntegrationsPool::EVENT_BEFORE_SEND_CONTACT, $contact);
-                            $crmService->sendContact($contact->body);
-                            $pool->fire(IntegrationsPool::EVENT_AFTER_SEND_CONTACT, $contact);
-                            $message = $crmService->getMessages();
-                            $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
-                        } catch (\Exception $ex) {
-                            $message = $ex->getMessage();
-                            $status = Request::STATUS_RETRY;
-                        }
-                        event(new RequestResponse($contact->id, $message, $system, $status));
+        foreach ($integrations as $alias) {
+            /** @var CRMService $crmService */
+            $crmService = app($alias);
+            foreach ($event->contactsData as $contact) {
+                /** @var Lead $contact */
+                if ($contact->needIToProcess($alias)) {
+                    try {
+                        $crmService->sendContact($contact->body);
+                        $message = $crmService->getMessages();
+                        $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
+                    } catch (\Exception $ex) {
+                        $message = $ex->getMessage();
+                        $status = Request::STATUS_RETRY;
                     }
+                    event(new RequestResponse($contact->id, $message, $alias, $status));
                 }
-            });
+            }
         }
     }
 }
