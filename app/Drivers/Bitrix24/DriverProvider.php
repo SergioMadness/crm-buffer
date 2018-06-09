@@ -48,6 +48,10 @@ class DriverProvider extends ServiceProvider
                 'name' => 'ID статуса "распределен"',
                 'type' => 'string',
             ],
+            'user_on_duplicate'  => [
+                'name' => 'ID пользователя для дубликатов',
+                'type' => 'string',
+            ],
         ]);
     }
 

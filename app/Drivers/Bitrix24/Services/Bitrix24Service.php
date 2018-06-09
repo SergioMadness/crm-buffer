@@ -1,6 +1,7 @@
 <?php namespace App\Drivers\Bitrix24\Services;
 
 use App\Drivers\Bitrix24\Bitrix24;
+use App\Interfaces\Services\IntegrationsPool;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use App\Interfaces\Services\CRMService;
@@ -123,6 +124,11 @@ class Bitrix24Service implements IBitrix24Service
      */
     private $distributedStatus;
 
+    /**
+     * @var string
+     */
+    private $userOnDuplicate;
+
     public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
     {
         $this
@@ -170,7 +176,10 @@ class Bitrix24Service implements IBitrix24Service
         }
 
         if ($this->needCheckDuplicates() && $this->hasDuplicates($data)) {
-            $data['STATUS_ID'] = 'duplicate';
+            $data['STATUS_ID'] = $this->getDistributedStatus();
+            if (!empty($duplicateUserId = $this->getUserOnDuplicate())) {
+                $data['ASSIGNED_BY_ID'] = $duplicateUserId;
+            }
         }
 
         $this->call(self::METHOD_ADD_LEAD, [
@@ -215,10 +224,6 @@ class Bitrix24Service implements IBitrix24Service
             $this->setMessages($validator->errors()->all());
 
             return $this->lastRequestSuccessful = false;
-        }
-
-        if ($this->needCheckDuplicates() && $this->hasDuplicates($data, 'CONTACT')) {
-            $data['STATUS_ID'] = $this->getDistributedStatus();
         }
 
         $this->call(self::METHOD_ADD_CONTACT, [
@@ -758,6 +763,26 @@ class Bitrix24Service implements IBitrix24Service
     public function setDistributedStatus(string $distributedStatus): self
     {
         $this->distributedStatus = $distributedStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserOnDuplicate(): string
+    {
+        return $this->userOnDuplicate;
+    }
+
+    /**
+     * @param string $userOnDuplicate
+     *
+     * @return $this;
+     */
+    public function setUserOnDuplicate(string $userOnDuplicate): self
+    {
+        $this->userOnDuplicate = $userOnDuplicate;
 
         return $this;
     }

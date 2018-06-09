@@ -4,5 +4,5 @@ use App\Interfaces\Services\CRMService;
 
 interface Bitrix24Service extends CRMService
 {
-
+    public const EVENT_ON_LEAD_ASSIGN = 'on:assign:lead';
 }
