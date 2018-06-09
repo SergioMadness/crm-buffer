@@ -179,7 +179,7 @@ class Bitrix24Service implements IBitrix24Service
         }
 
         if ($this->needCheckDuplicates() && $this->hasDuplicates($data)) {
-            $data['STATUS_ID'] = $this->getDistributedStatus();
+            $data['STATUS_ID'] = $this->getDuplicateStatus();
         }
 
         $event = new EventDataWrapper($data);
@@ -780,7 +780,7 @@ class Bitrix24Service implements IBitrix24Service
     /**
      * @return string
      */
-    public function getUserOnDuplicate(): string
+    public function getUserOnDuplicate(): ?string
     {
         return $this->userOnDuplicate;
     }
