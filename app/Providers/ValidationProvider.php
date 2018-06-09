@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ValidationProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         Validator::extend('equal', function ($attribute, $value, $parameters, $validator) {
             return $value === $parameters;

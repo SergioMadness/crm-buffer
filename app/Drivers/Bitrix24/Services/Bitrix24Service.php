@@ -1,6 +1,8 @@
 <?php namespace App\Drivers\Bitrix24\Services;
 
-use Bitrix24\Bitrix24;
+use App\Events\EventDataWrapper;
+use App\Traits\HandleEvents;
+use App\Drivers\Bitrix24\Bitrix24;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use App\Interfaces\Services\CRMService;
@@ -24,6 +26,8 @@ use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
  */
 class Bitrix24Service implements IBitrix24Service
 {
+    use HandleEvents;
+
     public const TYPE_CRM_MULTIFIELD = 'crm_multifield';
 
     protected const MULTIFIELD_DEFAULT_TYPE = 'HOME';
@@ -99,6 +103,35 @@ class Bitrix24Service implements IBitrix24Service
      */
     private $iterations = 0;
 
+    /**
+     * Hook
+     *
+     * @var string
+     */
+    private $hook;
+
+    /**
+     * Check duplicate
+     *
+     * @var bool
+     */
+    private $checkDuplicates = false;
+
+    /**
+     * @var string
+     */
+    private $duplicateStatus;
+
+    /**
+     * @var string
+     */
+    private $distributedStatus;
+
+    /**
+     * @var string
+     */
+    private $userOnDuplicate;
+
     public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
     {
         $this
@@ -145,9 +178,18 @@ class Bitrix24Service implements IBitrix24Service
             return $this->lastRequestSuccessful = false;
         }
 
+        if ($this->needCheckDuplicates() && $this->hasDuplicates($data)) {
+            $data['STATUS_ID'] = $this->getDuplicateStatus();
+        }
+
+        $event = new EventDataWrapper($data);
+        $this->fire(self::EVENT_BEFORE_SEND_LEAD, $event);
+
         $this->call(self::METHOD_ADD_LEAD, [
-            'fields' => $data,
+            'fields' => $event->getData(),
         ]);
+
+        $this->fire(self::EVENT_AFTER_SEND_LEAD, $event);
 
         return $this->lastRequestSuccessful;
     }
@@ -189,9 +231,14 @@ class Bitrix24Service implements IBitrix24Service
             return $this->lastRequestSuccessful = false;
         }
 
+        $event = new EventDataWrapper($data);
+        $this->fire(self::EVENT_BEFORE_SEND_CONTACT, $event);
+
         $this->call(self::METHOD_ADD_CONTACT, [
             'fields' => $data,
         ]);
+
+        $this->fire(self::EVENT_AFTER_SEND_CONTACT, $event);
 
         return $this->lastRequestSuccessful;
     }
@@ -278,8 +325,10 @@ class Bitrix24Service implements IBitrix24Service
             $this->client->setApplicationId($this->getClientId());
             $this->client->setApplicationSecret($this->getClientSecret());
             $this->client->setDomain($this->getUrl());
-            $this->client->setAccessToken($this->getAccessToken());
-            $this->client->setRefreshToken($this->getRefreshToken());
+            if (empty($this->getHook())) {
+                $this->client->setAccessToken($this->getAccessToken());
+                $this->client->setRefreshToken($this->getRefreshToken());
+            }
             $this->client->setApplicationScope($this->getScope());
             $this->client->setRedirectUri('https://fake.crm.local');
         }
@@ -310,7 +359,7 @@ class Bitrix24Service implements IBitrix24Service
         $response = null;
         $this->iterations++;
         try {
-            $response = $this->getClient()->call($method, $params);
+            $response = $this->getClient()->call($this->getHook() . $method, $params);
         } catch (Bitrix24TokenIsExpiredException $e) {
             $this->lastRequestSuccessful = false;
             if ($this->iterations < self::MAX_ITERATIONS && $this->refreshToken()) {
@@ -360,6 +409,46 @@ class Bitrix24Service implements IBitrix24Service
     }
 
     /**
+     * Check
+     *
+     * @param array  $data
+     * @param string $entityType
+     *
+     * @return bool
+     */
+    protected function hasDuplicates(array $data, string $entityType = 'LEAD'): bool
+    {
+        $result = false;
+
+        try {
+            if (isset($data['EMAIL'])) {
+                $checkResult = $this->call('crm.duplicate.findbycomm', [
+                    'type'        => 'EMAIL',
+                    'values'      => array_map(function ($item) {
+                        return $item['VALUE'];
+                    }, $data['EMAIL']),
+                    'entity_type' => $entityType,
+                ]);
+                $result |= !empty($checkResult);
+            }
+            if (isset($data['PHONE'])) {
+                $checkResult = $this->call('crm.duplicate.findbycomm', [
+                    'type'        => 'PHONE',
+                    'values'      => array_map(function ($item) {
+                        return $item['VALUE'];
+                    }, $data['PHONE']),
+                    'entity_type' => $entityType,
+                ]);
+                $result |= !empty($checkResult);
+            }
+        } catch (\Exception $ex) {
+
+        }
+
+        return $result;
+    }
+
+    /**
      * Load settings
      *
      * @return array
@@ -402,7 +491,7 @@ class Bitrix24Service implements IBitrix24Service
      *
      * @return string
      */
-    public static function loadAccessToken(): string
+    public static function loadAccessToken(): ?string
     {
         $settings = static::loadDynamicCredentials();
 
@@ -414,7 +503,7 @@ class Bitrix24Service implements IBitrix24Service
      *
      * @return string
      */
-    public static function loadRefreshToken(): string
+    public static function loadRefreshToken(): ?string
     {
         $settings = static::loadDynamicCredentials();
 
@@ -596,6 +685,114 @@ class Bitrix24Service implements IBitrix24Service
                 $this->$methodName($value);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get hook
+     *
+     * @return string
+     */
+    public function getHook(): ?string
+    {
+        return $this->hook;
+    }
+
+    /**
+     * Set hook
+     *
+     * @param string $hook
+     *
+     * @return $this
+     */
+    public function setHook(string $hook): self
+    {
+        $this->hook = $hook;
+
+        return $this;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return bool
+     */
+    public function needCheckDuplicates(): bool
+    {
+        return $this->checkDuplicates;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param bool $checkDuplicates
+     *
+     * @return $this
+     */
+    public function setCheckDuplicates(bool $checkDuplicates): self
+    {
+        $this->checkDuplicates = $checkDuplicates;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDuplicateStatus(): ?string
+    {
+        return $this->duplicateStatus;
+    }
+
+    /**
+     * @param string $duplicateStatus
+     *
+     * @return $this
+     */
+    public function setDuplicateStatus(string $duplicateStatus): self
+    {
+        $this->duplicateStatus = $duplicateStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDistributedStatus(): ?string
+    {
+        return $this->distributedStatus;
+    }
+
+    /**
+     * @param string $distributedStatus
+     *
+     * @return $this
+     */
+    public function setDistributedStatus(string $distributedStatus): self
+    {
+        $this->distributedStatus = $distributedStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserOnDuplicate(): ?string
+    {
+        return $this->userOnDuplicate;
+    }
+
+    /**
+     * @param string $userOnDuplicate
+     *
+     * @return $this;
+     */
+    public function setUserOnDuplicate(string $userOnDuplicate): self
+    {
+        $this->userOnDuplicate = $userOnDuplicate;
 
         return $this;
     }

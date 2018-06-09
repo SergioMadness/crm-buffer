@@ -12,24 +12,44 @@ class DriverProvider extends ServiceProvider
     public function boot()
     {
         app(IntegrationsPool::class)->registerDriver(self::DRIVER_NAME, [
-            'url'           => [
+            'url'                => [
                 'name' => 'Домен',
                 'type' => 'string',
             ],
-            'client_id'     => [
+            'hook'               => [
+                'name' => 'Hook',
+                'type' => 'string',
+            ],
+            'client_id'          => [
                 'name' => 'Client id',
                 'type' => 'string',
             ],
-            'client_secret' => [
+            'client_secret'      => [
                 'name' => 'Client secret',
                 'type' => 'string',
             ],
-            'access_token'  => [
+            'access_token'       => [
                 'name' => 'Access token',
                 'type' => 'string',
             ],
-            'refresh_token' => [
+            'refresh_token'      => [
                 'name' => 'Refresh token',
+                'type' => 'string',
+            ],
+            'check_duplicates'   => [
+                'name' => 'Помечать дубликаты',
+                'type' => 'bool',
+            ],
+            'duplicate_status'   => [
+                'name' => 'ID статуса дубликата',
+                'type' => 'string',
+            ],
+            'distributed_status' => [
+                'name' => 'ID статуса "распределен"',
+                'type' => 'string',
+            ],
+            'user_on_duplicate'  => [
+                'name' => 'ID пользователя для дубликатов',
                 'type' => 'string',
             ],
         ]);

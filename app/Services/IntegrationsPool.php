@@ -17,6 +17,13 @@ class IntegrationsPool implements IIntegrationsPool
     private $pool = [];
 
     /**
+     * integration list
+     *
+     * @var array
+     */
+    private $integrations = [];
+
+    /**
      * Register driver
      *
      * @param string $driver
@@ -27,7 +34,6 @@ class IntegrationsPool implements IIntegrationsPool
     public function registerDriver(string $driver, array $settings = []): IIntegrationsPool
     {
         $this->pool[$driver] = $settings;
-        RequestRepository::registerSystem($driver);
 
         return $this;
     }
@@ -68,5 +74,30 @@ class IntegrationsPool implements IIntegrationsPool
     public function getDrivers(): array
     {
         return $this->pool;
+    }
+
+    /**
+     * Register integration
+     *
+     * @param string $alias
+     *
+     * @return IIntegrationsPool
+     */
+    public function registerIntegration(string $alias): IIntegrationsPool
+    {
+        $this->integrations[] = $alias;
+        RequestRepository::registerSystem($alias);
+
+        return $this;
+    }
+
+    /**
+     * Get integration list
+     *
+     * @return array
+     */
+    public function getIntegrations(): array
+    {
+        return $this->integrations;
     }
 }

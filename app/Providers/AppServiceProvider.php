@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Integration;
 use App\Services\IntegrationsPool;
 use App\Services\RequestValidation;
 use App\Repositories\LeadRepository;
 use App\Repositories\UserRepository;
+use App\Interfaces\Services\CRMService;
 use App\Repositories\ContactRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\RequestRepository;
@@ -24,12 +26,28 @@ use App\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function boot(): void
+    {
+        /** @var IIntegrationsPool $integrationPool */
+        $integrationPool = app(IIntegrationsPool::class);
+        /** @var IIntegrationRepository $requestRepository */
+        $requestRepository = app(IIntegrationRepository::class);
+        $requestRepository->get(['is_active' => true])->each(function (Integration $item) use ($integrationPool) {
+            $alias = $item->driver . '_' . $item->id;
+            $integrationPool->registerIntegration($alias);
+            /** @var CRMService $driver */
+            $driver = app($item->driver);
+            $driver->setSettings($item->settings);
+            $this->app->instance($alias, $driver);
+        });
+    }
+
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton(IRequestValidation::class, RequestValidation::class);
         $this->app->singleton(IApplicationRepository::class, ApplicationRepository::class);
@@ -44,5 +62,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);
+
+        $this->app->register(\App\Drivers\Bitrix24LeadDistribution\DriverProvider::class);
     }
 }

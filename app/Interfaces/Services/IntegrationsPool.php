@@ -18,6 +18,15 @@ interface IntegrationsPool
     public function registerDriver(string $driver, array $settings = []): self;
 
     /**
+     * Register integration
+     *
+     * @param string $alias
+     *
+     * @return IntegrationsPool
+     */
+    public function registerIntegration(string $alias): self;
+
+    /**
      * Remove driver
      *
      * @param string $driver
@@ -41,4 +50,11 @@ interface IntegrationsPool
      * @return array
      */
     public function getDrivers(): array;
+
+    /**
+     * Get integration list
+     *
+     * @return array
+     */
+    public function getIntegrations(): array;
 }
