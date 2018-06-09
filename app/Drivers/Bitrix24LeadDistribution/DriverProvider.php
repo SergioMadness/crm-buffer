@@ -1,9 +1,8 @@
 <?php namespace App\Drivers\Bitrix24LeadDistribution;
 
-use App\Models\Lead;
-use App\Interfaces\Model;
+use App\Interfaces\EventData;
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\Services\IntegrationsPool;
+use App\Drivers\Bitrix24\Services\Bitrix24Service;
 use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
 use App\Drivers\Bitrix24LeadDistribution\Algorithms\RoundRobin;
 use App\Drivers\Bitrix24LeadDistribution\Services\UserFilterService;
@@ -14,17 +13,23 @@ class DriverProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        app(IntegrationsPool::class)->on(IntegrationsPool::EVENT_BEFORE_SEND_LEAD, function (Model $lead, array $settings) {
-            /** @var Lead $lead */
-            $body = $lead->body;
-            $body['ASSIGNED_BY_ID'] = app(IDistributionService::class)->getUserId(
-                config('systems.bitrix24.filter', []),
-                $body
-            );
-            if (!empty($body['ASSIGNED_BY_ID'])) {
-                $body['STATUS_ID'] = $settings['distributed_status'];
+        Bitrix24Service::on(Bitrix24Service::EVENT_BEFORE_SEND_LEAD, function (EventData $data, Bitrix24Service $service) {
+            $body = $data->getData();
+
+            if (isset($body['STATUS_ID']) && $body['STATUS_ID'] === $service->getDuplicateStatus()) {
+                if (!empty($duplicateUserId = $service->getUserOnDuplicate())) {
+                    $data['ASSIGNED_BY_ID'] = $duplicateUserId;
+                }
+            } else {
+                $body['ASSIGNED_BY_ID'] = app(IDistributionService::class)->getUserId(
+                    config('systems.bitrix24.filter', []),
+                    $body
+                );
+                if (!empty($body['ASSIGNED_BY_ID'])) {
+                    $body['STATUS_ID'] = $service->getDistributedStatus();
+                }
             }
-            $lead->body = $body;
+            $data->setData($body);
         });
     }
 

@@ -24,8 +24,9 @@ interface RequestRepository extends Repository
      * @param string $id
      * @param string $status
      * @param mixed  $message
+     * @param string $system
      *
      * @return bool
      */
-    public function setStatus(string $id, string $status, $message = ''): bool;
+    public function setStatus(string $id, string $status, $message = '', string $system = ''): bool;
 }

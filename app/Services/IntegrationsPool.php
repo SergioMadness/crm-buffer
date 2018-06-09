@@ -1,6 +1,5 @@
 <?php namespace App\Services;
 
-use App\Interfaces\Model;
 use App\Repositories\RequestRepository;
 use App\Interfaces\Services\IntegrationsPool as IIntegrationsPool;
 
@@ -18,11 +17,11 @@ class IntegrationsPool implements IIntegrationsPool
     private $pool = [];
 
     /**
-     * Event callbacks
+     * integration list
      *
      * @var array
      */
-    private $callbacks = [];
+    private $integrations = [];
 
     /**
      * Register driver
@@ -79,49 +78,26 @@ class IntegrationsPool implements IIntegrationsPool
     }
 
     /**
-     * Add callback
+     * Register integration
      *
-     * @param string   $event
-     * @param callable $callback
-     * @param string   $driver
+     * @param string $alias
      *
      * @return IIntegrationsPool
      */
-    public function on(string $event, callable $callback, string $driver = '*'): IIntegrationsPool
+    public function registerIntegration(string $alias): IIntegrationsPool
     {
-        if (empty($driver)) {
-            $driver = '*';
-        }
-        if (!isset($this->callbacks[$event])) {
-            $this->callbacks[$event] = [];
-        }
-        if (!isset($this->callbacks[$event][$driver])) {
-            $this->callbacks[$event][$driver] = [];
-        }
-        $this->callbacks[$event][$driver][] = $callback;
+        $this->integrations[] = $alias;
 
         return $this;
     }
 
     /**
-     * Fire event
+     * Get integration list
      *
-     * @param string $event
-     * @param Model  $model
-     * @param array  $settings
-     *
-     * @return IIntegrationsPool
+     * @return array
      */
-    public function fire(string $event, Model $model, array $settings): IIntegrationsPool
+    public function getIntegrations(): array
     {
-        if (isset($this->callbacks[$event])) {
-            foreach ($this->callbacks[$event] as $driver => $callbacks) {
-                foreach ($callbacks as $callback) {
-                    $callback($model, $settings);
-                }
-            }
-        }
-
-        return $this;
+        return $this->integrations;
     }
 }

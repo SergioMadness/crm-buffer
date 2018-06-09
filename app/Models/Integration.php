@@ -9,7 +9,7 @@ use App\Interfaces\Model as IModel;
  *
  * @property string $id
  * @property string $name
- * @property array  $driver
+ * @property string $driver
  * @property bool   $is_active
  * @property array  $settings
  * @property string $created_at
