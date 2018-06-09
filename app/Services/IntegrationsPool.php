@@ -34,7 +34,6 @@ class IntegrationsPool implements IIntegrationsPool
     public function registerDriver(string $driver, array $settings = []): IIntegrationsPool
     {
         $this->pool[$driver] = $settings;
-        RequestRepository::registerSystem($driver);
 
         return $this;
     }
@@ -87,6 +86,7 @@ class IntegrationsPool implements IIntegrationsPool
     public function registerIntegration(string $alias): IIntegrationsPool
     {
         $this->integrations[] = $alias;
+        RequestRepository::registerSystem($alias);
 
         return $this;
     }

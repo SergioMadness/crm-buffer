@@ -36,8 +36,8 @@ class LeadController extends Controller
     public function index(Request $request): Response
     {
         //Test
-        Artisan::call('requests:pack');
-        exit;
+//        Artisan::call('requests:pack');
+//        exit;
         $limit = min(self::LIST_LIMIT_MAX, $request->get('limit', self::LIST_LIMIT));
         $offset = max(0, $request->get('offset', 0));
 
