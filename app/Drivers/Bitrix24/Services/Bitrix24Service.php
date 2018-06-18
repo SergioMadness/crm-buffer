@@ -169,7 +169,7 @@ class Bitrix24Service implements IBitrix24Service
             return $this->lastRequestSuccessful = false;
         }
 
-        $this->prepareData($data, $fields);
+        $data = $this->prepareData($data, $fields);
 
         $validator = ValidatorFacade::make($data, $this->prepareValidatorRules($fields));
         if ($validator->fails()) {
@@ -221,11 +221,10 @@ class Bitrix24Service implements IBitrix24Service
             return $this->lastRequestSuccessful = false;
         }
 
-        $this->prepareData($data, $fields);
+        $data = $this->prepareData($data, $fields);
 
         $validator = ValidatorFacade::make($data, $this->prepareValidatorRules($fields));
         if ($validator->fails()) {
-            $this->lastRequestSuccessful = false;
             $this->setMessages($validator->errors()->all());
 
             return $this->lastRequestSuccessful = false;
@@ -235,7 +234,7 @@ class Bitrix24Service implements IBitrix24Service
         $this->fire(self::EVENT_BEFORE_SEND_CONTACT, $event);
 
         $this->call(self::METHOD_ADD_CONTACT, [
-            'fields' => $data,
+            'fields' => $event->getData(),
         ]);
 
         $this->fire(self::EVENT_AFTER_SEND_CONTACT, $event);
@@ -251,7 +250,7 @@ class Bitrix24Service implements IBitrix24Service
      *
      * @return array
      */
-    protected function prepareData(array &$data, array $fieldInfo): array
+    protected function prepareData(array $data, array $fieldInfo): array
     {
         $mappedFields = array_keys(self::FIELD_MAP);
         foreach ($data as $key => $value) {
@@ -264,9 +263,9 @@ class Bitrix24Service implements IBitrix24Service
             $newKey = mb_strtoupper($key);
             if (isset($fieldInfo[$newKey])) {
                 $data[$newKey] = isset($fieldInfo[$newKey]) ? $this->formatField($value, $fieldInfo[$newKey]) : $value;
-            }
-            if ($key !== $newKey) {
-                unset($data[$key]);
+                if ($key !== $newKey) {
+                    unset($data[$key]);
+                }
             }
         }
 
