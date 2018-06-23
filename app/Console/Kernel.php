@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Console\Commands\SendPack;
+use App\Console\Commands\PublishFrontend;
+use App\Console\Commands\PublishMigrations;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +18,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         SendPack::class,
+        PublishFrontend::class,
+        PublishMigrations::class,
     ];
 
     /**

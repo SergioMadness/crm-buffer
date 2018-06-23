@@ -1,7 +1,7 @@
 <?php namespace App\Drivers\Bitrix24;
 
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\Services\IntegrationsPool;
+use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
 use App\Drivers\Bitrix24\Services\Bitrix24Service;
 use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 

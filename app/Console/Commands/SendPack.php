@@ -1,11 +1,11 @@
 <?php namespace App\Console\Commands;
 
-use App\Models\Request;
-use App\Events\NewLeadPack;
-use App\Events\NewContactPack;
+use App\Subsystems\CRMBuffer\Models\Request;
+use App\Subsystems\CRMBuffer\Events\NewLeadPack;
+use App\Subsystems\CRMBuffer\Events\NewContactPack;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use App\Interfaces\Repositories\RequestRepository;
+use App\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository;
 
 class SendPack extends Command
 {

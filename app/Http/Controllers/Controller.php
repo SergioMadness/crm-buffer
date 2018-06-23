@@ -35,7 +35,6 @@ class Controller extends BaseController
      * @param int|null   $offset
      *
      * @return Response
-     * @throws \InvalidArgumentException
      */
     public function listResponse(Collection $data, ?int $cnt = null, ?int $limit = null, ?int $offset = null): Response
     {

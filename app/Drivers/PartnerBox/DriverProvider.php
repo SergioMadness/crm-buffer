@@ -1,7 +1,7 @@
 <?php namespace App\Drivers\PartnerBox;
 
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\Services\IntegrationsPool;
+use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
 use App\Drivers\PartnerBox\Services\PartnerBoxService;
 use App\Drivers\PartnerBox\Services\PartnerBoxIntegrationService;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;

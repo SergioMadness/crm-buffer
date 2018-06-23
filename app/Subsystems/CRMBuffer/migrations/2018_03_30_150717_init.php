@@ -13,15 +13,6 @@ class Init extends Migration
      */
     public function up()
     {
-        Schema::create('applications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('client_id');
-            $table->string('client_secret');
-            $table->unique(['client_id', 'client_secret']);
-            $table->timestamps();
-        });
-
         Schema::create('requests', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('application_id');
@@ -49,6 +40,5 @@ class Init extends Migration
     public function down()
     {
         Schema::drop('requests');
-        Schema::drop('applications');
     }
 }
