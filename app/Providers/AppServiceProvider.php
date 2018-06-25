@@ -66,8 +66,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(IContactRepository::class, ContactRepository::class);
         $this->app->singleton(IIntegrationRepository::class, IntegrationRepository::class);
         $this->app->singleton(IIntegrationsPool::class, IntegrationsPool::class);
-        $this->app->singleton(PublishService::class, PublicationService::class);
-        $this->app->singleton(MigrationService::class, Migrator::class);
 
         $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);

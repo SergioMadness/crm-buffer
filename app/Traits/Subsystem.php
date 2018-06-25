@@ -17,36 +17,36 @@ trait Subsystem
         return $this;
     }
 
-    /**
-     * Add path to migrations
-     *
-     * @param string $pathToMigrations
-     *
-     * @return self
-     */
-    protected function addMigrations(string $pathToMigrations): self
-    {
-        /** @var MigrationService $service */
-        $service = app(MigrationService::class);
-        $service->register($pathToMigrations);
-
-        return $this;
-    }
-
-    /**
-     * Add path to resources
-     *
-     * @param string $alias
-     * @param string $pathToDir
-     *
-     * @return self
-     */
-    protected function publish(string $alias, string $pathToDir): self
-    {
-        /** @var PublishService $service */
-        $service = app(PublishService::class);
-        $service->register($alias, $pathToDir);
-
-        return $this;
-    }
+//    /**
+//     * Add path to migrations
+//     *
+//     * @param string $pathToMigrations
+//     *
+//     * @return self
+//     */
+//    protected function addMigrations(string $pathToMigrations): self
+//    {
+//        /** @var MigrationService $service */
+//        $service = app(MigrationService::class);
+//        $service->register($pathToMigrations);
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Add path to resources
+//     *
+//     * @param string $alias
+//     * @param string $pathToDir
+//     *
+//     * @return self
+//     */
+//    protected function publish(string $alias, string $pathToDir): self
+//    {
+//        /** @var PublishService $service */
+//        $service = app(PublishService::class);
+//        $service->register($alias, $pathToDir);
+//
+//        return $this;
+//    }
 }

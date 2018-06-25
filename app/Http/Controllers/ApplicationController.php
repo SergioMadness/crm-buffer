@@ -7,8 +7,8 @@ use App\Traits\UseApplicationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\Repositories\ApplicationRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * Controller to work with applications

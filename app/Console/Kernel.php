@@ -2,9 +2,7 @@
 
 namespace App\Console;
 
-use App\Console\Commands\SendPack;
-use App\Console\Commands\PublishFrontend;
-use App\Console\Commands\PublishMigrations;
+use App\Console\Commands\PublishVendor;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -17,9 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        SendPack::class,
-        PublishFrontend::class,
-        PublishMigrations::class,
+        PublishVendor::class,
     ];
 
     /**
@@ -31,6 +27,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(SendPack::class)->cron('*/' . config('systems.period') . ' * * * *');
+
+    }
+
+    /**
+     * Add command
+     *
+     * @param string $class
+     *
+     * @return Kernel
+     */
+    public function addCommand(string $class): self
+    {
+        $this->commands[] = $class;
+
+        return $this;
     }
 }

@@ -1,4 +1,4 @@
-<?php namespace App\Console\Commands;
+<?php namespace App\Subsystems\CRMBuffer\Commands;
 
 use App\Subsystems\CRMBuffer\Models\Request;
 use App\Subsystems\CRMBuffer\Events\NewLeadPack;
