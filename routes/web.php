@@ -19,4 +19,5 @@ $router->group(['prefix' => 'api/v1', 'middleware' => ['auth']], function () use
     $router->post('/applications/{id}/regenerate-keys', 'ApplicationController@regenerateTokens');
 });
 
-$router->post('/api/v1/login', 'AuthController@login');
+$router->get('api/v1/navigation', 'NavigationController@index');
+$router->post('api/v1/login', 'AuthController@login');

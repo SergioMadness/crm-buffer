@@ -2,17 +2,15 @@
 
 namespace App\Providers;
 
-use App\Services\Migrator;
+use App\Services\Navigator;
 use App\Services\RequestValidation;
-use App\Services\PublicationService;
 use App\Repositories\UserRepository;
+use App\Interfaces\Services\Navigation;
 use App\Interfaces\Services\CRMService;
-use App\Subsystems\CRMBuffer\SubsystemProvider;
 use Illuminate\Support\ServiceProvider;
 use App\Drivers\Bitrix24\DriverProvider;
-use App\Interfaces\Services\PublishService;
 use App\Repositories\ApplicationRepository;
-use App\Interfaces\Services\MigrationService;
+use App\Subsystems\CRMBuffer\SubsystemProvider;
 use App\Subsystems\CRMBuffer\Models\Integration;
 use App\Subsystems\CRMBuffer\Services\IntegrationsPool;
 use App\Subsystems\CRMBuffer\Repositories\LeadRepository;
@@ -70,8 +68,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);
 
-        $this->app->register(SubsystemProvider::class);
-
         $this->app->register(\App\Drivers\Bitrix24LeadDistribution\DriverProvider::class);
+
+        $this->app->singleton(Navigation::class, Navigator::class);
+
+        $this->app->register(SubsystemProvider::class);
     }
 }

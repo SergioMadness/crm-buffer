@@ -20,7 +20,7 @@
 
 <body class="nav-md">
 <div class="container body">
-    <div class="main_container" id="integration-table">
+    <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
@@ -34,19 +34,13 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Справочники <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="/">Приложения</a></li>
-                                    <li><a href="/leads.html">Лиды</a></li>
-                                    <li><a href="/contacts.html">Контакты</a></li>
+                        <ul class="nav side-menu" id="main-navigation" data-bind="foreach: navigation">
+                            <li><a><i class="fa fa-gears"></i> <span data-bind="text:index"></span> <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" data-bind="foreach: value">
+                                    <li><a data-bind="attr:{href: link}, text: label">Интеграции</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-gears"></i> Настройки <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="/integrations.html">Интеграции</a></li>
-                                </ul>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -81,7 +75,7 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col" role="main" id="integration-table">
             <div class="x_panel">
                 <div class="alert alert-danger" role="alert" data-bind="visible: isError">
                     <div data-bind="foreach: errors">
@@ -96,7 +90,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <a href="/add-integration.html" class="btn btn-primary"><i class="fa fa-plus"></i> Добавить</a>
+                    <a href="/crm-buffer/add-integration.html" class="btn btn-primary"><i class="fa fa-plus"></i> Добавить</a>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -155,11 +149,15 @@
 <script src="/js/knockout-3.4.2.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/js.cookie.min.js"></script>
+<script src="/js/app/sdk.js"></script>
 <script src="/js/app/common.js"></script>
-<script src="/js/app/integrations.js"></script>
+<script src="/js/app/panel.js"></script>
+<script src="/crm-buffer/js/integrations.js"></script>
 <script src="/bootstrap/js/bootstrap.js"></script>
 <script src="/js/custom.min.js"></script>
 <script>
+    var panel = new Panel();
+    ko.applyBindings(panel, document.getElementById('main-navigation'));
     ko.applyBindings(new Integrations(), document.getElementById('integration-table'));
 </script>
 </body>
