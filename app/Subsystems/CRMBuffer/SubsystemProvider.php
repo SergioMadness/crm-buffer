@@ -25,6 +25,8 @@ class SubsystemProvider extends ServiceProvider
             __DIR__ . '/frontend'   => base_path('public/crm-buffer'),
         ]);
 
+        $this->loadMigrationsFrom(__DIR__ . '/migrations');
+
         /** @var Navigation $navigationService */
         $navigationService = app(Navigation::class);
         $navigationService->register('Integration hub', 'Лиды', '/crm-buffer/leads.html');

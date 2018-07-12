@@ -45,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
                 $this->app->instance($alias, $driver);
             });
         }
+
+        /** @var Navigation $navigationService */
+        $navigationService = app(Navigation::class);
+        $navigationService->register('Settings', 'Приложения', '/index.html');
     }
 
     /**
