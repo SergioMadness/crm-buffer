@@ -73,7 +73,10 @@ class RoundRobin implements DistributionAlgorithm
                 $result = $id;
             }
         }
-        $map[$result]++;
+        if ($result !== null) {
+            $map[$result] = $map[$result] ?? 0;
+            $map[$result]++;
+        }
 
         $this->setMap($key, $map);
 

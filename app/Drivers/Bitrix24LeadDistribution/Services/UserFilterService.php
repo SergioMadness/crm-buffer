@@ -21,14 +21,15 @@ class UserFilterService implements Filter
     {
         if (!empty($filter)) {
             foreach ($filter as $condition) {
-                $field = $condition['field'] ?? null;
+                $field = $condition['field'] ? mb_strtolower($condition['field']) : null;
                 $operation = $condition['operation'] ?? null;
                 $value1 = $condition['value1'] ?? null;
                 $value2 = $condition['value2'] ?? null;
                 $success = $condition['success'] ?? null;
                 $filterResult = $condition['result'] ?? null;
 
-                if ($field !== null && $this->checkCondition($params[$field] ?? '', $operation, $value1, $value2)) {
+                $value = $params[$field] ?? ($params[mb_strtoupper($field)] ?? '');
+                if ($field !== null && $this->checkCondition($value, $operation, $value1, $value2)) {
                     return $success !== null ? $this->getUserIds($success, $params) : $filterResult;
                 }
             }
@@ -57,9 +58,13 @@ class UserFilterService implements Filter
         }
         $conditions = explode('|', $condition);
         $invert = \in_array(self::CONDITION_NOT, $conditions);
+        $conditions = array_filter($conditions, function ($item) {
+            return $item !== self::CONDITION_NOT;
+        });
+        $condition = implode('|', $conditions);
         switch ($condition) {
             case self::CONDITION_EQUAL:
-                $result = ($value === $value1);
+                $result = ($value == $value1);
                 break;
             case self::CONDITION_IN:
                 $result = \in_array($value, (array)$value1);
