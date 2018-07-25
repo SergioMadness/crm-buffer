@@ -36,7 +36,7 @@ class DriverProvider extends ServiceProvider
 
         /** @var DriverPool $driverPool */
         $driverPool = app(DriverPool::class);
-        $driverPool->addSettings(Bitrix24DriverProvider::DRIVER_NAME, [
+        $driverPool->getDriver(Bitrix24DriverProvider::DRIVER_NAME)->addSettings([
             'distributed_status' => [
                 'name' => 'ID статуса "распределен"',
                 'type' => 'string',

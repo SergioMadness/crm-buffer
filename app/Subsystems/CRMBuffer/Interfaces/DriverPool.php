@@ -1,35 +1,26 @@
 <?php namespace App\Subsystems\CRMBuffer\Interfaces;
 
+use App\Subsystems\CRMBuffer\Interfaces\Models\Driver;
+
 interface DriverPool
 {
     /**
      * Register driver
      *
-     * @param string $driver
-     *
-     * @param array  $settings
+     * @param Driver $driver
      *
      * @return DriverPool
      */
-    public function registerDriver(string $driver, array $settings = []): self;
-
-    /**
-     * Remove driver
-     *
-     * @param string $driver
-     *
-     * @return DriverPool
-     */
-    public function removeDriver(string $driver): self;
+    public function registerDriver(Driver $driver): self;
 
     /**
      * Check driver exists
      *
-     * @param string $driver
+     * @param string $alias
      *
      * @return bool
      */
-    public function driverExists(string $driver): bool;
+    public function driverExists(string $alias): bool;
 
     /**
      * Get list of drivers
@@ -39,21 +30,11 @@ interface DriverPool
     public function getDrivers(): array;
 
     /**
-     * Get driver settings
+     * Get driver by alias
      *
-     * @param string $driver
+     * @param string $alias
      *
-     * @return array
+     * @return Driver
      */
-    public function getSettings(string $driver): array;
-
-    /**
-     * Add settings
-     *
-     * @param string $driver
-     * @param array  $settings
-     *
-     * @return DriverPool
-     */
-    public function addSettings(string $driver, array $settings): self;
+    public function getDriver(string $alias): ?Driver;
 }

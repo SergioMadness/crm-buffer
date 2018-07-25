@@ -1,5 +1,8 @@
 <?php namespace App\Subsystems\CRMBuffer\Interfaces;
 
+use App\Subsystems\CRMBuffer\Interfaces\Models\Integration;
+
+
 /**
  * Interface for integrations pool
  * @package App\Interfaces\Services
@@ -9,11 +12,11 @@ interface IntegrationsPool
     /**
      * Register integration
      *
-     * @param string $alias
+     * @param Integration $integration
      *
      * @return IntegrationsPool
      */
-    public function registerIntegration(string $alias): self;
+    public function registerIntegration(Integration $integration): self;
 
     /**
      * Get integration list

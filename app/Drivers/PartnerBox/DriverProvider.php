@@ -1,6 +1,7 @@
 <?php namespace App\Drivers\PartnerBox;
 
 use Illuminate\Support\ServiceProvider;
+use App\Drivers\PartnerBox\Models\PartnerBoxDriver;
 use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
 use App\Drivers\PartnerBox\Services\PartnerBoxService;
 use App\Drivers\PartnerBox\Services\PartnerBoxIntegrationService;
@@ -13,44 +14,7 @@ class DriverProvider extends ServiceProvider
 
     public function boot(): void
     {
-        app(DriverPool::class)->registerDriver(self::DRIVER_NAME, [
-            'server_url'               => [
-                'name' => 'Url сервиса',
-                'type' => 'string',
-            ],
-            'sale_url'                 => [
-                'name' => 'Sales url',
-                'type' => 'string',
-            ],
-            'login'                    => [
-                'name' => 'Логин',
-                'type' => 'string',
-            ],
-            'password'                 => [
-                'name' => 'Пароль',
-                'type' => 'password',
-            ],
-            'account_id'               => [
-                'name' => 'Account id',
-                'type' => 'string',
-            ],
-            'lead_event_name'          => [
-                'name' => 'Lead event name',
-                'type' => 'string',
-            ],
-            'lead_event_product_id'    => [
-                'name' => 'Lead event product id',
-                'type' => 'string',
-            ],
-            'contact_event_name'       => [
-                'name' => 'Contact event name',
-                'type' => 'string',
-            ],
-            'contact_event_product_id' => [
-                'name' => 'Contact event product id',
-                'type' => 'string',
-            ],
-        ]);
+        app(DriverPool::class)->registerDriver(new PartnerBoxDriver());
     }
 
     public function register(): void

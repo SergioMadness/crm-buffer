@@ -3,6 +3,7 @@
 use App\Interfaces\Services\CRMService;
 use App\Subsystems\CRMBuffer\Models\Lead;
 use App\Subsystems\CRMBuffer\Models\Request;
+use App\Subsystems\CRMBuffer\Models\Integration;
 use App\Subsystems\CRMBuffer\Events\NewContactPack;
 use App\Subsystems\CRMBuffer\Events\RequestResponse;
 use App\Subsystems\CRMBuffer\Traits\UseIntegrationPool;
@@ -34,21 +35,24 @@ class NewContactPackListener
         $pool = $this->getIntegrationsPool();
         $integrations = $pool->getIntegrations();
 
-        foreach ($integrations as $alias) {
+        foreach ($integrations as $integration) {
+            /** @var Integration $integration */
             /** @var CRMService $crmService */
-            $crmService = app($alias);
-            foreach ($event->contactsData as $contact) {
-                /** @var Lead $contact */
-                if ($contact->needIToProcess($alias)) {
+            $crmService = app($integration->driver);
+            $crmService->setSettings($integration->settings);
+            $integrationAlias = $integration->getAlias();
+            foreach ($event->contactsData as $lead) {
+                /** @var Lead $lead */
+                if ($lead->needIToProcess($integrationAlias)) {
                     try {
-                        $crmService->sendContact($contact->body);
+                        $crmService->sendContact($lead->body);
                         $message = $crmService->getMessages();
                         $status = $crmService->isSuccess() ? Request::STATUS_SUCCESS : Request::STATUS_FAILED;
                     } catch (\Exception $ex) {
                         $message = $ex->getMessage();
                         $status = Request::STATUS_RETRY;
                     }
-                    event(new RequestResponse($contact->id, $message, $alias, $status));
+                    event(new RequestResponse($lead->id, $message, $integrationAlias, $status));
                 }
             }
         }

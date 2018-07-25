@@ -1,5 +1,6 @@
 <?php namespace App\Subsystems\CRMBuffer\Services;
 
+use App\Subsystems\CRMBuffer\Interfaces\Models\Integration;
 use App\Subsystems\CRMBuffer\Repositories\RequestRepository;
 use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool as IIntegrationsPool;
 
@@ -20,14 +21,14 @@ class IntegrationsPool implements IIntegrationsPool
     /**
      * Register integration
      *
-     * @param string $alias
+     * @param Integration $integration
      *
      * @return IIntegrationsPool
      */
-    public function registerIntegration(string $alias): IIntegrationsPool
+    public function registerIntegration(Integration $integration): IIntegrationsPool
     {
-        $this->integrations[] = $alias;
-        RequestRepository::registerSystem($alias);
+        $this->integrations[] = $integration;
+        RequestRepository::registerSystem($integration->getAlias());
 
         return $this;
     }

@@ -4,6 +4,7 @@ use App\Interfaces\Services\CRMService;
 use App\Subsystems\CRMBuffer\Models\Lead;
 use App\Subsystems\CRMBuffer\Models\Request;
 use App\Subsystems\CRMBuffer\Events\NewLeadPack;
+use App\Subsystems\CRMBuffer\Models\Integration;
 use App\Subsystems\CRMBuffer\Events\RequestResponse;
 use App\Subsystems\CRMBuffer\Traits\UseIntegrationPool;
 use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
@@ -34,12 +35,15 @@ class NewLeadPackListener
         $pool = $this->getIntegrationsPool();
         $integrations = $pool->getIntegrations();
 
-        foreach ($integrations as $alias) {
+        foreach ($integrations as $integration) {
+            /** @var Integration $integration */
             /** @var CRMService $crmService */
-            $crmService = app($alias);
+            $crmService = app($integration->driver);
+            $crmService->setSettings($integration->settings);
+            $integrationAlias = $integration->getAlias();
             foreach ($event->leadsData as $lead) {
                 /** @var Lead $lead */
-                if ($lead->needIToProcess($alias)) {
+                if ($lead->needIToProcess($integrationAlias)) {
                     try {
                         $crmService->sendLead($lead->body);
                         $message = $crmService->getMessages();
@@ -48,7 +52,7 @@ class NewLeadPackListener
                         $message = $ex->getMessage();
                         $status = Request::STATUS_RETRY;
                     }
-                    event(new RequestResponse($lead->id, $message, $alias, $status));
+                    event(new RequestResponse($lead->id, $message, $integrationAlias, $status));
                 }
             }
         }

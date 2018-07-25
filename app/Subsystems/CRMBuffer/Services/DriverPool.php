@@ -1,5 +1,6 @@
 <?php namespace App\Subsystems\CRMBuffer\Services;
 
+use App\Subsystems\CRMBuffer\Interfaces\Models\Driver;
 use App\Subsystems\CRMBuffer\Interfaces\DriverPool as IDriverPool;
 
 class DriverPool implements IDriverPool
@@ -14,30 +15,13 @@ class DriverPool implements IDriverPool
     /**
      * Register driver
      *
-     * @param string $driver
-     * @param array  $settings
+     * @param Driver $driver
      *
      * @return IDriverPool
      */
-    public function registerDriver(string $driver, array $settings = []): IDriverPool
+    public function registerDriver(Driver $driver): IDriverPool
     {
-        $this->pool[$driver] = $settings;
-
-        return $this;
-    }
-
-    /**
-     * Remove driver
-     *
-     * @param string $driver
-     *
-     * @return IDriverPool
-     */
-    public function removeDriver(string $driver): IDriverPool
-    {
-        if (isset($this->pool[$driver]) !== false) {
-            unset($this->pool[$driver]);
-        }
+        $this->pool[] = $driver;
 
         return $this;
     }
@@ -45,13 +29,13 @@ class DriverPool implements IDriverPool
     /**
      * Check driver exists
      *
-     * @param string $driver
+     * @param string $alias
      *
      * @return bool
      */
-    public function driverExists(string $driver): bool
+    public function driverExists(string $alias): bool
     {
-        return isset($this->pool[$driver]);
+        return $this->getDriver($alias) !== null;
     }
 
     /**
@@ -65,31 +49,21 @@ class DriverPool implements IDriverPool
     }
 
     /**
-     * Get driver settings
+     * Get driver by alias
      *
-     * @param string $driver
+     * @param string $alias
      *
-     * @return array
+     * @return Driver
      */
-    public function getSettings(string $driver): array
+    public function getDriver(string $alias): ?Driver
     {
-        return $this->pool[$driver] ?? [];
-    }
-
-    /**
-     * Add settings
-     *
-     * @param string $driver
-     * @param array  $settings
-     *
-     * @return IDriverPool
-     */
-    public function addSettings(string $driver, array $settings): IDriverPool
-    {
-        if (isset($this->pool[$driver])) {
-            $this->pool[$driver] = array_merge($this->pool[$driver], $settings);
+        foreach ($this->getDrivers() as $driver) {
+            /** @var Driver $driver */
+            if ($driver->getAlias() === $alias) {
+                return $driver;
+            }
         }
 
-        return $this;
+        return null;
     }
 }
