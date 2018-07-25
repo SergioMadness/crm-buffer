@@ -81,4 +81,14 @@ class PartnerBoxDriver implements Driver
 
         return $this;
     }
+
+    /**
+     * Get fields available in service
+     *
+     * @return array
+     */
+    public function getAvailableFields(): array
+    {
+        return [];
+    }
 }

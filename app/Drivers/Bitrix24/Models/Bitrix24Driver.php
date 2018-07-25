@@ -77,4 +77,14 @@ class Bitrix24Driver implements Driver
 
         return $this;
     }
+
+    /**
+     * Get fields available in service
+     *
+     * @return array
+     */
+    public function getAvailableFields(): array
+    {
+        return [];
+    }
 }
