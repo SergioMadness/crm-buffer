@@ -1,8 +1,8 @@
 <?php namespace App\Subsystems\CRMBuffer\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
 use Symfony\Component\HttpFoundation\Response;
+use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
 
 /**
  * Controller to get driver list
@@ -13,12 +13,12 @@ class DriverController extends Controller
     /**
      * Get driver list
      *
-     * @param \App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool $pool
+     * @param DriverPool $pool
      *
      * @return Response
      * @throws \InvalidArgumentException
      */
-    public function index(IntegrationsPool $pool): Response
+    public function index(DriverPool $pool): Response
     {
         return $this->response($pool->getDrivers());
     }

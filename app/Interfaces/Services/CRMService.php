@@ -16,6 +16,17 @@ interface CRMService
     public function setSettings(array $settings): self;
 
     /**
+     * Get settings by key with dot notation
+     *
+     * @param string $key
+     *
+     * @param mixed  $default
+     *
+     * @return array
+     */
+    public function getSettings(string $key, $default = ''): array;
+
+    /**
      * Send lead to CRM
      *
      * @param array $data

@@ -1,17 +1,18 @@
 <?php namespace App\Drivers\Bitrix24;
 
 use Illuminate\Support\ServiceProvider;
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
 use App\Drivers\Bitrix24\Services\Bitrix24Service;
+use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
 use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 class DriverProvider extends ServiceProvider
 {
     public const DRIVER_NAME = 'bitrix';
 
-    public function boot()
+    public function boot(): void
     {
-        app(IntegrationsPool::class)->registerDriver(self::DRIVER_NAME, [
+        /** @var DriverPool $integrationPool */
+        app(DriverPool::class)->registerDriver(self::DRIVER_NAME, [
             'url'                => [
                 'name' => 'Домен',
                 'type' => 'string',
@@ -44,18 +45,10 @@ class DriverProvider extends ServiceProvider
                 'name' => 'ID статуса дубликата',
                 'type' => 'string',
             ],
-            'distributed_status' => [
-                'name' => 'ID статуса "распределен"',
-                'type' => 'string',
-            ],
-            'user_on_duplicate'  => [
-                'name' => 'ID пользователя для дубликатов',
-                'type' => 'string',
-            ],
         ]);
     }
 
-    public function register()
+    public function register(): void
     {
         $this->app->bind(IBitrix24Service::class, Bitrix24Service::class);
         $this->app->bind(self::DRIVER_NAME, Bitrix24Service::class);

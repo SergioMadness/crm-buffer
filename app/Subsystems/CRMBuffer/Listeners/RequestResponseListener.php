@@ -3,13 +3,12 @@
 namespace App\Subsystems\CRMBuffer\Listeners;
 
 use App\Subsystems\CRMBuffer\Events\RequestResponse;
-use App\Listeners\App;
 use App\Subsystems\CRMBuffer\Traits\UseRequestRepository;
 use App\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository;
 
 class RequestResponseListener
 {
-    use App\Subsystems\CRMBuffer\Traits\UseRequestRepository;
+    use UseRequestRepository;
 
     public function __construct(RequestRepository $repository)
     {
@@ -23,7 +22,7 @@ class RequestResponseListener
      *
      * @return void
      */
-    public function handle(RequestResponse $event)
+    public function handle(RequestResponse $event): void
     {
         $this->getRequestRepository()->setStatus(
             $event->id,

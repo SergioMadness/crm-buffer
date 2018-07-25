@@ -12,6 +12,7 @@ use App\Drivers\Bitrix24\DriverProvider;
 use App\Repositories\ApplicationRepository;
 use App\Subsystems\CRMBuffer\SubsystemProvider;
 use App\Subsystems\CRMBuffer\Models\Integration;
+use App\Subsystems\CRMBuffer\Services\DriverPool;
 use App\Subsystems\CRMBuffer\Services\IntegrationsPool;
 use App\Subsystems\CRMBuffer\Repositories\LeadRepository;
 use App\Subsystems\CRMBuffer\Repositories\ContactRepository;
@@ -19,6 +20,7 @@ use App\Subsystems\CRMBuffer\Repositories\RequestRepository;
 use App\Drivers\PartnerBox\DriverProvider as PAPDriverProvider;
 use App\Subsystems\CRMBuffer\Repositories\IntegrationRepository;
 use App\Interfaces\Repositories\UserRepository as IUserRepository;
+use App\Subsystems\CRMBuffer\Interfaces\DriverPool as IDriverPool;
 use App\Interfaces\Services\RequestValidation as IRequestValidation;
 use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool as IIntegrationsPool;
 use App\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
@@ -68,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(IContactRepository::class, ContactRepository::class);
         $this->app->singleton(IIntegrationRepository::class, IntegrationRepository::class);
         $this->app->singleton(IIntegrationsPool::class, IntegrationsPool::class);
+        $this->app->singleton(IDriverPool::class, DriverPool::class);
 
         $this->app->register(DriverProvider::class);
         $this->app->register(PAPDriverProvider::class);

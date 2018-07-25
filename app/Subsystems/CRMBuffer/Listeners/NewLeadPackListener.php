@@ -1,15 +1,13 @@
 <?php namespace App\Subsystems\CRMBuffer\Listeners;
 
-use App\Listeners\App;
+use App\Interfaces\Services\CRMService;
 use App\Subsystems\CRMBuffer\Models\Lead;
 use App\Subsystems\CRMBuffer\Models\Request;
 use App\Subsystems\CRMBuffer\Events\NewLeadPack;
-use App\Subsystems\CRMBuffer\Models\Integration;
 use App\Subsystems\CRMBuffer\Events\RequestResponse;
 use App\Subsystems\CRMBuffer\Traits\UseIntegrationPool;
-use App\Interfaces\Services\CRMService;
-use App\Subsystems\CRMBuffer\Traits\UseIntegrationRepository;
 use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
+use App\Subsystems\CRMBuffer\Traits\UseIntegrationRepository;
 use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
 
 /**
@@ -18,7 +16,7 @@ use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
  */
 class NewLeadPackListener
 {
-    use App\Subsystems\CRMBuffer\Traits\UseIntegrationRepository, App\Subsystems\CRMBuffer\Traits\UseIntegrationPool;
+    use UseIntegrationRepository, UseIntegrationPool;
 
     public function __construct(IntegrationRepository $integrationRepository, IntegrationsPool $integrationsPool)
     {

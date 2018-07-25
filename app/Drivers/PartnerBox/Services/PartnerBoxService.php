@@ -1,5 +1,6 @@
 <?php namespace App\Drivers\PartnerBox\Services;
 
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Validator;
 use App\Interfaces\Services\CRMService;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
@@ -46,6 +47,11 @@ class PartnerBoxService implements IPartnerBoxService
      * @var bool
      */
     private $lastRequestSuccessful = false;
+
+    /**
+     * @var array
+     */
+    private $rawSettings;
 
     /**
      * Send lead to CRM
@@ -306,5 +312,19 @@ class PartnerBoxService implements IPartnerBoxService
         $this->setIntegrationService($newIntegrationService);
 
         return $this;
+    }
+
+    /**
+     * Get settings by key with dot notation
+     *
+     * @param string $key
+     *
+     * @param mixed  $default
+     *
+     * @return array
+     */
+    public function getSettings(string $key, $default = ''): array
+    {
+        return Arr::get($this->rawSettings, $key, $default);
     }
 }

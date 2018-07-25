@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico"/>
+
+    <title>CRMBuffer</title>
+
+    <!-- Bootstrap -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>CRMBuffer</span></a>
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu" id="main-navigation" data-bind="foreach: navigation">
+                            <li><a><i class="fa fa-gears"></i> <span data-bind="text:index"></span> <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" data-bind="foreach: value">
+                                    <li><a data-bind="attr:{href: link}, text: label">Интеграции</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                Admin
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Настройка интеграции</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form id="integration-form" data-parsley-validate="" class="form-horizontal form-label-left"
+                          novalidate="" data-bind="submit: save">
+                        <div class="alert alert-danger" role="alert" data-bind="visible: isError">
+                            <div data-bind="foreach: errors">
+                                <div data-bind="text: error"></div>
+                            </div>
+                        </div>
+                        <div class="alert alert-success" role="alert" data-bind="visible: isSaved">
+                            Данные сохранены
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Название <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="name" required="required" name="name" data-bind="value: name"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="driver">Драйвер</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" id="driver"
+                                        data-bind="options: objectToArray(drivers()), optionsText:function(item){return item.index;}, optionsValue:function(item){return item.index;}, value: driver, event: {change: setCurrentDriver}"></select>
+                            </div>
+                        </div>
+                        <div class="well" style="overflow: auto" data-bind="visible: currentDriverSettings()">
+                            <h4>Настройки</h4>
+                            <div data-bind="foreach: objectToArray(currentDriverSettings())">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                           data-bind="text: value.name, attr: {for: index}">
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div data-bind="if:value.type=='string'">
+                                            <input type="text"
+                                                   data-bind="attr: {id: index}, value:$parent.settingsValues()[index]"
+                                                   class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                        <div data-bind="if:value.type=='bool'">
+                                            <input type="checkbox" value="1"
+                                                   data-bind="attr: {id: index}, checked: $parent.settingsValues()[index]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                   for="is_active">Активность</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="checkbox" value="1" id="is_active" data-bind="checked: isActive">
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button type="submit" class="btn btn-success" data-bind="click: save">Сохранить</button>
+                                <a href="/crm-buffer/integrations.html" class="btn btn-primary">Назад</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+<script src="/js/knockout-3.4.2.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/js.cookie.min.js"></script>
+<script src="/js/app/sdk.js"></script>
+<script src="/js/app/common.js"></script>
+<script src="/js/app/panel.js"></script>
+<script src="/crm-buffer/js/integration.js"></script>
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script src="/js/custom.min.js"></script>
+<script>
+    var panel = new Panel();
+    ko.applyBindings(panel, document.getElementById('main-navigation'));
+    ko.applyBindings(new Integration(), document.getElementById('integration-form'));
+</script>
+</body>
+</html>

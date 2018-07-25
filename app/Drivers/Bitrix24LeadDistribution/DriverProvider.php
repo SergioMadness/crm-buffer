@@ -3,8 +3,10 @@
 use App\Interfaces\EventData;
 use Illuminate\Support\ServiceProvider;
 use App\Drivers\Bitrix24\Services\Bitrix24Service;
+use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
 use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
 use App\Drivers\Bitrix24LeadDistribution\Algorithms\RoundRobin;
+use App\Drivers\Bitrix24\DriverProvider as Bitrix24DriverProvider;
 use App\Drivers\Bitrix24LeadDistribution\Services\UserFilterService;
 use App\Drivers\Bitrix24LeadDistribution\Services\DistributionService;
 use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
@@ -17,7 +19,7 @@ class DriverProvider extends ServiceProvider
             $body = $data->getData();
 
             if (isset($body['STATUS_ID']) && $body['STATUS_ID'] === $service->getDuplicateStatus()) {
-                if (!empty($duplicateUserId = $service->getUserOnDuplicate())) {
+                if (!empty($duplicateUserId = $service->getSettings('user_on_duplicate'))) {
                     $data['ASSIGNED_BY_ID'] = $duplicateUserId;
                 }
             } else {
@@ -26,11 +28,24 @@ class DriverProvider extends ServiceProvider
                     $body
                 );
                 if (!empty($body['ASSIGNED_BY_ID'])) {
-                    $body['STATUS_ID'] = $service->getDistributedStatus();
+                    $body['STATUS_ID'] = $service->getSettings('distributed_status');
                 }
             }
             $data->setData($body);
         });
+
+        /** @var DriverPool $driverPool */
+        $driverPool = app(DriverPool::class);
+        $driverPool->addSettings(Bitrix24DriverProvider::DRIVER_NAME, [
+            'distributed_status' => [
+                'name' => 'ID статуса "распределен"',
+                'type' => 'string',
+            ],
+            'user_on_duplicate'  => [
+                'name' => 'ID пользователя для дубликатов',
+                'type' => 'string',
+            ],
+        ]);
     }
 
     public function register(): void

@@ -1,7 +1,8 @@
 <?php namespace App\Drivers\Bitrix24\Services;
 
-use App\Events\EventDataWrapper;
+use Illuminate\Support\Arr;
 use App\Traits\HandleEvents;
+use App\Events\EventDataWrapper;
 use App\Drivers\Bitrix24\Bitrix24;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
@@ -123,14 +124,9 @@ class Bitrix24Service implements IBitrix24Service
     private $duplicateStatus;
 
     /**
-     * @var string
+     * @var array
      */
-    private $distributedStatus;
-
-    /**
-     * @var string
-     */
-    private $userOnDuplicate;
+    private $rawSettings = [];
 
     public function __construct(string $url = '', string $clientId = '', string $clientSecret = '', string $accessToken = '', string $refreshToken = '', array $scope = ['crm'])
     {
@@ -758,42 +754,16 @@ class Bitrix24Service implements IBitrix24Service
     }
 
     /**
-     * @return string
-     */
-    public function getDistributedStatus(): ?string
-    {
-        return $this->distributedStatus;
-    }
-
-    /**
-     * @param string $distributedStatus
+     * Get settings by key with dot notation
      *
-     * @return $this
-     */
-    public function setDistributedStatus(string $distributedStatus): self
-    {
-        $this->distributedStatus = $distributedStatus;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserOnDuplicate(): ?string
-    {
-        return $this->userOnDuplicate;
-    }
-
-    /**
-     * @param string $userOnDuplicate
+     * @param string $key
      *
-     * @return $this;
+     * @param mixed  $default
+     *
+     * @return array
      */
-    public function setUserOnDuplicate(string $userOnDuplicate): self
+    public function getSettings(string $key, $default = ''): array
     {
-        $this->userOnDuplicate = $userOnDuplicate;
-
-        return $this;
+        return Arr::get($this->rawSettings, $key, $default);
     }
 }

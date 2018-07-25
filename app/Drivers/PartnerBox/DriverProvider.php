@@ -1,7 +1,7 @@
 <?php namespace App\Drivers\PartnerBox;
 
 use Illuminate\Support\ServiceProvider;
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
+use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
 use App\Drivers\PartnerBox\Services\PartnerBoxService;
 use App\Drivers\PartnerBox\Services\PartnerBoxIntegrationService;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
@@ -13,7 +13,7 @@ class DriverProvider extends ServiceProvider
 
     public function boot(): void
     {
-        app(IntegrationsPool::class)->registerDriver(self::DRIVER_NAME, [
+        app(DriverPool::class)->registerDriver(self::DRIVER_NAME, [
             'server_url'               => [
                 'name' => 'Url сервиса',
                 'type' => 'string',
