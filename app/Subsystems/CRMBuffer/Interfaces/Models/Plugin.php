@@ -3,20 +3,20 @@
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Interface for driver
+ * Interface for driver plugin
  * @package App\Subsystems\CRMBuffer\Interfaces\Models
  */
-interface Driver extends Arrayable
+interface Plugin extends Arrayable
 {
     /**
-     * Get driver name
+     * Get plugin name
      *
      * @return string
      */
     public function getName(): string;
 
     /**
-     * Get driver alias
+     * Get plugin alias
      *
      * @return string
      */
@@ -30,25 +30,18 @@ interface Driver extends Arrayable
     public function getSettings(): array;
 
     /**
-     * Get fields available in service
+     * Actions on attach to driver
      *
-     * @return array
+     * @param Driver $driver
+     *
+     * @return Plugin
      */
-    public function getAvailableFields(): array;
+    public function boot(Driver $driver): self;
 
     /**
-     * Attach plugin to driver
+     * Get frontend component name
      *
-     * @param Plugin $plugin
-     *
-     * @return Driver
+     * @return string
      */
-    public function attachPlugin(Plugin $plugin): self;
-
-    /**
-     * Get plugin list
-     *
-     * @return array
-     */
-    public function getPlugins(): array;
+    public function getFrontendComponent(): string;
 }

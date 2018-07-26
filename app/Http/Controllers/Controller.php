@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -66,6 +67,32 @@ class Controller extends BaseController
      */
     public function response($data, array $headers = [], int $status = self::STATUS_OK): Response
     {
+        if (\is_array($data)) {
+            $data = $this->prepareArray($data);
+        }
+
         return \response()->json($data)->setStatusCode($status)->withHeaders($headers);
+    }
+
+    /**
+     * Prepare array for response
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function prepareArray(array $data): array
+    {
+        foreach ($data as $key => $item) {
+            if (\is_array($item)) {
+                $data[$key] = $this->prepareArray($item);
+            } elseif ($item instanceof Arrayable) {
+                $data[$key] = $this->prepareArray(
+                    $item->toArray()
+                );
+            }
+        }
+
+        return $data;
     }
 }

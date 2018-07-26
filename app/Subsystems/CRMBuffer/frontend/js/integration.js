@@ -22,7 +22,7 @@ function Integration() {
         }
         post('/api/v1/integrations' + (id !== null ? '/' + id : ''), {
             name: self.name(),
-            driver: self.driver(),
+            driver: self.driver().alias,
             is_active: self.isActive() ? 1 : 0,
             settings: settings
         })
@@ -38,13 +38,27 @@ function Integration() {
     };
 
     self.setCurrentDriver = function () {
-        self.currentDriverSettings(self.drivers()[self.driver()]);
+        var currentDriver = self.driver();
+        if (currentDriver !== null) {
+            self.currentDriverSettings(self.driver().settings);
+        }
     };
 
     self.id(window.location.hash.replace('#', ''));
 
     get('/api/v1/drivers')
         .done(function (response) {
+            for (var i = 0; i < response.length; i++) {
+                if (response[i].plugins.length > 0) {
+                    for (var p = 0; p < response[i].plugins.length; p++) {
+                        var componentName = response[i].plugins[p].frontend_component;
+                        if (componentName) {
+                            require(['/' + componentName + '/' + componentName + '.js']);
+                        }
+                    }
+                }
+            }
+
             self.drivers(response);
         });
 

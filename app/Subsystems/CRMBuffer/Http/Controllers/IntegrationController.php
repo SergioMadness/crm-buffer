@@ -4,12 +4,12 @@ use App\Interfaces\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use App\Http\Controllers\Controller;
-use App\Subsystems\CRMBuffer\Traits\UseIntegrationRepository;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
+use App\Subsystems\CRMBuffer\Traits\UseIntegrationRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
 
 /**
  * Controller to work with integrations
@@ -119,8 +119,8 @@ class IntegrationController extends Controller
     public function getValidator(array $data): Validator
     {
         $validator = ValidatorFacade::make($data, [
-            'name'   => 'required',
-            'driver' => 'required',
+            'name'   => 'required|string',
+            'driver' => 'required|string',
         ]);
 
 

@@ -3,7 +3,7 @@
 use App\Interfaces\Model;
 use App\Repositories\BaseRepository;
 use App\Subsystems\CRMBuffer\Models\Integration;
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
+use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
 use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository as IIntegrationRepository;
 
 /**
@@ -15,22 +15,22 @@ class IntegrationRepository extends BaseRepository implements IIntegrationReposi
     protected static $availableSystems = [];
 
     /**
-     * @var \App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool
+     * @var DriverPool
      */
-    protected $integrationPool;
+    protected $driverPool;
 
-    public function __construct(IntegrationsPool $integrationsPool)
+    public function __construct(DriverPool $driverPool)
     {
         $this
-            ->setIntegrationPool($integrationsPool)
+            ->setDriverPool($driverPool)
             ->setModelClass(Integration::class);
     }
 
     public function fill(Model $model, array $attributes = []): Model
     {
         $driver = $attributes['driver'] ?? $model->driver;
-        if (!empty($driver) && isset($attributes['settings']) && $this->getIntegrationPool()->driverExists($driver)) {
-            $diverSettings = $this->getIntegrationPool()->getDrivers()[$driver];
+        if (!empty($driver) && isset($attributes['settings']) && $this->getDriverPool()->driverExists($driver)) {
+            $diverSettings = $this->getDriverPool()->getDriver($driver)->getSettings();
             foreach ($attributes['settings'] as $key => $val) {
                 if (isset($diverSettings[$key])) {
                     switch ($diverSettings[$key]['type']) {
@@ -46,25 +46,25 @@ class IntegrationRepository extends BaseRepository implements IIntegrationReposi
     }
 
     /**
-     * Get integration pool
+     * Get driver pool
      *
-     * @return \App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool
+     * @return DriverPool
      */
-    public function getIntegrationPool(): IntegrationsPool
+    public function getDriverPool(): DriverPool
     {
-        return $this->integrationPool;
+        return $this->driverPool;
     }
 
     /**
-     * Set integration pool
+     * Set driver pool
      *
-     * @param \App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool $integrationPool
+     * @param DriverPool $driverPool
      *
      * @return $this
      */
-    public function setIntegrationPool(IntegrationsPool $integrationPool): self
+    public function setDriverPool(DriverPool $driverPool): self
     {
-        $this->integrationPool = $integrationPool;
+        $this->driverPool = $driverPool;
 
         return $this;
     }
