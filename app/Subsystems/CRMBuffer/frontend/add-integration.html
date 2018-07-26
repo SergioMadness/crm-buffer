@@ -138,7 +138,7 @@
                             </div>
                         </div>
                         <div class="well" style="overflow: auto"
-                             data-bind="if: driver() && driver().plugins.length>0">
+                             data-bind="if: driver() && driver().plugins().length>0">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2><i class="fa fa-cogs"></i> Дополнения</h2>
@@ -148,7 +148,7 @@
 
                                     <!-- start accordion -->
                                     <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                                        <div data-bind="foreach: driver().plugins">
+                                        <div data-bind="foreach: driver().plugins()">
                                             <div class="panel">
                                                 <a class="panel-heading" role="tab"
                                                    data-bind="attr:{href: '#'+alias, 'aria-controls':'#'+alias}"
@@ -179,7 +179,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div data-bind="if: $root.isComponentRegistered(frontend_component)">
+                                                        <div data-bind="if: frontend_component && loaded">
                                                             <!--<div data-bind="html: '<'+frontend_component+'></'+frontend_component+'>'"></div>-->
                                                             <div data-bind="component: frontend_component"></div>
                                                         </div>

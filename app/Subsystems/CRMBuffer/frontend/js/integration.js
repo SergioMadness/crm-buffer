@@ -1,3 +1,36 @@
+function Driver(data) {
+    var self = this;
+
+    self.name = data.name;
+    self.alias = data.alias;
+    self.fields = data.fields;
+    self.plugins = ko.observableArray();
+    if (data.plugins.length > 0) {
+        for (var i = 0; i < data.plugins.length; i++) {
+            self.plugins.push(new Plugin(data.plugins[i]));
+        }
+    }
+
+    self.settings = ko.observable(data.settings);
+}
+
+function Plugin(data) {
+    var self = this;
+
+    self.name = data.name;
+    self.alias = data.alias;
+    self.settings = ko.observable(data.settings);
+    self.frontend_component = data.frontend_component;
+    self.loaded = ko.observable(false);
+    if (self.frontend_component) {
+        require(['/' + self.frontend_component + '/' + self.frontend_component + '.js'], function () {
+            self.loaded(true);
+        });
+    } else {
+        self.loaded(true);
+    }
+}
+
 function Integration() {
     var self = this;
 
@@ -40,7 +73,7 @@ function Integration() {
     self.setCurrentDriver = function () {
         var currentDriver = self.driver();
         if (currentDriver !== null) {
-            self.currentDriverSettings(self.driver().settings);
+            self.currentDriverSettings(self.driver().settings());
         }
     };
 
@@ -49,17 +82,8 @@ function Integration() {
     get('/api/v1/drivers')
         .done(function (response) {
             for (var i = 0; i < response.length; i++) {
-                if (response[i].plugins.length > 0) {
-                    for (var p = 0; p < response[i].plugins.length; p++) {
-                        var componentName = response[i].plugins[p].frontend_component;
-                        if (componentName) {
-                            require(['/' + componentName + '/' + componentName + '.js']);
-                        }
-                    }
-                }
+                self.drivers.push(new Driver(response[i]));
             }
-
-            self.drivers(response);
         });
 
     get('/api/v1/integrations/' + self.id())
