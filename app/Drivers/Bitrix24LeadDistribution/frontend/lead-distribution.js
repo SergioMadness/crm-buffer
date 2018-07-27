@@ -2,14 +2,19 @@ function Condition() {
     var self = this;
 
     self.field = null;
-    self.operation = null;
+    self.operation = ko.observable();
     self.value1 = null;
     self.value2 = null;
     self.result = null;
     self.success = ko.observableArray();
 
+    self.conditionTypes = [
+        '<', '<=', '=', '>=', '>', 'in', 'between'
+    ];
+
     self.addCondition = function () {
         self.success.push(new Condition());
+        return false;
     };
 }
 
@@ -20,13 +25,13 @@ function LeadDistribution(params) {
 
     self.addCondition = function () {
         self.conditions.push(new Condition());
+        return false;
     };
+
+    self.addCondition();
 }
 
 ko.components.register('lead-distribution', {
     viewModel: LeadDistribution,
-    template: '<div data-bind="foreach: conditions">' +
-    '<input class="form-control" type="text" data-bind="value: field">' +
-    '<select class="form-control"></select>' +
-    '</div>'
+    template: {require: 'text!/lead-distribution/lead-distribution.html'}
 });
