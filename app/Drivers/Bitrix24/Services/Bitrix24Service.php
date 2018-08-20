@@ -6,7 +6,6 @@ use App\Events\EventDataWrapper;
 use App\Drivers\Bitrix24\Bitrix24;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
-use App\Interfaces\Services\CRMService;
 use Bitrix24\Exceptions\Bitrix24Exception;
 use Bitrix24\Exceptions\Bitrix24IoException;
 use Bitrix24\Exceptions\Bitrix24ApiException;
@@ -19,6 +18,7 @@ use Bitrix24\Exceptions\Bitrix24TokenIsInvalidException;
 use Bitrix24\Exceptions\Bitrix24MethodNotFoundException;
 use Bitrix24\Exceptions\Bitrix24PaymentRequiredException;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
+use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 /**

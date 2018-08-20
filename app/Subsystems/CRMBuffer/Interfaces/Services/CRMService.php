@@ -1,4 +1,4 @@
-<?php namespace App\Interfaces\Services;
+<?php namespace App\Subsystems\CRMBuffer\Interfaces\Services;
 
 /**
  * Interface to work with crm

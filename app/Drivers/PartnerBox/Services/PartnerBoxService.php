@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Validator;
-use App\Interfaces\Services\CRMService;
+use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService;
 use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;

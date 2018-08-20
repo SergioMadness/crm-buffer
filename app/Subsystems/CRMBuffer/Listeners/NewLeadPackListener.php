@@ -1,6 +1,6 @@
 <?php namespace App\Subsystems\CRMBuffer\Listeners;
 
-use App\Interfaces\Services\CRMService;
+use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 use App\Subsystems\CRMBuffer\Models\Lead;
 use App\Subsystems\CRMBuffer\Models\Request;
 use App\Subsystems\CRMBuffer\Events\NewLeadPack;
@@ -37,7 +37,7 @@ class NewLeadPackListener
 
         foreach ($integrations as $integration) {
             /** @var Integration $integration */
-            /** @var CRMService $crmService */
+            /** @var \App\Subsystems\CRMBuffer\Interfaces\Services\CRMService $crmService */
             $crmService = app($integration->driver);
             $crmService->setSettings($integration->settings);
             $integrationAlias = $integration->getAlias();

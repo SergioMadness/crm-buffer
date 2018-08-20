@@ -2,7 +2,7 @@
 
 use App\Traits\Subsystem;
 use App\Services\RequestValidation;
-//use App\Interfaces\Services\CRMService;
+//use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 use App\Interfaces\Services\Navigation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Console\Kernel;
