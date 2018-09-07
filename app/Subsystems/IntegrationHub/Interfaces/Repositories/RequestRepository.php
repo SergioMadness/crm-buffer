@@ -1,15 +1,15 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Repositories;
+<?php namespace App\Subsystems\IntegrationHub\Interfaces\Repositories;
 
 //use Illuminate\Support\Collection;
 use App\Subsystems\IntegrationHub\Interfaces\Repository;
 
 /**
  * Interface for repository of requests
- * @package App\Subsystems\CRMBuffer\Interfaces\Repositories;
+ * @package App\Subsystems\Supervisor\Interfaces\Repositories
  */
 interface RequestRepository extends Repository
 {
-    /**
+//    /**
 //     * Get pack of requests
 //     *
 //     * @param int $size
