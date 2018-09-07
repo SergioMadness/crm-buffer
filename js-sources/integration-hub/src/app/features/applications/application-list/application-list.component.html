@@ -1,0 +1,42 @@
+<div class="right_col" role="main" id="application-table">
+    <div class="x_panel">
+        <app-error-messages [errors]="errors" *ngIf="errors.length>0"></app-error-messages>
+        <div class="x_title">
+            <h2>Приложения</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <a routerLink="/applications/add" class="btn btn-primary"><i class="fa fa-plus"></i> Добавить</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Название</th>
+                    <th>Token</th>
+                    <th>Refresh-token</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of items">
+                    <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.client_id }}</td>
+                    <td>{{ item.client_secret }}</td>
+                    <td>
+                        <a routerLink="/applications/{{ item.id }}" class="btn btn-success btn-xs" data-toggle="tooltip"
+                           title="Редактировать">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a (click)="removeItem(item)" class="btn btn-danger btn-xs btn-delete" data-toggle="tooltip"
+                           title="Удалить">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
