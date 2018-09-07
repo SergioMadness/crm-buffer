@@ -1,5 +1,6 @@
 <?php namespace App\Subsystems\CRMBuffer\Models;
 
+use App\Models\Request;
 use Illuminate\Database\Eloquent\Builder;
 
 /**

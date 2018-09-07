@@ -1,6 +1,5 @@
-<?php namespace App\Subsystems\CRMBuffer\Models;
+<?php namespace App\Models;
 
-use App\Models\Application;
 use App\Abstractions\UUIDModel;
 use App\Interfaces\Model as IModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

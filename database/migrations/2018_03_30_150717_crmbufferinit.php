@@ -19,7 +19,7 @@ class CRMBufferInit extends Migration
             $table->jsonb('body');
             $table->enum('status', ['new', 'queue', 'need_another_attempt', 'success', 'failed'])->default('new');
             $table->jsonb('processing_info')->nullable();
-            $table->enum('request_type', ['lead', 'user']);
+            $table->string('request_type')->index();
             $table->text('response')->nullable();
             $table->timestamps();
 

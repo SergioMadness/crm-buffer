@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 use App\Repositories\BaseRepository;
-use App\Subsystems\CRMBuffer\Models\Request;
+use App\Models\Request;
 use App\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository as IRequestRepository;
 
 /**
@@ -65,7 +65,7 @@ class RequestRepository extends BaseRepository implements IRequestRepository
      */
     public function setStatus(string $id, string $status, $message = '', string $system = ''): bool
     {
-        /** @var \App\Subsystems\CRMBuffer\Models\Request $request */
+        /** @var \App\Models\Request $request */
         $request = Request::find($id);
         $request->setSystemStatus($system, $status);
         $request->status = Request::STATUS_RETRY;

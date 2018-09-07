@@ -6,7 +6,7 @@
  */
 interface Request
 {
-    public const TOKEN_HEADER_NAME = 'x-cbs-token';
+    public const TOKEN_HEADER_NAME = 'x-pw-token';
 
-    public const REFRESH_TOKEN_HEADER_NAME = 'x-cbs-refresh-token';
+    public const REFRESH_TOKEN_HEADER_NAME = 'x-pw-refresh-token';
 }

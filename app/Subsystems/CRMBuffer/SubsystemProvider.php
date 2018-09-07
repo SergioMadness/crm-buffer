@@ -2,12 +2,8 @@
 
 use App\Traits\Subsystem;
 use App\Services\RequestValidation;
-//use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 use App\Interfaces\Services\Navigation;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Console\Scheduling\Schedule;
-use App\Subsystems\CRMBuffer\Commands\SendPack;
 use App\Subsystems\CRMBuffer\Models\Integration;
 use App\Subsystems\CRMBuffer\Services\DriverPool;
 use App\Subsystems\CRMBuffer\Services\IntegrationsPool;
@@ -29,8 +25,6 @@ class SubsystemProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->register(EventServiceProvider::class);
-
         $this->app->singleton(IRequestValidation::class, RequestValidation::class);
         $this->app->singleton(IRequestRepository::class, RequestRepository::class);
         $this->app->singleton(ILeadRepository::class, LeadRepository::class);
@@ -49,16 +43,11 @@ class SubsystemProvider extends ServiceProvider
             __DIR__ . '/frontend'   => base_path('public/crm-buffer'),
         ]);
 
-        $this->loadMigrationsFrom(__DIR__ . '/migrations');
-
         /** @var Navigation $navigationService */
         $navigationService = app(Navigation::class);
         $navigationService->register('Integration hub', 'Лиды', '/crm-buffer/leads.html');
         $navigationService->register('Integration hub', 'Контакты', '/crm-buffer/contacts.html');
         $navigationService->register('Integration hub', 'Интеграции', '/crm-buffer/integrations.html');
-
-        app(Kernel::class)->addCommand(SendPack::class);
-        app(Schedule::class)->command(SendPack::class)->cron('*/' . config('systems.period') . ' * * * *');
 
         if (!$this->app->runningInConsole()) {
             /** @var IIntegrationsPool $integrationPool */
