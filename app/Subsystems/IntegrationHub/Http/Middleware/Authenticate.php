@@ -5,7 +5,7 @@ namespace App\Subsystems\IntegrationHub\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;
-use App\Subsystems\IntegrationHub\Constants\Request as IRequest;
+use App\Subsystems\IntegrationHubCommon\Constants\Request as IRequest;
 use App\Subsystems\IntegrationHub\Interfaces\Repositories\UserRepository;
 
 class Authenticate

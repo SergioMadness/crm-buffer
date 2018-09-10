@@ -3,6 +3,7 @@
 use App\Subsystems\IntegrationHub\Models\User;
 use App\Subsystems\IntegrationHub\Interfaces\Models\Token;
 use App\Subsystems\IntegrationHub\Interfaces\Models\User as IUser;
+use App\Subsystems\IntegrationHubCommon\Repositories\BaseRepository;
 use App\Subsystems\IntegrationHub\Interfaces\Repositories\UserRepository as IUserRepository;
 
 /**
@@ -38,7 +39,7 @@ class UserRepository extends BaseRepository implements IUserRepository
      */
     public function getByToken(string $token): ?IUser
     {
-        /** @var \App\Subsystems\IntegrationHub\Interfaces\Models\User $user */
+        /** @var User $user */
         $user = $this->create();
         if ($token === $user->generateToken()->getToken()) {
             return $user;

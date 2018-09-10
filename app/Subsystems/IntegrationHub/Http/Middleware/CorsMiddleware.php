@@ -1,7 +1,7 @@
 <?php namespace App\Subsystems\IntegrationHub\Http\Middleware;
 
 use Illuminate\Http\Request;
-use Laravel\Lumen\Routing\Router;
+use Illuminate\Routing\Router;
 
 class CorsMiddleware
 {

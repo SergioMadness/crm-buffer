@@ -2,7 +2,7 @@
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Subsystems\IntegrationHub\Interfaces\Model;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
 use App\Subsystems\IntegrationHub\Interfaces\Models\User as IUser;
 use App\Subsystems\IntegrationHub\Interfaces\Models\Token as IToken;
 

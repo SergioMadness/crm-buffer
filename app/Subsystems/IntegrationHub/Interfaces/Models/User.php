@@ -1,10 +1,10 @@
 <?php namespace App\Subsystems\IntegrationHub\Interfaces\Models;
 
-use App\Subsystems\IntegrationHub\Interfaces\Model;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
 
 /**
  * Interface for user model
- * @package App\Interfaces\Models
+ * @package App\Subsystems\IntegrationHub\Interfaces\Models
  */
 interface User extends Model
 {

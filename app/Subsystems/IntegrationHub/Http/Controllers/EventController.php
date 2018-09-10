@@ -4,10 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\IntegrationHub\Jobs\NewEvent;
-use App\Subsystems\IntegrationHub\Traits\UseRequestRepository;
+use App\Subsystems\IntegrationHubCommon\Jobs\NewEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use App\Subsystems\IntegrationHub\Interfaces\Repositories\RequestRepository;
+use App\Subsystems\IntegrationHubCommon\Traits\UseRequestRepository;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Repositories\RequestRepository;
 
 /**
  * Controller to work with events/requests

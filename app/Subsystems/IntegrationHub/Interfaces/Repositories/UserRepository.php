@@ -1,8 +1,8 @@
 <?php namespace App\Subsystems\IntegrationHub\Interfaces\Repositories;
 
-use App\Subsystems\IntegrationHub\Interfaces\Repository;
 use App\Subsystems\IntegrationHub\Interfaces\Models\User;
 use App\Subsystems\IntegrationHub\Interfaces\Models\Token;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Repository;
 
 /**
  * Interface for user repository

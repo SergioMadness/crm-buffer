@@ -1,6 +1,6 @@
 <?php namespace App\Subsystems\IntegrationHub\Models;
 
-use App\Subsystems\IntegrationHub\Interfaces\Model;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
 use App\Subsystems\IntegrationHub\Interfaces\Models\Token as IToken;
 
 /**

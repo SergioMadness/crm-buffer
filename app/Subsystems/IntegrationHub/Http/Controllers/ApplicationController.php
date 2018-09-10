@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\IntegrationHub\Interfaces\Model;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Subsystems\IntegrationHub\Traits\UseApplicationRepository;

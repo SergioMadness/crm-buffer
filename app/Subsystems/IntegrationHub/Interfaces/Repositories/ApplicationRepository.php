@@ -1,7 +1,7 @@
 <?php namespace App\Subsystems\IntegrationHub\Interfaces\Repositories;
 
 use App\Subsystems\IntegrationHub\Models\Application;
-use App\Subsystems\IntegrationHub\Interfaces\Repository;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Repository;
 
 /**
  * Interface for application repository

@@ -4,9 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use App\Subsystems\IntegrationHub\Constants\Request as IRequest;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use App\Subsystems\IntegrationHubCommon\Constants\Request as IRequest;
 use App\Subsystems\IntegrationHub\Interfaces\Repositories\UserRepository;
 
 /**

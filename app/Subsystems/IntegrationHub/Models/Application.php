@@ -1,7 +1,7 @@
 <?php namespace App\Subsystems\IntegrationHub\Models;
 
-use App\Subsystems\IntegrationHub\Abstractions\UUIDModel;
-use App\Subsystems\IntegrationHub\Interfaces\Model as IModel;
+use App\Subsystems\IntegrationHubCommon\Abstractions\UUIDModel;
+use App\Subsystems\IntegrationHubCommon\Interfaces\Model as IModel;
 
 /**
  * Application
