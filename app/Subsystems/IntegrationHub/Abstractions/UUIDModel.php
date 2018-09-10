@@ -21,7 +21,21 @@ abstract class UUIDModel extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = Uuid::uuid4();
+            /** @var UUIDModel $model */
+            if (empty($model->id)) {
+                $model->generateId();
+            }
         });
+    }
+
+    /**
+     * generate UUID
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function generateId(): string
+    {
+        return $this->id = Uuid::uuid4();
     }
 }

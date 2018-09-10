@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Symfony\Component\HttpFoundation\Response;
+use App\Subsystems\IntegrationHub\Jobs\NewEvent;
 use App\Subsystems\IntegrationHub\Traits\UseRequestRepository;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use App\Subsystems\IntegrationHub\Interfaces\Repositories\RequestRepository;
@@ -13,7 +15,7 @@ use App\Subsystems\IntegrationHub\Interfaces\Repositories\RequestRepository;
  */
 class EventController extends Controller
 {
-    use UseRequestRepository;
+    use UseRequestRepository, DispatchesJobs;
 
     public function __construct(RequestRepository $repository)
     {
@@ -35,11 +37,14 @@ class EventController extends Controller
             throw new BadRequestHttpException($validator->errors()->first());
         }
 
+        /** @var \App\Subsystems\IntegrationHub\Models\Request $model */
         $model = $this->getRequestRepository()->create([
             'application_id' => $request->attributes->get('application')->id,
             'body'           => $data,
         ]);
-        $this->getRequestRepository()->save($model);
+//        $this->getRequestRepository()->save($model);
+
+        $this->dispatch(new NewEvent($model));
 
         return $this->response($model);
     }

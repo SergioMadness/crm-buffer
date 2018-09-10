@@ -1,6 +1,6 @@
 <?php namespace App\Subsystems\IntegrationHub\Events;
 
-use App\Subsystems\IntegrationHub\Constants\Request;
+use App\Subsystems\IntegrationHub\Models\Request;
 
 /**
  * New request / event
