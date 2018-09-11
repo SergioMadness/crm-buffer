@@ -1,9 +1,9 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Traits;
+<?php namespace App\Subsystems\IntegrationHubDB\Traits;
 
-use App\Subsystems\IntegrationHubCommon\Interfaces\Repositories\RequestRepository;
+use App\Subsystems\IntegrationHubDB\Interfaces\Repositories\RequestRepository;
 
 /**
- * Trait for that what uses request repository
+ * Trait for classes that use request repository
  * @package App\Traits
  */
 trait UseRequestRepository

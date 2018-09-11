@@ -1,9 +1,8 @@
 <?php namespace App\Subsystems\Supervisor\Providers;
 
-use App\Subsystems\IntegrationHub\Events\NewRequest;
+use App\Subsystems\IntegrationHubCommon\Events\NewRequest;
 use App\Subsystems\Supervisor\Listeners\NewRequestListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
 
 class EventServiceProvider extends ServiceProvider
 {

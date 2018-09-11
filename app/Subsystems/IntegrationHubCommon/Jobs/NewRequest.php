@@ -4,28 +4,26 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Subsystems\IntegrationHubDB\Models\Request;
 use App\Subsystems\IntegrationHubCommon\Interfaces\EventData;
+use App\Subsystems\IntegrationHubCommon\Events\NewRequest as NewRequestEvent;
 
-/**
- * Job with event data for processing through queues
- * @package App\Subsystems\IntegrationHubCommon\Jobs
- */
-class NewEvent implements ShouldQueue
+class NewRequest implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * @var EventData
      */
-    public $eventData;
+    public $request;
 
-    public function __construct(EventData $eventData)
+    public function __construct(Request $request)
     {
-        $this->eventData = $eventData;
+        $this->request = $request;
     }
 
-    public function handle()
+    public function handle(): void
     {
-
+        event(new NewRequestEvent($this->request));
     }
 }

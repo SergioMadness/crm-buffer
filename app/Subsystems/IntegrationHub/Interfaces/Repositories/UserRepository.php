@@ -2,7 +2,7 @@
 
 use App\Subsystems\IntegrationHub\Interfaces\Models\User;
 use App\Subsystems\IntegrationHub\Interfaces\Models\Token;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Repository;
+use App\Subsystems\IntegrationHubDB\Interfaces\Repository;
 
 /**
  * Interface for user repository

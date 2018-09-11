@@ -1,7 +1,7 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Interfaces\Services;
+<?php namespace App\Subsystems\Supervisor\Interfaces\Services;
 
 use App\Subsystems\IntegrationHubCommon\Interfaces\EventData;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Models\ProcessOptions;
+use App\Subsystems\IntegrationHubDB\Interfaces\Models\ProcessOptions;
 
 /**
  * Interface for process dispatcher

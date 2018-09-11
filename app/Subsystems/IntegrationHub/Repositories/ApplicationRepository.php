@@ -1,8 +1,8 @@
 <?php namespace App\Subsystems\IntegrationHub\Repositories;
 
 use App\Subsystems\IntegrationHub\Models\Application;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
-use App\Subsystems\IntegrationHubCommon\Repositories\BaseRepository;
+use App\Subsystems\IntegrationHubDB\Interfaces\Model;
+use App\Subsystems\IntegrationHubDB\Repositories\BaseRepository;
 use App\Subsystems\IntegrationHub\Interfaces\Repositories\ApplicationRepository as IApplicationRepository;
 
 /**

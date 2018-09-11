@@ -2,8 +2,8 @@
 
 use App\Subsystems\IntegrationHub\Models\User;
 use App\Subsystems\IntegrationHub\Interfaces\Models\Token;
+use App\Subsystems\IntegrationHubDB\Repositories\BaseRepository;
 use App\Subsystems\IntegrationHub\Interfaces\Models\User as IUser;
-use App\Subsystems\IntegrationHubCommon\Repositories\BaseRepository;
 use App\Subsystems\IntegrationHub\Interfaces\Repositories\UserRepository as IUserRepository;
 
 /**

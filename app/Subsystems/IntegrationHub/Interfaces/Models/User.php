@@ -1,6 +1,6 @@
 <?php namespace App\Subsystems\IntegrationHub\Interfaces\Models;
 
-use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
+use App\Subsystems\IntegrationHubDB\Interfaces\Model;
 
 /**
  * Interface for user model

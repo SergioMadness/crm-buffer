@@ -1,8 +1,8 @@
 <?php namespace App\Subsystems\IntegrationHubCommon\Interfaces\Services;
 
 use App\Subsystems\IntegrationHubCommon\Interfaces\EventData;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Models\ProcessOptions;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Models\SubsystemOptions;
+use App\Subsystems\IntegrationHubDB\Interfaces\Models\ProcessOptions;
+use App\Subsystems\IntegrationHubDB\Interfaces\Models\SubsystemOptions;
 
 /**
  * Subsystem interface

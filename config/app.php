@@ -145,6 +145,7 @@ return [
         \Barryvdh\Debugbar\ServiceProvider::class,
         \App\Subsystems\IntegrationHub\Providers\IntegrationHubProvider::class,
         \App\Subsystems\IntegrationHubCommon\Providers\IntegrationHubCommonProvider::class,
+        \App\Subsystems\IntegrationHubDB\Providers\IntegrationHubDBProvider::class,
         \App\Subsystems\Supervisor\Providers\SupervisorProvider::class,
     ],
 

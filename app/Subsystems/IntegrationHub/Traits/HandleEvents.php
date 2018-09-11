@@ -1,6 +1,6 @@
 <?php namespace App\Subsystems\IntegrationHub\Traits;
 
-use App\Subsystems\IntegrationHub\Interfaces\EventData;
+use App\Subsystems\IntegrationHubCommon\Interfaces\EventData;
 
 /**
  * Trait for objects can handle events

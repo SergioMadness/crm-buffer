@@ -1,7 +1,7 @@
 <?php namespace App\Subsystems\IntegrationHub\Models;
 
-use App\Subsystems\IntegrationHubCommon\Abstractions\UUIDModel;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Model as IModel;
+use App\Subsystems\IntegrationHubDB\Interfaces\Model;
+use App\Subsystems\IntegrationHubDB\Abstractions\UUIDModel;
 
 /**
  * Application
@@ -13,7 +13,7 @@ use App\Subsystems\IntegrationHubCommon\Interfaces\Model as IModel;
  * @property string $created_at
  * @property string $updated_at
  */
-class Application extends UUIDModel implements IModel
+class Application extends UUIDModel implements Model
 {
     protected $table = 'applications';
 

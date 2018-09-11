@@ -1,6 +1,6 @@
 <?php namespace App\Events;
 
-use App\Interfaces\EventData;
+use App\Subsystems\IntegrationHubCommon\Interfaces\EventData;
 
 /**
  * Wrapper for event data

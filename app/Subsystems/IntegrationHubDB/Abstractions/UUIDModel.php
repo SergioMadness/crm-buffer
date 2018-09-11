@@ -1,11 +1,11 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Abstractions;
+<?php namespace App\Subsystems\IntegrationHubDB\Abstractions;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Basic class for models with uuid IDs
- * @package App\Subsystems\IntegrationHubCommon\Abstractions
+ * @package App\Subsystems\IntegrationHubDB\Abstractions
  */
 abstract class UUIDModel extends Model
 {

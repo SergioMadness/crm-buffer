@@ -1,10 +1,10 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Interfaces;
+<?php namespace App\Subsystems\IntegrationHubDB\Interfaces;
 
 use Illuminate\Support\Collection;
 
 /**
  * Basic repository
- * @package App\Subsystems\IntegrationHubCommon\Interfaces
+ * @package App\Subsystems\IntegrationHubDB\Interfaces
  */
 interface Repository
 {

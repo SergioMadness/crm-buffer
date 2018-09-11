@@ -1,8 +1,8 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Interfaces\Models;
+<?php namespace App\Subsystems\IntegrationHubDB\Interfaces\Models;
 
 /**
  * Interface for subsystem settings
- * @package App\Subsystems\IntegrationHubCommon\Interfaces\Models
+ * @package App\Subsystems\IntegrationHubDB\Interfaces\Models
  */
 interface SubsystemOptions
 {

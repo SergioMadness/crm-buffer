@@ -1,9 +1,9 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Repositories;
+<?php namespace App\Subsystems\IntegrationHubDB\Repositories;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Query\Builder;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Model;
-use App\Subsystems\IntegrationHubCommon\Interfaces\Repository;
+use App\Subsystems\IntegrationHubDB\Interfaces\Model;
+use App\Subsystems\IntegrationHubDB\Interfaces\Repository;
 
 /**
  * Basic abstract repository

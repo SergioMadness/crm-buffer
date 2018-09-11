@@ -1,8 +1,8 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Interfaces;
+<?php namespace App\Subsystems\IntegrationHubDB\Interfaces;
 
 /**
  * Basic interface for system model
- * @package App\Subsystems\IntegrationHubCommon\Interfaces
+ * @package App\Subsystems\IntegrationHubDB\Interfaces
  */
 interface Model
 {

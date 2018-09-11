@@ -1,8 +1,8 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Interfaces\Models;
+<?php namespace App\Subsystems\IntegrationHubDB\Interfaces\Models;
 
 /**
  * Subsystem settings
- * @package App\Subsystems\IntegrationHubCommon\Interfaces\Models
+ * @package App\Subsystems\IntegrationHubDB\Interfaces\Models
  */
 interface ProcessOptions
 {
@@ -19,4 +19,25 @@ interface ProcessOptions
      * @return array
      */
     public function getOptions(): array;
+
+    /**
+     * Processor is remote
+     *
+     * @return bool
+     */
+    public function isRemote(): bool;
+
+    /**
+     * Get queue name to send event to processor through queue
+     *
+     * @return string
+     */
+    public function getQueue(): string;
+
+    /**
+     * Get host to send event to processor through REST API
+     *
+     * @return string
+     */
+    public function getHost(): string;
 }
