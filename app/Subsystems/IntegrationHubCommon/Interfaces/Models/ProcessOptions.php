@@ -7,6 +7,13 @@
 interface ProcessOptions
 {
     /**
+     * Get subsystem/driver ID to identify processor
+     *
+     * @return string
+     */
+    public function getSubsystemId(): string;
+
+    /**
      * Get data mapping
      *
      * @return array

@@ -1,19 +1,10 @@
-<?php namespace App\Subsystems\IntegrationHubCommon\Jobs;
+<?php namespace App\Subsystems\IntegrationHubCommon\Events;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Subsystems\IntegrationHubCommon\Interfaces\EventData;
 use App\Subsystems\IntegrationHubDB\Interfaces\Models\ProcessOptions;
 
-/**
- * Job with event data for processing through queues
- * @package App\Subsystems\IntegrationHubCommon\Jobs
- */
-class NewEvent implements ShouldQueue
+class EventToProcess
 {
-    use InteractsWithQueue, Queueable;
-
     /**
      * @var EventData
      */
@@ -28,10 +19,5 @@ class NewEvent implements ShouldQueue
     {
         $this->eventData = $eventData;
         $this->processOptions = $processOptions;
-    }
-
-    public function handle()
-    {
-
     }
 }

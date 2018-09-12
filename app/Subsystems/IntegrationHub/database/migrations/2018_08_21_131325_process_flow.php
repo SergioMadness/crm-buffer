@@ -27,6 +27,7 @@ class ProcessFlow extends Migration
 
         Schema::create('process_options', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('subsystem_id');
             $table->string('name');
             $table->jsonb('mapping');
             $table->jsonb('options');

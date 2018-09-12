@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\IntegrationHubCommon\Jobs\NewEvent;
+use App\Subsystems\IntegrationHubCommon\Jobs\NewRequest;
 use App\Subsystems\IntegrationHubDB\Traits\UseRequestRepository;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use App\Subsystems\IntegrationHubDB\Interfaces\Repositories\RequestRepository;

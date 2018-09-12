@@ -9,6 +9,7 @@ use App\Subsystems\IntegrationHubDB\Interfaces\Models\ProcessOptions as IProcess
  * @package App\Models
  *
  * @property string $id
+ * @property string $subsystem_id
  * @property string $name
  * @property array  $mapping
  * @property array  $options
@@ -77,5 +78,15 @@ class ProcessOptions extends UUIDModel implements IProcessOptions
     public function getHost(): string
     {
         return $this->getOptions()['host'];
+    }
+
+    /**
+     * Get class name to identify processor
+     *
+     * @return string
+     */
+    public function getSubsystemId(): string
+    {
+        return $this->subsystem_id;
     }
 }

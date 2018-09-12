@@ -1,7 +1,6 @@
 <?php namespace App\Subsystems\IntegrationHubCommon\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Subsystems\IntegrationHubDB\Models\Request;
@@ -10,7 +9,7 @@ use App\Subsystems\IntegrationHubCommon\Events\NewRequest as NewRequestEvent;
 
 class NewRequest implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use InteractsWithQueue, Queueable;
 
     /**
      * @var EventData
