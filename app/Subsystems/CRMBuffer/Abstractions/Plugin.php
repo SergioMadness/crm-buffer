@@ -1,10 +1,10 @@
-<?php namespace App\Subsystems\CRMBuffer\Abstractions;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions;
 
-use App\Subsystems\CRMBuffer\Interfaces\Models\Plugin as IPlugin;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Plugin as IPlugin;
 
 /**
  * Base class for plugin
- * @package App\Subsystems\CRMBuffer\Abstractions
+ * @package professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions
  */
 abstract class Plugin implements IPlugin
 {

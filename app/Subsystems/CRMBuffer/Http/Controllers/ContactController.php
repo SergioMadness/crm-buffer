@@ -1,20 +1,20 @@
-<?php namespace App\Subsystems\CRMBuffer\Http\Controllers;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Http\Controllers;
 
-use App\Subsystems\CRMBuffer\Events\NewContact;
-use App\Interfaces\Model;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Events\NewContact;
+use professionalweb\IntegrationHub\Interfaces\Model;
 use Illuminate\Http\Request;
-use App\Subsystems\CRMBuffer\Traits\UseRequestRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits\UseRequestRepository;
 use Illuminate\Validation\Validator;
-use App\Http\Controllers\Controller;
+use professionalweb\IntegrationHub\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\ContactRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\ContactRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * Methods to work with contacts
- * @package App\Http\Controllers
+ * @package professionalweb\IntegrationHub\Http\Controllers
  */
 class ContactController extends Controller
 {

@@ -1,8 +1,8 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Services;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Services;
 
 /**
  * Interface to work with crm
- * @package App\Interfaces\Services
+ * @package professionalweb\IntegrationHub\Interfaces\Services
  */
 interface CRMService
 {

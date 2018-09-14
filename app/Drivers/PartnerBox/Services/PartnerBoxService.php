@@ -1,15 +1,15 @@
-<?php namespace App\Drivers\PartnerBox\Services;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox\Services;
 
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Validator;
-use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use App\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService;
-use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
 
 /**
  * Service to work with Post Affiliate Network (https://www.postaffiliatepro.com/)
- * @package App\Drivers\PartnerBox\Services
+ * @package professionalweb\IntegrationHub\Drivers\PartnerBox\Services
  */
 class PartnerBoxService implements IPartnerBoxService
 {

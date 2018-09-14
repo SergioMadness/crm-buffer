@@ -1,12 +1,12 @@
-<?php namespace App\Subsystems\CRMBuffer\Models;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Models;
 
-use App\Abstractions\UUIDModel;
-use App\Interfaces\Model as IModel;
-use App\Subsystems\CRMBuffer\Interfaces\Models\Integration as IIntegration;
+use professionalweb\IntegrationHub\Abstractions\UUIDModel;
+use professionalweb\IntegrationHub\Interfaces\Model as IModel;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Integration as IIntegration;
 
 /**
  * Integration
- * @package App\Models
+ * @package professionalweb\IntegrationHub\Models
  *
  * @property string $id
  * @property string $name

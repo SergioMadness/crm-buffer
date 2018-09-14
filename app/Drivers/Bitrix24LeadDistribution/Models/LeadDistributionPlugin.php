@@ -1,15 +1,15 @@
-<?php namespace App\Drivers\Bitrix24LeadDistribution\Models;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Models;
 
-use App\Interfaces\EventData;
-use App\Subsystems\CRMBuffer\Abstractions\Plugin;
-use App\Drivers\Bitrix24\Services\Bitrix24Service;
-use App\Subsystems\CRMBuffer\Interfaces\Models\Driver;
-use App\Subsystems\CRMBuffer\Interfaces\Models\Plugin as IPlugin;
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService;
+use professionalweb\IntegrationHub\Interfaces\EventData;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions\Plugin;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\Services\Bitrix24Service;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Driver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Plugin as IPlugin;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService;
 
 /**
  * plugin for lead distribution
- * @package App\Drivers\Bitrix24LeadDistribution
+ * @package professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution
  */
 class LeadDistributionPlugin extends Plugin
 {

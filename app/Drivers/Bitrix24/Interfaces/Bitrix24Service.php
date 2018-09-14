@@ -1,6 +1,6 @@
-<?php namespace App\Drivers\Bitrix24\Interfaces;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24\Interfaces;
 
-use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 
 interface Bitrix24Service extends CRMService
 {

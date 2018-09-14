@@ -1,23 +1,23 @@
-<?php namespace App\Subsystems\CRMBuffer;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer;
 
-use App\Traits\Subsystem;
-use App\Services\RequestValidation;
-use App\Interfaces\Services\Navigation;
+use professionalweb\IntegrationHub\Traits\Subsystem;
+use professionalweb\IntegrationHub\Services\RequestValidation;
+use professionalweb\IntegrationHub\Interfaces\Services\Navigation;
 use Illuminate\Support\ServiceProvider;
-use App\Subsystems\CRMBuffer\Models\Integration;
-use App\Subsystems\CRMBuffer\Services\DriverPool;
-use App\Subsystems\CRMBuffer\Services\IntegrationsPool;
-use App\Subsystems\CRMBuffer\Repositories\LeadRepository;
-use App\Subsystems\CRMBuffer\Repositories\ContactRepository;
-use App\Subsystems\CRMBuffer\Repositories\RequestRepository;
-use App\Subsystems\CRMBuffer\Repositories\IntegrationRepository;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool as IDriverPool;
-use App\Interfaces\Services\RequestValidation as IRequestValidation;
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool as IIntegrationsPool;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\LeadRepository as ILeadRepository;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\ContactRepository as IContactRepository;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository as IRequestRepository;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository as IIntegrationRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Models\Integration;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Services\DriverPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Services\IntegrationsPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories\LeadRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories\ContactRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories\RequestRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories\IntegrationRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool as IDriverPool;
+use professionalweb\IntegrationHub\Interfaces\Services\RequestValidation as IRequestValidation;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\IntegrationsPool as IIntegrationsPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\LeadRepository as ILeadRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\ContactRepository as IContactRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository as IRequestRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository as IIntegrationRepository;
 
 class SubsystemProvider extends ServiceProvider
 {

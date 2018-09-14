@@ -1,9 +1,9 @@
-<?php namespace App\Drivers\Bitrix24\Services;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24\Services;
 
 use Illuminate\Support\Arr;
-use App\Traits\HandleEvents;
-use App\Events\EventDataWrapper;
-use App\Drivers\Bitrix24\Bitrix24;
+use professionalweb\IntegrationHub\Traits\HandleEvents;
+use professionalweb\IntegrationHub\Events\EventDataWrapper;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\Bitrix24;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Bitrix24\Exceptions\Bitrix24Exception;
@@ -18,12 +18,12 @@ use Bitrix24\Exceptions\Bitrix24TokenIsInvalidException;
 use Bitrix24\Exceptions\Bitrix24MethodNotFoundException;
 use Bitrix24\Exceptions\Bitrix24PaymentRequiredException;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
-use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 /**
  * Service to work with Bitrix24 API
- * @package App\Drivers\Bitrix24\Services
+ * @package professionalweb\IntegrationHub\Drivers\Bitrix24\Services
  */
 class Bitrix24Service implements IBitrix24Service
 {

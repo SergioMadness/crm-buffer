@@ -1,11 +1,11 @@
-<?php namespace App\Drivers\PartnerBox\Models;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox\Models;
 
-use App\Subsystems\CRMBuffer\Traits\HasPlugins;
-use App\Subsystems\CRMBuffer\Abstractions\Driver as ADriver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits\HasPlugins;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions\Driver as ADriver;
 
 /**
  * Class describes PartnerBox driver
- * @package App\Drivers\PartnerBox
+ * @package professionalweb\IntegrationHub\Drivers\PartnerBox
  */
 class PartnerBoxDriver extends ADriver
 {

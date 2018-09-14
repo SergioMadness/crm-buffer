@@ -1,10 +1,10 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Repositories;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories;
 
-use App\Interfaces\Repository;
+use professionalweb\IntegrationHub\Interfaces\Repository;
 
 /**
  * Interface for repository of integrations
- * @package App\Interfaces
+ * @package professionalweb\IntegrationHub\Interfaces
  */
 interface IntegrationRepository extends Repository
 {

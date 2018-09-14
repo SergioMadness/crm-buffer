@@ -1,6 +1,6 @@
-<?php namespace App\Drivers\PartnerBox\Interfaces;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces;
 
-use App\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Services\CRMService;
 
 interface PartnerBoxService extends CRMService
 {

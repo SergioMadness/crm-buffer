@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace professionalweb\IntegrationHub\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -9,7 +9,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 /**
  * Class Kernel
  *
- * @package App\Console
+ * @package professionalweb\IntegrationHub\Console
  */
 class Kernel extends ConsoleKernel
 {

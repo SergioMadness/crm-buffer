@@ -1,10 +1,10 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Models;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models;
 
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * Interface for driver plugin
- * @package App\Subsystems\CRMBuffer\Interfaces\Models
+ * @package professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models
  */
 interface Plugin extends Arrayable
 {

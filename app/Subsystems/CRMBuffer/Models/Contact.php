@@ -1,11 +1,11 @@
-<?php namespace App\Subsystems\CRMBuffer\Models;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Models;
 
-use App\Models\Request;
+use professionalweb\IntegrationHub\Models\Request;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Contact
- * @package App\Models
+ * @package professionalweb\IntegrationHub\Models
  */
 class Contact extends Request
 {

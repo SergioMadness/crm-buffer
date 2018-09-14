@@ -1,8 +1,8 @@
-<?php namespace App\Drivers\PartnerBox\Exceptions;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox\Exceptions;
 
 /**
  * Wrong credentials, can't connect
- * @package App\Drivers\PartnerBox\Exceptions
+ * @package professionalweb\IntegrationHub\Drivers\PartnerBox\Exceptions
  */
 class WrongCredentialsException extends \Exception
 {

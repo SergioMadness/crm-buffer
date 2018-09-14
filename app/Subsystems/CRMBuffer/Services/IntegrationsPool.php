@@ -1,12 +1,12 @@
-<?php namespace App\Subsystems\CRMBuffer\Services;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Services;
 
-use App\Subsystems\CRMBuffer\Interfaces\Models\Integration;
-use App\Subsystems\CRMBuffer\Repositories\RequestRepository;
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool as IIntegrationsPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Integration;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories\RequestRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\IntegrationsPool as IIntegrationsPool;
 
 /**
  * Integration pool
- * @package App\Services
+ * @package professionalweb\IntegrationHub\Services
  */
 class IntegrationsPool implements IIntegrationsPool
 {

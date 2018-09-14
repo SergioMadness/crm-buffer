@@ -1,22 +1,22 @@
-<?php namespace App\Subsystems\CRMBuffer\Traits;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits;
 
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
 
 /**
  * Trait for that what uses integration repository
- * @package App\Traits
+ * @package professionalweb\IntegrationHub\Traits
  */
 trait UseIntegrationRepository
 {
     /**
-     * @var \App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository
+     * @var \professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository
      */
     private $repository;
 
     /**
      * Set integrations repository
      *
-     * @param \App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository $repository
+     * @param \professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository $repository
      *
      * @return self
      */
@@ -30,7 +30,7 @@ trait UseIntegrationRepository
     /**
      * Get integrations repository
      *
-     * @return \App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository
+     * @return \professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository
      */
     public function getIntegrationRepository(): IntegrationRepository
     {

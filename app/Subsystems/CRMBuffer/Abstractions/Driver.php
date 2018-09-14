@@ -1,10 +1,10 @@
-<?php namespace App\Subsystems\CRMBuffer\Abstractions;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions;
 
-use App\Subsystems\CRMBuffer\Interfaces\Models\Driver as IDriver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Driver as IDriver;
 
 /**
  * Base class for driver
- * @package App\Subsystems\CRMBuffer\Abstractions
+ * @package professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions
  */
 abstract class Driver implements IDriver
 {

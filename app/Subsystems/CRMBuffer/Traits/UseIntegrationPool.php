@@ -1,10 +1,10 @@
-<?php namespace App\Subsystems\CRMBuffer\Traits;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits;
 
-use App\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\IntegrationsPool;
 
 /**
  * Trait for that what uses integration pool
- * @package App\Traits
+ * @package professionalweb\IntegrationHub\Traits
  */
 trait UseIntegrationPool
 {

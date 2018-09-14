@@ -1,14 +1,14 @@
-<?php namespace App\Drivers\Bitrix24LeadDistribution;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution;
 
 use Illuminate\Support\ServiceProvider;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
-use App\Drivers\Bitrix24LeadDistribution\Algorithms\RoundRobin;
-use App\Drivers\Bitrix24\DriverProvider as Bitrix24DriverProvider;
-use App\Drivers\Bitrix24LeadDistribution\Services\UserFilterService;
-use App\Drivers\Bitrix24LeadDistribution\Services\DistributionService;
-use App\Drivers\Bitrix24LeadDistribution\Models\LeadDistributionPlugin;
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Algorithms\RoundRobin;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\DriverProvider as Bitrix24DriverProvider;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Services\UserFilterService;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Services\DistributionService;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Models\LeadDistributionPlugin;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
 
 class DriverProvider extends ServiceProvider
 {

@@ -1,11 +1,11 @@
-<?php namespace App\Drivers\PartnerBox\Services;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox\Services;
 
-use App\Drivers\PartnerBox\Exceptions\WrongCredentialsException;
-use App\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService as IPartnerBoxIntegrationService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Exceptions\WrongCredentialsException;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService as IPartnerBoxIntegrationService;
 
 /**
  * Service for integration with PartnerBox
- * @package App\Drivers\PartnerBox\Services
+ * @package professionalweb\IntegrationHub\Drivers\PartnerBox\Services
  */
 class PartnerBoxIntegrationService implements IPartnerBoxIntegrationService
 {

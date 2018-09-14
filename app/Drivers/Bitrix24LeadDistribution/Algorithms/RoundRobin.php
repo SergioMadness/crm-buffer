@@ -1,11 +1,11 @@
-<?php namespace App\Drivers\Bitrix24LeadDistribution\Algorithms;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Algorithms;
 
 use Illuminate\Support\Facades\Cache;
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionAlgorithm;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionAlgorithm;
 
 /**
  * Round robin implementation
- * @package App\Drivers\Bitrix24LeadDistribution\Algorithms
+ * @package professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Algorithms
  */
 class RoundRobin implements DistributionAlgorithm
 {

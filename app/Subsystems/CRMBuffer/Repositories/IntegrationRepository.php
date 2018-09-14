@@ -1,14 +1,14 @@
-<?php namespace App\Subsystems\CRMBuffer\Repositories;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories;
 
-use App\Interfaces\Model;
-use App\Repositories\BaseRepository;
-use App\Subsystems\CRMBuffer\Models\Integration;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository as IIntegrationRepository;
+use professionalweb\IntegrationHub\Interfaces\Model;
+use professionalweb\IntegrationHub\Repositories\BaseRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Models\Integration;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository as IIntegrationRepository;
 
 /**
  * Repository of integrations
- * @package App\Repositories
+ * @package professionalweb\IntegrationHub\Repositories
  */
 class IntegrationRepository extends BaseRepository implements IIntegrationRepository
 {

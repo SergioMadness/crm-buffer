@@ -1,7 +1,7 @@
-<?php namespace App\Subsystems\CRMBuffer\Services;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Services;
 
-use App\Subsystems\CRMBuffer\Interfaces\Models\Driver;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool as IDriverPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Driver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool as IDriverPool;
 
 class DriverPool implements IDriverPool
 {

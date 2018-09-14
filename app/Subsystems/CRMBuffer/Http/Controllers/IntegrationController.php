@@ -1,19 +1,19 @@
-<?php namespace App\Subsystems\CRMBuffer\Http\Controllers;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Http\Controllers;
 
-use App\Interfaces\Model;
+use professionalweb\IntegrationHub\Interfaces\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
-use App\Http\Controllers\Controller;
+use professionalweb\IntegrationHub\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use App\Subsystems\CRMBuffer\Traits\UseIntegrationRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits\UseIntegrationRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\IntegrationRepository;
 
 /**
  * Controller to work with integrations
- * @package App\Http\Controllers
+ * @package professionalweb\IntegrationHub\Http\Controllers
  */
 class IntegrationController extends Controller
 {

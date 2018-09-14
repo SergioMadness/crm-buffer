@@ -1,8 +1,8 @@
-<?php namespace App\Drivers\Bitrix24LeadDistribution\Interfaces;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces;
 
 /**
  * Interface for user filtration service
- * @package App\Drivers\Bitrix24LeadDistribution\Interfaces
+ * @package professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces
  */
 interface Filter
 {

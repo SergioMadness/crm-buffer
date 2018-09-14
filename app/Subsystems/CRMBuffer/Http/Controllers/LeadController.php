@@ -1,21 +1,21 @@
-<?php namespace App\Subsystems\CRMBuffer\Http\Controllers;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Http\Controllers;
 
-use App\Interfaces\Model;
+use professionalweb\IntegrationHub\Interfaces\Model;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use professionalweb\IntegrationHub\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Validator;
-use App\Subsystems\CRMBuffer\Events\NewLead;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Events\NewLead;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\CRMBuffer\Traits\UseRequestRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits\UseRequestRepository;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\LeadRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\LeadRepository;
 
 /**
  * Methods to work with leads
- * @package App\Http\Controllers
+ * @package professionalweb\IntegrationHub\Http\Controllers
  */
 class LeadController extends Controller
 {

@@ -1,12 +1,12 @@
-<?php namespace App\Drivers\PartnerBox;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox;
 
 use Illuminate\Support\ServiceProvider;
-use App\Drivers\PartnerBox\Models\PartnerBoxDriver;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
-use App\Drivers\PartnerBox\Services\PartnerBoxService;
-use App\Drivers\PartnerBox\Services\PartnerBoxIntegrationService;
-use App\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
-use App\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService as IPartnerBoxIntegrationService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Models\PartnerBoxDriver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Services\PartnerBoxService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Services\PartnerBoxIntegrationService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces\PartnerBoxService as IPartnerBoxService;
+use professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces\PartnerBoxIntegrationService as IPartnerBoxIntegrationService;
 
 class DriverProvider extends ServiceProvider
 {

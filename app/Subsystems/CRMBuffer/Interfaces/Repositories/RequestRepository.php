@@ -1,11 +1,11 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Repositories;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories;
 
 //use Illuminate\Support\Collection;
-use App\Subsystems\IntegrationHub\Interfaces\Repository;
+use professionalweb\IntegrationHub\Subsystems\IntegrationHub\Interfaces\Repository;
 
 /**
  * Interface for repository of requests
- * @package App\Subsystems\CRMBuffer\Interfaces\Repositories;
+ * @package professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories;
  */
 interface RequestRepository extends Repository
 {

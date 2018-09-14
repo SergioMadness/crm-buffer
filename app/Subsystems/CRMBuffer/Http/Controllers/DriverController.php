@@ -1,12 +1,12 @@
-<?php namespace App\Subsystems\CRMBuffer\Http\Controllers;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use professionalweb\IntegrationHub\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool;
 
 /**
  * Controller to get driver list
- * @package App\Http\Controllers
+ * @package professionalweb\IntegrationHub\Http\Controllers
  */
 class DriverController extends Controller
 {

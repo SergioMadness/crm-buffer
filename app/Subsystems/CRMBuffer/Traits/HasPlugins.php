@@ -1,11 +1,11 @@
-<?php namespace App\Subsystems\CRMBuffer\Traits;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits;
 
-use App\Subsystems\CRMBuffer\Interfaces\Models\Driver;
-use App\Subsystems\CRMBuffer\Interfaces\Models\Plugin;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Driver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Plugin;
 
 /**
  * Trait for drivers has plugins
- * @package App\Subsystems\CRMBuffer\Traits
+ * @package professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits
  */
 trait HasPlugins
 {

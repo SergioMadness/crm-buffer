@@ -1,12 +1,12 @@
-<?php namespace App\Drivers\Bitrix24LeadDistribution\Services;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Services;
 
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionAlgorithm;
-use App\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\Filter;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionAlgorithm;
+use professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Interfaces\DistributionService as IDistributionService;
 
 /**
  * Service to distribute leads between users
- * @package App\Drivers\Bitrix24LeadDistribution\Services
+ * @package professionalweb\IntegrationHub\Drivers\Bitrix24LeadDistribution\Services
  */
 class DistributionService implements IDistributionService
 {

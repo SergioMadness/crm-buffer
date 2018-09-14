@@ -1,7 +1,7 @@
-<?php namespace App\Subsystems\CRMBuffer\Repositories;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories;
 
-use App\Subsystems\CRMBuffer\Models\Contact;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\ContactRepository as IContactRepository;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Models\Contact;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\ContactRepository as IContactRepository;
 
 class ContactRepository extends RequestRepository implements IContactRepository
 {

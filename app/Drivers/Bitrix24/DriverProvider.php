@@ -1,10 +1,10 @@
-<?php namespace App\Drivers\Bitrix24;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24;
 
 use Illuminate\Support\ServiceProvider;
-use App\Drivers\Bitrix24\Models\Bitrix24Driver;
-use App\Drivers\Bitrix24\Services\Bitrix24Service;
-use App\Subsystems\CRMBuffer\Interfaces\DriverPool;
-use App\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\Models\Bitrix24Driver;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\Services\Bitrix24Service;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\DriverPool;
+use professionalweb\IntegrationHub\Drivers\Bitrix24\Interfaces\Bitrix24Service as IBitrix24Service;
 
 class DriverProvider extends ServiceProvider
 {

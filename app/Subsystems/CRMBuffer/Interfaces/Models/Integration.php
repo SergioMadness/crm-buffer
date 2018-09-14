@@ -1,8 +1,8 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Models;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models;
 
 /**
  * Interface for integration model
- * @package App\Subsystems\CRMBuffer\Interfaces\Models
+ * @package professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models
  */
 interface Integration
 {

@@ -1,11 +1,11 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces;
 
-use App\Subsystems\CRMBuffer\Interfaces\Models\Integration;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Models\Integration;
 
 
 /**
  * Interface for integrations pool
- * @package App\Interfaces\Services
+ * @package professionalweb\IntegrationHub\Interfaces\Services
  */
 interface IntegrationsPool
 {

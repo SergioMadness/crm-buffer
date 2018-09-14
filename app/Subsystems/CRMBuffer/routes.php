@@ -12,7 +12,7 @@
 */
 /** @var \Laravel\Lumen\Routing\Router $router */
 $router = app()->router;
-$router->group(['prefix' => 'api/v1', 'namespace' => 'App\Subsystems\CRMBuffer\Http\Controllers'], function () use ($router) {
+$router->group(['prefix' => 'api/v1', 'namespace' => 'professionalweb\IntegrationHub\Subsystems\CRMBuffer\Http\Controllers'], function () use ($router) {
     $router->group(['prefix' => 'b2b', 'middleware' => ['b2bAuth']], function () use ($router) {
         $router->post('/leads', 'LeadController@store');
         $router->post('/contacts', 'ContactController@store');

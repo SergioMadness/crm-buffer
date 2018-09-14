@@ -1,11 +1,11 @@
-<?php namespace App\Drivers\Bitrix24\Models;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24\Models;
 
-use App\Subsystems\CRMBuffer\Traits\HasPlugins;
-use App\Subsystems\CRMBuffer\Abstractions\Driver as ADriver;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Traits\HasPlugins;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Abstractions\Driver as ADriver;
 
 /**
  * Class describes Bitrix24 driver
- * @package App\Drivers\Bitrix24\Models
+ * @package professionalweb\IntegrationHub\Drivers\Bitrix24\Models
  */
 class Bitrix24Driver extends ADriver
 {

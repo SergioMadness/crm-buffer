@@ -1,4 +1,4 @@
-<?php namespace App\Drivers\Bitrix24;
+<?php namespace professionalweb\IntegrationHub\Drivers\Bitrix24;
 
 use Psr\Log\LoggerInterface;
 

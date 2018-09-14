@@ -1,8 +1,8 @@
-<?php namespace App\Drivers\PartnerBox\Interfaces;
+<?php namespace professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces;
 
 /**
  * Interface for service for integration with partner box
- * @package App\Drivers\PartnerBox\Interfaces
+ * @package professionalweb\IntegrationHub\Drivers\PartnerBox\Interfaces
  */
 interface PartnerBoxIntegrationService
 {

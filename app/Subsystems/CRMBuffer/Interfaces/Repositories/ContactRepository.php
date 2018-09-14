@@ -1,8 +1,8 @@
-<?php namespace App\Subsystems\CRMBuffer\Interfaces\Repositories;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories;
 
 /**
  * Interface for repository of contacts
- * @package App\Interfaces
+ * @package professionalweb\IntegrationHub\Interfaces
  */
 interface ContactRepository extends RequestRepository
 {

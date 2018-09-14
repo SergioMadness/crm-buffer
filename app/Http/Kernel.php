@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http;
+namespace professionalweb\IntegrationHub\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 /**
  * Class Kernel
  *
- * @package App\Http
+ * @package professionalweb\IntegrationHub\Http
  */
 class Kernel extends HttpKernel
 {

@@ -1,13 +1,13 @@
-<?php namespace App\Subsystems\CRMBuffer\Repositories;
+<?php namespace professionalweb\IntegrationHub\Subsystems\CRMBuffer\Repositories;
 
 use Illuminate\Support\Collection;
-use App\Repositories\BaseRepository;
-use App\Models\Request;
-use App\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository as IRequestRepository;
+use professionalweb\IntegrationHub\Repositories\BaseRepository;
+use professionalweb\IntegrationHub\Models\Request;
+use professionalweb\IntegrationHub\Subsystems\CRMBuffer\Interfaces\Repositories\RequestRepository as IRequestRepository;
 
 /**
  * Repository of requests
- * @package App\Repositories
+ * @package professionalweb\IntegrationHub\Repositories
  */
 class RequestRepository extends BaseRepository implements IRequestRepository
 {
@@ -65,7 +65,7 @@ class RequestRepository extends BaseRepository implements IRequestRepository
      */
     public function setStatus(string $id, string $status, $message = '', string $system = ''): bool
     {
-        /** @var \App\Models\Request $request */
+        /** @var \professionalweb\IntegrationHub\Models\Request $request */
         $request = Request::find($id);
         $request->setSystemStatus($system, $status);
         $request->status = Request::STATUS_RETRY;
