@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47d6367c915269cc03d4858819e38dc6",
+    "content-hash": "8864229c916ebaf0bc223eb91b5eaefb",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -422,26 +422,26 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.46",
+            "version": "1.0.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
+                "reference": "a11e4a75f256bdacf99d20780ce42d3b8272975c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
-                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a11e4a75f256bdacf99d20780ce42d3b8272975c",
+                "reference": "a11e4a75f256bdacf99d20780ce42d3b8272975c",
                 "shasum": ""
             },
             "require": {
+                "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
-                "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
                 "phpunit/phpunit": "^5.7.10"
             },
@@ -502,7 +502,59 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-08-22T07:45:22+00:00"
+            "time": "2018-09-14T15:30:29+00:00"
+        },
+        {
+            "name": "mesilov/bitrix24-php-sdk",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mesilov/bitrix24-php-sdk.git",
+                "reference": "e3396385218f7f542ab14e62f6ef207c5c47211d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mesilov/bitrix24-php-sdk/zipball/e3396385218f7f542ab14e62f6ef207c5c47211d",
+                "reference": "e3396385218f7f542ab14e62f6ef207c5c47211d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.2",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "~0.3",
+                "jakub-onderka/php-parallel-lint": "0.9",
+                "phpunit/phpunit": "~4.8",
+                "phpunit/phpunit-mock-objects": "2.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxim Mesilov",
+                    "homepage": "https://github.com/mesilov/"
+                }
+            ],
+            "description": "A powerfull PHP library for the Bitrix24 REST API",
+            "homepage": "https://github.com/mesilov/bitrix24-php-sdk",
+            "keywords": [
+                "Bitrix24",
+                "api",
+                "php",
+                "rest"
+            ],
+            "time": "2018-04-10T22:59:32+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -733,6 +785,52 @@
             }
         },
         {
+            "name": "professionalweb/integration-hub-bitrix24",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/home/user1/projects/php/integration-hub-bitrix24",
+                "reference": "bad5b84f2ad976d1c923eee11ec842cce1adbddd",
+                "shasum": null
+            },
+            "require": {
+                "mesilov/bitrix24-php-sdk": "*",
+                "php": ">=7.1.3",
+                "professionalweb/integration-hub-common": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "professionalweb\\IntegrationHub\\Bitrix24\\Providers\\Bitrix24Provider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "professionalweb\\IntegrationHub\\Bitrix24\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "classmap": []
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Bitrix24 module for integration hub",
+            "keywords": [
+                "bitrix24",
+                "hub",
+                "integration",
+                "laravel",
+                "proxy"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "professionalweb/integration-hub-common",
             "version": "dev-master",
             "dist": {
@@ -822,6 +920,54 @@
                 "integration",
                 "laravel",
                 "proxy"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "professionalweb/integration-hub-supervisor",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "/home/user1/projects/php/integration-hub-supervisor",
+                "reference": "a6e63e627db481b5183862ca852057156aaa2488",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "professionalweb/integration-hub-common": "*",
+                "professionalweb/integration-hub-db": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "professionalweb\\IntegrationHub\\Supervisor\\Providers\\SupervisorProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "professionalweb\\IntegrationHub\\Supervisor\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "classmap": [
+                    "tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Supervisor for integration hub",
+            "keywords": [
+                "hub",
+                "integration",
+                "laravel",
+                "proxy",
+                "supervisor"
             ],
             "transport-options": {
                 "symlink": true
