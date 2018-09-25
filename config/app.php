@@ -1,8 +1,5 @@
 <?php
 
-use Cbs\PostAffiliateNetwork\Facades\PostAffiliateNetwork;
-use Cbs\PostAffiliateNetwork\PostAffiliateNetworkServiceProvider;
-
 return [
 
     'env' => env('APP_ENV', 'production'),

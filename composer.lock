@@ -4,8 +4,92 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8864229c916ebaf0bc223eb91b5eaefb",
+    "content-hash": "fe9e391586390ec5558ce987c3a4362a",
     "packages": [
+        {
+            "name": "cbs/integration-hub-paycloud",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/home/user1/projects/php/integration-hub-paycloud",
+                "reference": "0c6b87a9c5b862854a11628230e999755f8e970c",
+                "shasum": null
+            },
+            "require": {
+                "cbs/integration-hub-paycloud": "*",
+                "php": ">=7.1.3",
+                "professionalweb/integration-hub-common": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "cbs\\IntegrationHub\\Paycloud\\Providers\\PaycloudProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "cbs\\IntegrationHub\\Paycloud\\": "src/"
+                },
+                "files": []
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Paycloud module for integration hub",
+            "keywords": [
+                "hub",
+                "integration",
+                "laravel",
+                "paycloud",
+                "proxy"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "cbs/paycloud-lib",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "/home/user1/projects/php/paycloud-lib",
+                "reference": "99467030896b737206b84b7c5864727ab7acf69a",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "cbs\\Paycloud\\Providers\\PaycloudProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "cbs\\Paycloud\\": "src/"
+                },
+                "files": []
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Library to communicate with paycloud API",
+            "keywords": [
+                "api",
+                "laravel",
+                "paycloud"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
         {
             "name": "doctrine/inflector",
             "version": "v1.3.0",
@@ -281,16 +365,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.3",
+            "version": "v5.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "536a024e3ef6b93f55f4039a7f4568efa7e60aea"
+                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/536a024e3ef6b93f55f4039a7f4568efa7e60aea",
-                "reference": "536a024e3ef6b93f55f4039a7f4568efa7e60aea",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ddb87a87471b452456fbbe1365e1b9ae55483515",
+                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515",
                 "shasum": ""
             },
             "require": {
@@ -418,7 +502,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-09-11T13:42:55+00:00"
+            "time": "2018-09-20T14:03:45+00:00"
         },
         {
             "name": "league/flysystem",
@@ -636,16 +720,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.33.0",
+            "version": "1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "55667c1007a99e82030874b1bb14d24d07108413"
+                "reference": "1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/55667c1007a99e82030874b1bb14d24d07108413",
-                "reference": "55667c1007a99e82030874b1bb14d24d07108413",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33",
+                "reference": "1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33",
                 "shasum": ""
             },
             "require": {
@@ -687,7 +771,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-08-07T08:39:47+00:00"
+            "time": "2018-09-20T19:36:25+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -736,11 +820,11 @@
         },
         {
             "name": "professionalweb/integration-hub-api",
-            "version": "dev-master",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "/home/user1/projects/php/integration-hub",
-                "reference": "2e4aeb847ae8efeedb03211b98d73b19ed1da0ac",
+                "reference": "f524b5fde2090cabcbc15a2905669a7aaf8a66e0",
                 "shasum": null
             },
             "require": {
@@ -786,11 +870,11 @@
         },
         {
             "name": "professionalweb/integration-hub-bitrix24",
-            "version": "dev-master",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "/home/user1/projects/php/integration-hub-bitrix24",
-                "reference": "bad5b84f2ad976d1c923eee11ec842cce1adbddd",
+                "reference": "9c03f656532b39588bf3a987899a303b0920be4c",
                 "shasum": null
             },
             "require": {
@@ -832,11 +916,11 @@
         },
         {
             "name": "professionalweb/integration-hub-common",
-            "version": "dev-master",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "/home/user1/projects/php/integration-hub-common",
-                "reference": "9a9d88326568767b03beac699c7d9c33b26a6e6a",
+                "reference": "25f16f5410beec73795da4764a2c78f1c4f6dfb8",
                 "shasum": null
             },
             "require": {
@@ -878,11 +962,11 @@
         },
         {
             "name": "professionalweb/integration-hub-db",
-            "version": "dev-master",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "/home/user1/projects/php/integration-hub-db",
-                "reference": "03b11215b16e29e31330662e34d20ad45dff1ae5",
+                "reference": "fc4e33ba3d1dc859ea846e78a46f2e5870ef1a91",
                 "shasum": null
             },
             "require": {
@@ -926,18 +1010,106 @@
             }
         },
         {
+            "name": "professionalweb/integration-hub-mail",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "/home/user1/projects/php/integration-hub-mail",
+                "reference": "a3a043a55cf1278615db3c6f20364ad240b77c4d",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "professionalweb/integration-hub-common": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "professionalweb\\IntegrationHub\\Mailsender\\Providers\\MailsenderProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "professionalweb\\IntegrationHub\\Mailsender\\": "src/"
+                },
+                "files": []
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Module for integration hub to send emails",
+            "keywords": [
+                "hub",
+                "integration",
+                "laravel",
+                "mail",
+                "proxy"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "professionalweb/integration-hub-postaffiliate",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "/home/user1/projects/php/integration-hub-partnerbox",
+                "reference": "fa36ec6991edde1bbb57a1795b2368e456363f26",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "professionalweb/integration-hub-common": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "professionalweb\\IntegrationHub\\Postaffiliate\\Providers\\PostaffiliateProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "professionalweb\\IntegrationHub\\Postaffiliate\\": "src/"
+                },
+                "files": [
+                    "src/Lib/PapApi.class.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Postaffiliate module for integration hub",
+            "keywords": [
+                "hub",
+                "integration",
+                "laravel",
+                "postaffiliate",
+                "proxy"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "professionalweb/integration-hub-supervisor",
             "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "/home/user1/projects/php/integration-hub-supervisor",
-                "reference": "a6e63e627db481b5183862ca852057156aaa2488",
+                "reference": "f1d90413144b6fbf881be4544f99d11551c20fd2",
                 "shasum": null
             },
             "require": {
                 "php": ">=7.1.3",
-                "professionalweb/integration-hub-common": "*",
-                "professionalweb/integration-hub-db": "*"
+                "professionalweb/integration-hub-common": "dev-develop",
+                "professionalweb/integration-hub-db": "dev-develop"
             },
             "type": "library",
             "extra": {
@@ -2996,7 +3168,15 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "professionalweb/integration-hub-api": 20,
+        "professionalweb/integration-hub-supervisor": 20,
+        "professionalweb/integration-hub-common": 20,
+        "professionalweb/integration-hub-bitrix24": 20,
+        "professionalweb/integration-hub-postaffiliate": 20,
+        "professionalweb/integration-hub-mail": 20,
+        "cbs/integration-hub-paycloud": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
