@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe9e391586390ec5558ce987c3a4362a",
+    "content-hash": "d76e5a752cd3fd745a06566481deca52",
     "packages": [
         {
             "name": "cbs/integration-hub-paycloud",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-paycloud",
-                "reference": "0c6b87a9c5b862854a11628230e999755f8e970c",
-                "shasum": null
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-paycloud.git",
+                "reference": "db999226cc62477d0bcbbbdb7ca2d4ff1c745aa6"
             },
             "require": {
-                "cbs/integration-hub-paycloud": "*",
+                "cbs/paycloud-lib": "dev-develop",
                 "php": ">=7.1.3",
-                "professionalweb/integration-hub-common": "*"
+                "professionalweb/integration-hub-common": "dev-develop"
             },
             "type": "library",
             "extra": {
@@ -46,9 +45,7 @@
                 "paycloud",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-26T09:32:57+00:00"
         },
         {
             "name": "cbs/paycloud-lib",
@@ -262,16 +259,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3"
+                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/54859fabea8b3beecbb1a282888d5c990036b9e3",
-                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0578b32b30b22de3e8664f797cf846fc9246f786",
+                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786",
                 "shasum": ""
             },
             "require": {
@@ -315,7 +312,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-08-16T20:49:45+00:00"
+            "time": "2018-09-25T20:47:26+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -365,16 +362,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.5",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515"
+                "reference": "93e761bb5367166ce98ba908d5eb0edd6be76792"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ddb87a87471b452456fbbe1365e1b9ae55483515",
-                "reference": "ddb87a87471b452456fbbe1365e1b9ae55483515",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/93e761bb5367166ce98ba908d5eb0edd6be76792",
+                "reference": "93e761bb5367166ce98ba908d5eb0edd6be76792",
                 "shasum": ""
             },
             "require": {
@@ -502,7 +499,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-09-20T14:03:45+00:00"
+            "time": "2018-09-25T14:29:00+00:00"
         },
         {
             "name": "league/flysystem",
@@ -821,11 +818,16 @@
         {
             "name": "professionalweb/integration-hub-api",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-api.git",
+                "reference": "f524b5fde2090cabcbc15a2905669a7aaf8a66e0"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub",
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/f524b5fde2090cabcbc15a2905669a7aaf8a66e0",
                 "reference": "f524b5fde2090cabcbc15a2905669a7aaf8a66e0",
-                "shasum": null
+                "shasum": ""
             },
             "require": {
                 "laravel/framework": "5.7.*",
@@ -848,12 +850,7 @@
                     "professionalweb\\IntegrationHub\\IntegrationHub\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "classmap": [
-                    "tests/",
-                    "database/"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -864,18 +861,21 @@
                 "laravel",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-19T15:55:09+00:00"
         },
         {
             "name": "professionalweb/integration-hub-bitrix24",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-bitrix24.git",
+                "reference": "9136c5b4f1ba489a4c5dc07501dbd26496a6859a"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-bitrix24",
-                "reference": "9c03f656532b39588bf3a987899a303b0920be4c",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/9136c5b4f1ba489a4c5dc07501dbd26496a6859a",
+                "reference": "9136c5b4f1ba489a4c5dc07501dbd26496a6859a",
+                "shasum": ""
             },
             "require": {
                 "mesilov/bitrix24-php-sdk": "*",
@@ -896,32 +896,33 @@
                     "professionalweb\\IntegrationHub\\Bitrix24\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "classmap": []
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Bitrix24 module for integration hub",
             "keywords": [
-                "bitrix24",
+                "Bitrix24",
                 "hub",
                 "integration",
                 "laravel",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-25T16:30:40+00:00"
         },
         {
             "name": "professionalweb/integration-hub-common",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-common.git",
+                "reference": "04483b6b514576340cd8ce3f3c3fe2e771583f62"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-common",
-                "reference": "25f16f5410beec73795da4764a2c78f1c4f6dfb8",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/04483b6b514576340cd8ce3f3c3fe2e771583f62",
+                "reference": "04483b6b514576340cd8ce3f3c3fe2e771583f62",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3"
@@ -940,11 +941,7 @@
                     "professionalweb\\IntegrationHub\\IntegrationHubCommon\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "classmap": [
-                    "tests/"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -956,18 +953,21 @@
                 "laravel",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-25T14:39:21+00:00"
         },
         {
             "name": "professionalweb/integration-hub-db",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-db.git",
+                "reference": "44871df85172e3e11abaa276c0b4a206b20bf2e4"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-db",
-                "reference": "fc4e33ba3d1dc859ea846e78a46f2e5870ef1a91",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-db/zipball/44871df85172e3e11abaa276c0b4a206b20bf2e4",
+                "reference": "44871df85172e3e11abaa276c0b4a206b20bf2e4",
+                "shasum": ""
             },
             "require": {
                 "laravel/framework": "5.7.*",
@@ -988,11 +988,7 @@
                     "professionalweb\\IntegrationHub\\IntegrationHubDB\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "classmap": [
-                    "tests/"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1005,18 +1001,21 @@
                 "laravel",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-24T15:07:38+00:00"
         },
         {
             "name": "professionalweb/integration-hub-mail",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-mail.git",
+                "reference": "5b88b5146ef2061e194201babee713a4c16494ab"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-mail",
-                "reference": "a3a043a55cf1278615db3c6f20364ad240b77c4d",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-mail/zipball/5b88b5146ef2061e194201babee713a4c16494ab",
+                "reference": "5b88b5146ef2061e194201babee713a4c16494ab",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
@@ -1037,6 +1036,7 @@
                 },
                 "files": []
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1048,18 +1048,21 @@
                 "mail",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-24T11:38:31+00:00"
         },
         {
             "name": "professionalweb/integration-hub-postaffiliate",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-postaffiliate.git",
+                "reference": "fa36ec6991edde1bbb57a1795b2368e456363f26"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-partnerbox",
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/fa36ec6991edde1bbb57a1795b2368e456363f26",
                 "reference": "fa36ec6991edde1bbb57a1795b2368e456363f26",
-                "shasum": null
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
@@ -1082,6 +1085,7 @@
                     "src/Lib/PapApi.class.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1093,18 +1097,21 @@
                 "postaffiliate",
                 "proxy"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-19T15:58:43+00:00"
         },
         {
             "name": "professionalweb/integration-hub-supervisor",
             "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-supervisor.git",
+                "reference": "09335ebcfe0b5a30c38eff5fffc22ae30f7f2010"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/user1/projects/php/integration-hub-supervisor",
-                "reference": "f1d90413144b6fbf881be4544f99d11551c20fd2",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-supervisor/zipball/09335ebcfe0b5a30c38eff5fffc22ae30f7f2010",
+                "reference": "09335ebcfe0b5a30c38eff5fffc22ae30f7f2010",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
@@ -1125,11 +1132,7 @@
                     "professionalweb\\IntegrationHub\\Supervisor\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "classmap": [
-                    "tests/"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1141,9 +1144,7 @@
                 "proxy",
                 "supervisor"
             ],
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2018-09-25T14:41:10+00:00"
         },
         {
             "name": "psr/container",
@@ -3175,7 +3176,8 @@
         "professionalweb/integration-hub-bitrix24": 20,
         "professionalweb/integration-hub-postaffiliate": 20,
         "professionalweb/integration-hub-mail": 20,
-        "cbs/integration-hub-paycloud": 20
+        "cbs/integration-hub-paycloud": 20,
+        "cbs/paycloud-lib": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
