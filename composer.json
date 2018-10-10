@@ -10,6 +10,10 @@
     {
       "type": "git",
       "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-paycloud.git"
+    },
+    {
+      "type": "git",
+      "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/paycloud-lib.git"
     }
   ],
   "license": "MIT",
