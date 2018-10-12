@@ -880,12 +880,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-api.git",
-                "reference": "f524b5fde2090cabcbc15a2905669a7aaf8a66e0"
+                "reference": "d384f3151c34c2e831d79b5eb2bebcf8d7f991a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/f524b5fde2090cabcbc15a2905669a7aaf8a66e0",
-                "reference": "f524b5fde2090cabcbc15a2905669a7aaf8a66e0",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/d384f3151c34c2e831d79b5eb2bebcf8d7f991a5",
+                "reference": "d384f3151c34c2e831d79b5eb2bebcf8d7f991a5",
                 "shasum": ""
             },
             "require": {
@@ -920,7 +920,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2018-09-19T15:55:09+00:00"
+            "time": "2018-10-12T10:43:05+00:00"
         },
         {
             "name": "professionalweb/integration-hub-bitrix24",
@@ -928,12 +928,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-bitrix24.git",
-                "reference": "2f2914d38fbcadc476ae32d43dbcc7a0a19602e0"
+                "reference": "37f06175c66fcf11ceb0ce064a94b2ed29029ec0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/2f2914d38fbcadc476ae32d43dbcc7a0a19602e0",
-                "reference": "2f2914d38fbcadc476ae32d43dbcc7a0a19602e0",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/37f06175c66fcf11ceb0ce064a94b2ed29029ec0",
+                "reference": "37f06175c66fcf11ceb0ce064a94b2ed29029ec0",
                 "shasum": ""
             },
             "require": {
@@ -967,7 +967,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2018-10-11T12:00:58+00:00"
+            "time": "2018-10-12T11:14:48+00:00"
         },
         {
             "name": "professionalweb/integration-hub-common",
@@ -1021,12 +1021,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-db.git",
-                "reference": "317f35477ac739d9c7d663a072b498c15e8d36dd"
+                "reference": "37b2cbe5e65f0891fc1142e7f339e17bf56a7245"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-db/zipball/317f35477ac739d9c7d663a072b498c15e8d36dd",
-                "reference": "317f35477ac739d9c7d663a072b498c15e8d36dd",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-db/zipball/37b2cbe5e65f0891fc1142e7f339e17bf56a7245",
+                "reference": "37b2cbe5e65f0891fc1142e7f339e17bf56a7245",
                 "shasum": ""
             },
             "require": {
@@ -1061,7 +1061,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2018-10-09T13:48:44+00:00"
+            "time": "2018-10-12T11:15:41+00:00"
         },
         {
             "name": "professionalweb/integration-hub-mail",
@@ -1116,12 +1116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-postaffiliate.git",
-                "reference": "7fa9759f784f8a08d9b9c34d51f1358368c60584"
+                "reference": "c93e624fe29b8bbbafc1cffdfae72e1e56b9cfb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/7fa9759f784f8a08d9b9c34d51f1358368c60584",
-                "reference": "7fa9759f784f8a08d9b9c34d51f1358368c60584",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/c93e624fe29b8bbbafc1cffdfae72e1e56b9cfb8",
+                "reference": "c93e624fe29b8bbbafc1cffdfae72e1e56b9cfb8",
                 "shasum": ""
             },
             "require": {
@@ -1157,7 +1157,7 @@
                 "postaffiliate",
                 "proxy"
             ],
-            "time": "2018-10-11T08:41:13+00:00"
+            "time": "2018-10-12T11:20:49+00:00"
         },
         {
             "name": "professionalweb/integration-hub-supervisor",
