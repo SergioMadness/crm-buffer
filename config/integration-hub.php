@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'new-event-connection' => 'sync',
-    'new-event-queue'      => '',
+    'new-event-connection' => env('NEW_EVENT_CONNECTION'),
+    'new-event-queue'      => env('NEW_EVENT_QUEUE'),
 ];
