@@ -1297,12 +1297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-postaffiliate.git",
-                "reference": "c93e624fe29b8bbbafc1cffdfae72e1e56b9cfb8"
+                "reference": "7336d7b940b627349ede84d2d717ad5adc745f48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/c93e624fe29b8bbbafc1cffdfae72e1e56b9cfb8",
-                "reference": "c93e624fe29b8bbbafc1cffdfae72e1e56b9cfb8",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/7336d7b940b627349ede84d2d717ad5adc745f48",
+                "reference": "7336d7b940b627349ede84d2d717ad5adc745f48",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1338,7 @@
                 "postaffiliate",
                 "proxy"
             ],
-            "time": "2018-10-12T11:20:49+00:00"
+            "time": "2018-10-15T12:05:13+00:00"
         },
         {
             "name": "professionalweb/integration-hub-supervisor",
