@@ -27,7 +27,7 @@
     "professionalweb/integration-hub-common": "dev-develop",
     "professionalweb/integration-hub-bitrix24": "dev-develop",
     "professionalweb/integration-hub-postaffiliate": "dev-develop",
-    "professionalweb/integration-hub-mail": "dev-develop",
+    "professionalweb/integration-hub-mapper": "dev-develop",
     "cbs/integration-hub-paycloud": "dev-develop",
     "cbs/paycloud-lib": "dev-develop"
   },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac59783c08b0c52784d806f35e8db5bf",
+    "content-hash": "fd4a70d70c0bf423c0fcba4cb58b9231",
     "packages": [
         {
             "name": "cbs/integration-hub-paycloud",
@@ -827,16 +827,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.34.1",
+            "version": "1.34.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "19201b87f7dba2a7cbf1cccdf0e1da13c04ee9c9"
+                "reference": "b9a444d829c9a16735aceca1b173e765745bcc0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/19201b87f7dba2a7cbf1cccdf0e1da13c04ee9c9",
-                "reference": "19201b87f7dba2a7cbf1cccdf0e1da13c04ee9c9",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b9a444d829c9a16735aceca1b173e765745bcc0c",
+                "reference": "b9a444d829c9a16735aceca1b173e765745bcc0c",
                 "shasum": ""
             },
             "require": {
@@ -844,8 +844,11 @@
                 "symfony/translation": "~2.6 || ~3.0 || ~4.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2",
                 "phpunit/phpunit": "^4.8.35 || ^5.7"
+            },
+            "suggest": {
+                "friendsofphp/php-cs-fixer": "Needed for the `composer phpcs` command. Allow to automatically fix code style.",
+                "phpstan/phpstan": "Needed for the `composer phpstan` command. Allow to detect potential errors."
             },
             "type": "library",
             "extra": {
@@ -878,7 +881,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-08T13:33:47+00:00"
+            "time": "2018-11-13T08:26:10+00:00"
         },
         {
             "name": "opis/closure",
@@ -1157,12 +1160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-common.git",
-                "reference": "bee22ad6e2d0922cc2feae0c48f094bde2b8a6c9"
+                "reference": "f3bf686c2772f6b23c6845b42c0f9f968b623253"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/bee22ad6e2d0922cc2feae0c48f094bde2b8a6c9",
-                "reference": "bee22ad6e2d0922cc2feae0c48f094bde2b8a6c9",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/f3bf686c2772f6b23c6845b42c0f9f968b623253",
+                "reference": "f3bf686c2772f6b23c6845b42c0f9f968b623253",
                 "shasum": ""
             },
             "require": {
@@ -1195,7 +1198,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2018-11-12T11:14:34+00:00"
+            "time": "2018-11-12T16:54:41+00:00"
         },
         {
             "name": "professionalweb/integration-hub-db",
@@ -1246,51 +1249,49 @@
             "time": "2018-11-03T16:39:28+00:00"
         },
         {
-            "name": "professionalweb/integration-hub-mail",
+            "name": "professionalweb/integration-hub-mapper",
             "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/SergioMadness/integration-hub-mail.git",
-                "reference": "5b88b5146ef2061e194201babee713a4c16494ab"
+                "url": "https://github.com/SergioMadness/integration-hub-mapper.git",
+                "reference": "3b3a7c802d0d8616fbbd1539afeb1a12fb4363fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-mail/zipball/5b88b5146ef2061e194201babee713a4c16494ab",
-                "reference": "5b88b5146ef2061e194201babee713a4c16494ab",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-mapper/zipball/3b3a7c802d0d8616fbbd1539afeb1a12fb4363fd",
+                "reference": "3b3a7c802d0d8616fbbd1539afeb1a12fb4363fd",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3",
-                "professionalweb/integration-hub-common": "*"
+                "php": ">=7.1.3"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "professionalweb\\IntegrationHub\\Mailsender\\Providers\\MailsenderProvider"
+                        "professionalweb\\IntegrationHub\\Mapper\\Providers\\MapperProvider"
                     ]
                 }
             },
             "autoload": {
                 "classmap": [],
                 "psr-4": {
-                    "professionalweb\\IntegrationHub\\Mailsender\\": "src/"
-                },
-                "files": []
+                    "professionalweb\\IntegrationHub\\Mapper\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "Module for integration hub to send emails",
+            "description": "Subsystem for integration hub to map data",
             "keywords": [
                 "hub",
                 "integration",
                 "laravel",
-                "mail",
+                "mapper",
                 "proxy"
             ],
-            "time": "2018-09-24T11:38:31+00:00"
+            "time": "2018-11-13T10:58:18+00:00"
         },
         {
             "name": "professionalweb/integration-hub-postaffiliate",
@@ -1347,12 +1348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-supervisor.git",
-                "reference": "38f403068d90958054c81aca950e8ad8f476bd3a"
+                "reference": "8dc91ea17f4ee11c13f13d850e323c7964e834f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-supervisor/zipball/38f403068d90958054c81aca950e8ad8f476bd3a",
-                "reference": "38f403068d90958054c81aca950e8ad8f476bd3a",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-supervisor/zipball/8dc91ea17f4ee11c13f13d850e323c7964e834f2",
+                "reference": "8dc91ea17f4ee11c13f13d850e323c7964e834f2",
                 "shasum": ""
             },
             "require": {
@@ -1386,7 +1387,7 @@
                 "proxy",
                 "supervisor"
             ],
-            "time": "2018-11-12T15:31:02+00:00"
+            "time": "2018-11-12T16:55:13+00:00"
         },
         {
             "name": "psr/container",
@@ -3554,7 +3555,7 @@
         "professionalweb/integration-hub-common": 20,
         "professionalweb/integration-hub-bitrix24": 20,
         "professionalweb/integration-hub-postaffiliate": 20,
-        "professionalweb/integration-hub-mail": 20,
+        "professionalweb/integration-hub-mapper": 20,
         "cbs/integration-hub-paycloud": 20,
         "cbs/paycloud-lib": 20
     },
