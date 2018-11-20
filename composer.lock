@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd4a70d70c0bf423c0fcba4cb58b9231",
+    "content-hash": "fd3653525ce12b0f119df8d0c5c540bd",
     "packages": [
         {
             "name": "cbs/integration-hub-paycloud",
@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-paycloud.git",
-                "reference": "ed2a53bc380827f1db4fc30af307e3c0e8347219"
+                "reference": "8ad030b87aebb6a2aaa42a05cdefc534a11ac012"
             },
             "require": {
                 "cbs/paycloud-lib": "dev-develop",
@@ -45,7 +45,7 @@
                 "paycloud",
                 "proxy"
             ],
-            "time": "2018-11-12T10:45:08+00:00"
+            "time": "2018-11-14T11:45:53+00:00"
         },
         {
             "name": "cbs/paycloud-lib",
@@ -53,7 +53,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/paycloud-lib.git",
-                "reference": "9ff350194c02be015bcb1c384bd22242acc09b62"
+                "reference": "c7ce125d1a7742d7667e797008ce7a2774b520c0"
             },
             "require": {
                 "php": ">=7.1.3"
@@ -82,7 +82,7 @@
                 "laravel",
                 "paycloud"
             ],
-            "time": "2018-11-02T15:28:13+00:00"
+            "time": "2018-11-14T11:45:15+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -313,16 +313,16 @@
         },
         {
             "name": "enqueue/amqp-lib",
-            "version": "0.8.40",
+            "version": "0.8.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-enqueue/amqp-lib.git",
-                "reference": "a47f72f88b12a19a00e726bced0a835d81e84e79"
+                "reference": "68dfde8d00366d852e2632329cf2874fe7ae4cc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-enqueue/amqp-lib/zipball/a47f72f88b12a19a00e726bced0a835d81e84e79",
-                "reference": "a47f72f88b12a19a00e726bced0a835d81e84e79",
+                "url": "https://api.github.com/repos/php-enqueue/amqp-lib/zipball/68dfde8d00366d852e2632329cf2874fe7ae4cc8",
+                "reference": "68dfde8d00366d852e2632329cf2874fe7ae4cc8",
                 "shasum": ""
             },
             "require": {
@@ -368,11 +368,11 @@
                 "messaging",
                 "queue"
             ],
-            "time": "2018-08-06T19:26:00+00:00"
+            "time": "2018-11-01T13:10:54+00:00"
         },
         {
             "name": "enqueue/amqp-tools",
-            "version": "0.8.40",
+            "version": "0.8.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-enqueue/amqp-tools.git",
@@ -827,16 +827,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.34.4",
+            "version": "1.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "b9a444d829c9a16735aceca1b173e765745bcc0c"
+                "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b9a444d829c9a16735aceca1b173e765745bcc0c",
-                "reference": "b9a444d829c9a16735aceca1b173e765745bcc0c",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/5c05a2be472b22f63291d192410df9f0e0de3b19",
+                "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19",
                 "shasum": ""
             },
             "require": {
@@ -881,7 +881,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-13T08:26:10+00:00"
+            "time": "2018-11-14T21:55:58+00:00"
         },
         {
             "name": "opis/closure",
@@ -1113,12 +1113,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-bitrix24.git",
-                "reference": "ebfdf51bbbc93f83170374da03e26bf7f1569a0a"
+                "reference": "a3e337ab2b6e971a32d4be42828db7dbc4222903"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/ebfdf51bbbc93f83170374da03e26bf7f1569a0a",
-                "reference": "ebfdf51bbbc93f83170374da03e26bf7f1569a0a",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/a3e337ab2b6e971a32d4be42828db7dbc4222903",
+                "reference": "a3e337ab2b6e971a32d4be42828db7dbc4222903",
                 "shasum": ""
             },
             "require": {
@@ -1152,7 +1152,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2018-11-12T10:40:14+00:00"
+            "time": "2018-11-20T16:52:39+00:00"
         },
         {
             "name": "professionalweb/integration-hub-common",
@@ -1160,12 +1160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-common.git",
-                "reference": "f3bf686c2772f6b23c6845b42c0f9f968b623253"
+                "reference": "c1d5f4c6c480dbe46143f92265dbc29213e0f9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/f3bf686c2772f6b23c6845b42c0f9f968b623253",
-                "reference": "f3bf686c2772f6b23c6845b42c0f9f968b623253",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/c1d5f4c6c480dbe46143f92265dbc29213e0f9c5",
+                "reference": "c1d5f4c6c480dbe46143f92265dbc29213e0f9c5",
                 "shasum": ""
             },
             "require": {
@@ -1198,7 +1198,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2018-11-12T16:54:41+00:00"
+            "time": "2018-11-20T14:01:21+00:00"
         },
         {
             "name": "professionalweb/integration-hub-db",
@@ -1247,6 +1247,51 @@
                 "proxy"
             ],
             "time": "2018-11-03T16:39:28+00:00"
+        },
+        {
+            "name": "professionalweb/integration-hub-default-values",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SergioMadness/integration-hub-default-values.git",
+                "reference": "954b2006ebe155526969ed4d953ac48aa84d620a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-default-values/zipball/954b2006ebe155526969ed4d953ac48aa84d620a",
+                "reference": "954b2006ebe155526969ed4d953ac48aa84d620a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "professionalweb\\IntegrationHub\\DefaultValues\\Providers\\DefaultValuesProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "professionalweb\\IntegrationHub\\DefaultValues\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Subsystem for integration hub to set default values",
+            "keywords": [
+                "default values",
+                "hub",
+                "integration",
+                "laravel",
+                "proxy"
+            ],
+            "time": "2018-11-20T14:02:19+00:00"
         },
         {
             "name": "professionalweb/integration-hub-mapper",
@@ -2784,16 +2829,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "5b68f3972083a7eeec0d6f161962fcda71a127c0"
+                "reference": "9d5caf43c5f3a3aea2178942f281054805872e7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/5b68f3972083a7eeec0d6f161962fcda71a127c0",
-                "reference": "5b68f3972083a7eeec0d6f161962fcda71a127c0",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/9d5caf43c5f3a3aea2178942f281054805872e7c",
+                "reference": "9d5caf43c5f3a3aea2178942f281054805872e7c",
                 "shasum": ""
             },
             "require": {
@@ -2848,7 +2893,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2018-08-22T11:06:19+00:00"
+            "time": "2018-11-09T08:37:55+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -3556,6 +3601,7 @@
         "professionalweb/integration-hub-bitrix24": 20,
         "professionalweb/integration-hub-postaffiliate": 20,
         "professionalweb/integration-hub-mapper": 20,
+        "professionalweb/integration-hub-default-values": 20,
         "cbs/integration-hub-paycloud": 20,
         "cbs/paycloud-lib": 20
     },
