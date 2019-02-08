@@ -30,7 +30,7 @@
     "professionalweb/integration-hub-supervisor": "dev-develop",
     "professionalweb/integration-hub-db": "dev-develop",
     "professionalweb/integration-hub-common": "dev-develop",
-    "professionalweb/integration-hub-bitrix24": "dev-feature/user-status-check",
+    "professionalweb/integration-hub-bitrix24": "dev-develop",
     "professionalweb/integration-hub-postaffiliate": "dev-develop",
     "professionalweb/integration-hub-mapper": "dev-develop",
     "professionalweb/integration-hub-default-values": "dev-develop",
