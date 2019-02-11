@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c79513987eb301a2b8035f337c653997",
+    "content-hash": "4a4f9dfd4f640d6ed32eb4bdd06acbd0",
     "packages": [
         {
             "name": "cbs/integration-hub-buffer",
@@ -12,11 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git",
-                "reference": "156e27cb50aec37f65e21c48f9a7846e4bacd0fb"
+                "reference": "b9a13185d5dd89c3c221b7b5b3d44489ba181144"
             },
             "require": {
                 "illuminate/support": "5.*",
                 "php": ">=7.1.3",
+                "professionalweb/integration-hub-api": "dev-develop",
                 "professionalweb/integration-hub-bitrix24": "dev-develop"
             },
             "type": "library",
@@ -24,6 +25,9 @@
                 "laravel": {
                     "providers": [
                         "CBS\\IntegrationHub\\IntegrationHubBuffer\\Providers\\IntegrationHubBufferProvider"
+                    ],
+                    "dont-discover": [
+                        "professionalweb/integration-hub-api"
                     ]
                 }
             },
@@ -47,7 +51,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-02-08T15:48:53+00:00"
+            "time": "2019-02-11T10:34:19+00:00"
         },
         {
             "name": "cbs/integration-hub-paycloud",
@@ -1679,12 +1683,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-api.git",
-                "reference": "ab3d207085bb71e993bd52487273aaeebd078cda"
+                "reference": "b1f262ed25c2c0d55950da1fb75b4f439894d0c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/ab3d207085bb71e993bd52487273aaeebd078cda",
-                "reference": "ab3d207085bb71e993bd52487273aaeebd078cda",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/b1f262ed25c2c0d55950da1fb75b4f439894d0c1",
+                "reference": "b1f262ed25c2c0d55950da1fb75b4f439894d0c1",
                 "shasum": ""
             },
             "require": {
@@ -1719,7 +1723,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-02-08T09:47:17+00:00"
+            "time": "2019-02-11T08:56:40+00:00"
         },
         {
             "name": "professionalweb/integration-hub-bitrix24",
@@ -3925,16 +3929,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.8.3",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "a6a3b44581398b7135c7baa0557b7c5b10808b47"
+                "reference": "bc364c2480c17941e2135cfc568fa41794392534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/a6a3b44581398b7135c7baa0557b7c5b10808b47",
-                "reference": "a6a3b44581398b7135c7baa0557b7c5b10808b47",
+                "url": "https://api.github.com/repos/composer/composer/zipball/bc364c2480c17941e2135cfc568fa41794392534",
+                "reference": "bc364c2480c17941e2135cfc568fa41794392534",
                 "shasum": ""
             },
             "require": {
@@ -4001,7 +4005,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2019-01-30T07:31:34+00:00"
+            "time": "2019-02-11T09:52:10+00:00"
         },
         {
             "name": "composer/semver",
@@ -4444,7 +4448,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "professionalweb/integration-hub-api": 20,
         "professionalweb/integration-hub-supervisor": 20,
         "professionalweb/integration-hub-db": 20,
         "professionalweb/integration-hub-common": 20,
