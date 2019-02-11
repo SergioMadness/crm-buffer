@@ -33,6 +33,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('buffer:start')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->command('buffer:start')->everyTenMinutes()->withoutOverlapping();
     }
 }
