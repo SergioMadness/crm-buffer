@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git",
-                "reference": "b9a13185d5dd89c3c221b7b5b3d44489ba181144"
+                "reference": "d2aba9f6b4aba714eab1444a30891b4f09d1161e"
             },
             "require": {
                 "illuminate/support": "5.*",
@@ -51,7 +51,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-02-11T10:34:19+00:00"
+            "time": "2019-02-11T13:04:03+00:00"
         },
         {
             "name": "cbs/integration-hub-paycloud",
@@ -1778,12 +1778,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-common.git",
-                "reference": "f1b53e3c3dbba5db00c1562e896ec31eb8723b33"
+                "reference": "a463ad674a2e748d563430c8368676aedc219447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/f1b53e3c3dbba5db00c1562e896ec31eb8723b33",
-                "reference": "f1b53e3c3dbba5db00c1562e896ec31eb8723b33",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-common/zipball/a463ad674a2e748d563430c8368676aedc219447",
+                "reference": "a463ad674a2e748d563430c8368676aedc219447",
                 "shasum": ""
             },
             "require": {
@@ -1816,7 +1816,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-02-08T13:27:11+00:00"
+            "time": "2019-02-11T13:03:35+00:00"
         },
         {
             "name": "professionalweb/integration-hub-db",
