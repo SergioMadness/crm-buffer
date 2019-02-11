@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git",
-                "reference": "c59b309cef7b61267f7e7df7245a7c5812f45dce"
+                "reference": "42e29d523564329485312e0eb0512ffc5ecfdb44"
             },
             "require": {
                 "illuminate/support": "5.*",
@@ -52,7 +52,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-02-11T15:56:50+00:00"
+            "time": "2019-02-11T16:07:47+00:00"
         },
         {
             "name": "cbs/integration-hub-paycloud",
