@@ -140,7 +140,7 @@ return [
         'default' => [
             'host'     => env('REDIS_HOST', '127.0.0.1'),
             'port'     => env('REDIS_PORTS', 6379),
-            'database' => 0,
+            'database' => 1,
         ],
 
     ],
