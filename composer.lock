@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git",
-                "reference": "9988703d825448fe393d5a99fa09228f48431fc4"
+                "reference": "f8e8b96daa6f2f7d142460faa2546ab615005b1f"
             },
             "require": {
                 "illuminate/support": "5.*",
@@ -52,7 +52,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-03-11T06:10:35+00:00"
+            "time": "2019-03-11T09:27:13+00:00"
         },
         {
             "name": "cbs/integration-hub-paycloud",
@@ -1602,12 +1602,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-bitrix24.git",
-                "reference": "7ef33c392885efd5e6022be88497adbdac03fdb5"
+                "reference": "f688e43a6555c7bbd02b10b42f6caa4cca8f5078"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/7ef33c392885efd5e6022be88497adbdac03fdb5",
-                "reference": "7ef33c392885efd5e6022be88497adbdac03fdb5",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/f688e43a6555c7bbd02b10b42f6caa4cca8f5078",
+                "reference": "f688e43a6555c7bbd02b10b42f6caa4cca8f5078",
                 "shasum": ""
             },
             "require": {
@@ -1641,7 +1641,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-02-13T09:16:15+00:00"
+            "time": "2019-03-11T09:21:54+00:00"
         },
         {
             "name": "professionalweb/integration-hub-common",
