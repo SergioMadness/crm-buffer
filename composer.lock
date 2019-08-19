@@ -60,7 +60,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-paycloud.git",
-                "reference": "353c82f8b2d3ab85559b7091ec6397b2e1504e02"
+                "reference": "7d263b71988e200966ed5ac3c92c933aff486b56"
             },
             "require": {
                 "cbs/paycloud-lib": "dev-develop",
@@ -93,7 +93,7 @@
                 "paycloud",
                 "proxy"
             ],
-            "time": "2019-02-07T11:43:55+00:00"
+            "time": "2019-08-16T12:13:09+00:00"
         },
         {
             "name": "cbs/paycloud-lib",
@@ -315,16 +315,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.10",
+            "version": "2.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec"
+                "reference": "92dd169c32f6f55ba570c309d83f5209cefb5e23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec",
-                "reference": "a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/92dd169c32f6f55ba570c309d83f5209cefb5e23",
+                "reference": "92dd169c32f6f55ba570c309d83f5209cefb5e23",
                 "shasum": ""
             },
             "require": {
@@ -343,7 +343,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -369,7 +369,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2019-07-19T20:52:08+00:00"
+            "time": "2019-08-13T17:33:27+00:00"
         },
         {
             "name": "enqueue/amqp-lib",
@@ -1885,12 +1885,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-bitrix24.git",
-                "reference": "21e27c740df11d28fc50610f80db2dcd550dbebc"
+                "reference": "0e90a345e71fc4049c2d7586162b7234756e7bd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/21e27c740df11d28fc50610f80db2dcd550dbebc",
-                "reference": "21e27c740df11d28fc50610f80db2dcd550dbebc",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-bitrix24/zipball/0e90a345e71fc4049c2d7586162b7234756e7bd6",
+                "reference": "0e90a345e71fc4049c2d7586162b7234756e7bd6",
                 "shasum": ""
             },
             "require": {
@@ -1924,7 +1924,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-08-09T10:07:04+00:00"
+            "time": "2019-08-16T12:24:34+00:00"
         },
         {
             "name": "professionalweb/integration-hub-common",
@@ -2116,12 +2116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-postaffiliate.git",
-                "reference": "c05ead61506080d9194ae0f4152baf884bd4ca25"
+                "reference": "e72bda614bbff73190f4dc4f99a0567fbd110e07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/c05ead61506080d9194ae0f4152baf884bd4ca25",
-                "reference": "c05ead61506080d9194ae0f4152baf884bd4ca25",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/e72bda614bbff73190f4dc4f99a0567fbd110e07",
+                "reference": "e72bda614bbff73190f4dc4f99a0567fbd110e07",
                 "shasum": ""
             },
             "require": {
@@ -2157,7 +2157,7 @@
                 "postaffiliate",
                 "proxy"
             ],
-            "time": "2019-08-05T11:55:21+00:00"
+            "time": "2019-08-15T16:54:59+00:00"
         },
         {
             "name": "professionalweb/integration-hub-supervisor",
@@ -4876,16 +4876,16 @@
         },
         {
             "name": "deployer/deployer",
-            "version": "v6.4.6",
+            "version": "v6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deployphp/deployer.git",
-                "reference": "86c407b3399fea129095e0c67e1be8464d528d79"
+                "reference": "427b83ea550a7063cfcd543ce3e9e37f11c49419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deployphp/deployer/zipball/86c407b3399fea129095e0c67e1be8464d528d79",
-                "reference": "86c407b3399fea129095e0c67e1be8464d528d79",
+                "url": "https://api.github.com/repos/deployphp/deployer/zipball/427b83ea550a7063cfcd543ce3e9e37f11c49419",
+                "reference": "427b83ea550a7063cfcd543ce3e9e37f11c49419",
                 "shasum": ""
             },
             "require": {
@@ -4924,7 +4924,7 @@
             ],
             "description": "Deployment Tool",
             "homepage": "https://deployer.org",
-            "time": "2019-07-30T07:42:26+00:00"
+            "time": "2019-08-12T18:28:24+00:00"
         },
         {
             "name": "deployer/phar-update",

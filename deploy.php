@@ -35,11 +35,17 @@ set('rollbar_username', getenv('ROLLBAR_USERNAME'));
 
 // Hosts
 
-host('main_host')
+host('prod')
     ->hostname(getenv('DEPLOY_HOST'))
     ->user(getenv('DEPLOY_USER'))
     ->port(getenv('DEPLOY_PORT'))
     ->set('deploy_path', getenv('DEPLOY_PATH'));
+
+host('dev')
+    ->hostname(getenv('DEV_DEPLOY_HOST'))
+    ->user(getenv('DEV_DEPLOY_USER'))
+    ->port(getenv('DEV_DEPLOY_PORT'))
+    ->set('deploy_path', getenv('DEV_DEPLOY_PATH'));
 
 // Tasks
 set('composer_options', 'install --verbose');
@@ -58,7 +64,7 @@ task('rollbar:notify', function () {
         'comment'          => get('rollbar_comment'),
     ];
     Httpie::post('https://api.rollbar.com/api/1/deploy/')->form($params)->send();
-})->onHosts('main_host')->once()->shallow()->setPrivate();
+})->onHosts('prod')->once()->shallow()->setPrivate();
 
 task('build', function () {
     run('cd {{release_path}} && build');
