@@ -1254,16 +1254,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.24.0",
+            "version": "1.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266"
+                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
-                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
+                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
                 "shasum": ""
             },
             "require": {
@@ -1328,7 +1328,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2018-11-05T09:00:11+00:00"
+            "time": "2019-09-06T13:49:17+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -1441,16 +1441,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.3.1",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "92927e26d7fc3f271efe1f55bdbb073fbb2f0722"
+                "reference": "60a97fff133b1669a5b1776aa8ab06db3f3962b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/92927e26d7fc3f271efe1f55bdbb073fbb2f0722",
-                "reference": "92927e26d7fc3f271efe1f55bdbb073fbb2f0722",
+                "url": "https://api.github.com/repos/opis/closure/zipball/60a97fff133b1669a5b1776aa8ab06db3f3962b7",
+                "reference": "60a97fff133b1669a5b1776aa8ab06db3f3962b7",
                 "shasum": ""
             },
             "require": {
@@ -1498,7 +1498,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2019-07-09T21:58:11+00:00"
+            "time": "2019-09-02T21:07:33+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2116,12 +2116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-postaffiliate.git",
-                "reference": "318d640e23dcb96e9827dcbf516323237af24ac8"
+                "reference": "36ed74ec5ce2918c065262f8ecfff4287930e12e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/318d640e23dcb96e9827dcbf516323237af24ac8",
-                "reference": "318d640e23dcb96e9827dcbf516323237af24ac8",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/36ed74ec5ce2918c065262f8ecfff4287930e12e",
+                "reference": "36ed74ec5ce2918c065262f8ecfff4287930e12e",
                 "shasum": ""
             },
             "require": {
@@ -2157,7 +2157,7 @@
                 "postaffiliate",
                 "proxy"
             ],
-            "time": "2019-08-19T15:12:25+00:00"
+            "time": "2019-09-06T14:08:11+00:00"
         },
         {
             "name": "professionalweb/integration-hub-supervisor",
@@ -4383,16 +4383,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.2.7",
+            "version": "v3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "8794e7a3b7f3a0e7222bcd088f5f44b2b6ff8e61"
+                "reference": "18208d64897ab732f6c04a19b319fe8f1d57a9c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/8794e7a3b7f3a0e7222bcd088f5f44b2b6ff8e61",
-                "reference": "8794e7a3b7f3a0e7222bcd088f5f44b2b6ff8e61",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/18208d64897ab732f6c04a19b319fe8f1d57a9c0",
+                "reference": "18208d64897ab732f6c04a19b319fe8f1d57a9c0",
                 "shasum": ""
             },
             "require": {
@@ -4447,34 +4447,34 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2019-08-22T14:29:54+00:00"
+            "time": "2019-08-29T07:01:03+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.6.2",
+            "version": "v2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "39c148ad4273f5b8c49d0a363ddbc0462f1f2eec"
+                "reference": "16eb4f65ee0d51b1f1182d56ae28ee00a70ce75a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/39c148ad4273f5b8c49d0a363ddbc0462f1f2eec",
-                "reference": "39c148ad4273f5b8c49d0a363ddbc0462f1f2eec",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/16eb4f65ee0d51b1f1182d56ae28ee00a70ce75a",
+                "reference": "16eb4f65ee0d51b1f1182d56ae28ee00a70ce75a",
                 "shasum": ""
             },
             "require": {
                 "barryvdh/reflection-docblock": "^2.0.6",
                 "composer/composer": "^1.6",
-                "illuminate/console": "^5.5,<5.9",
-                "illuminate/filesystem": "^5.5,<5.9",
-                "illuminate/support": "^5.5,<5.9",
+                "illuminate/console": "^5.5|^6",
+                "illuminate/filesystem": "^5.5|^6",
+                "illuminate/support": "^5.5|^6",
                 "php": ">=7"
             },
             "require-dev": {
                 "doctrine/dbal": "~2.3",
-                "illuminate/config": "^5.1,<5.9",
-                "illuminate/view": "^5.1,<5.9",
+                "illuminate/config": "^5.5|^6",
+                "illuminate/view": "^5.5|^6",
                 "phpro/grumphp": "^0.14",
                 "phpunit/phpunit": "4.*",
                 "scrutinizer/ocular": "~1.1",
@@ -4521,7 +4521,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2019-03-26T10:38:22+00:00"
+            "time": "2019-09-03T17:51:13+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
