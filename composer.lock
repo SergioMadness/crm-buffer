@@ -2026,12 +2026,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-default-values.git",
-                "reference": "5e770d85e732a0415a2ab61f8ee8b80066761e8a"
+                "reference": "3f54bc03c97f52d56be655ba70aa4f33d92cb94f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-default-values/zipball/5e770d85e732a0415a2ab61f8ee8b80066761e8a",
-                "reference": "5e770d85e732a0415a2ab61f8ee8b80066761e8a",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-default-values/zipball/3f54bc03c97f52d56be655ba70aa4f33d92cb94f",
+                "reference": "3f54bc03c97f52d56be655ba70aa4f33d92cb94f",
                 "shasum": ""
             },
             "require": {
@@ -2063,7 +2063,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2019-09-10T11:47:13+00:00"
+            "time": "2019-09-12T11:26:06+00:00"
         },
         {
             "name": "professionalweb/integration-hub-mapper",
