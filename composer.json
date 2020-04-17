@@ -18,6 +18,18 @@
     {
       "type": "git",
       "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git"
+    },
+    {
+      "type": "git",
+      "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-lms.git"
+    },
+    {
+      "type": "git",
+      "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/lms-b2b.git"
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:SergioMadness/integration-hub-value-mapper.git"
     }
   ],
   "license": "MIT",
@@ -32,16 +44,17 @@
     "professionalweb/integration-hub-postaffiliate": "dev-develop",
     "professionalweb/integration-hub-mapper": "dev-develop",
     "professionalweb/integration-hub-default-values": "dev-develop",
+    "professionalweb/integration-hub-value-mapper": "dev-develop",
     "cbs/integration-hub-buffer": "dev-develop",
     "cbs/integration-hub-paycloud": "dev-develop",
+    "cbs/integration-hub-lms": "dev-develop",
     "predis/predis": "^1.1",
     "vladimir-yuldashev/laravel-queue-rabbitmq": "^8.3",
     "rollbar/rollbar-laravel": "^4.0"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "*",
-    "barryvdh/laravel-debugbar": "*",
-    "deployer/deployer": "^6.4"
+    "barryvdh/laravel-debugbar": "*"
   },
   "extra": {
     "laravel": {
