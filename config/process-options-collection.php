@@ -432,9 +432,11 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'paycloud-payment-link',
         'mapping'      => [
+            'get-invoice.PRICE'                       => 'amount',
             'get-invoice.UF_CRM_5C6E8D3550528'        => 'amount',
             'get-invoice.INVOICE_PROPERTIES.EMAIL'    => 'email',
             'get-invoice.ID'                          => 'order_id',
+            'get-invoice.CURRENCY'                    => 'currency',
             'get-invoice.UF_CRM_5BE54A65AC69B'        => 'currency',
             'get-invoice.PRODUCT_ROWS.0.ID'           => 'products.0.id',
             'get-invoice.PRODUCT_ROWS.0.PRODUCT_NAME' => 'products.0.name',

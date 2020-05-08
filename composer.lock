@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git",
-                "reference": "2aedde517a5e6a2e291dc83373d6da35ef07cd98"
+                "reference": "be7c217ad083eaedac2885f0b6b5aefb219fda81"
             },
             "require": {
                 "illuminate/support": "5.*",
@@ -52,7 +52,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-03-24T15:19:22+00:00"
+            "time": "2020-05-08T15:22:19+00:00"
         },
         {
             "name": "cbs/integration-hub-lms",
@@ -2354,12 +2354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-postaffiliate.git",
-                "reference": "59c99768c7335c234710cd619f9ab05cee49f06d"
+                "reference": "2d5bfdcdef2386b7d06c7eb9b0a7b6e98d24a2b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/59c99768c7335c234710cd619f9ab05cee49f06d",
-                "reference": "59c99768c7335c234710cd619f9ab05cee49f06d",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-postaffiliate/zipball/2d5bfdcdef2386b7d06c7eb9b0a7b6e98d24a2b6",
+                "reference": "2d5bfdcdef2386b7d06c7eb9b0a7b6e98d24a2b6",
                 "shasum": ""
             },
             "require": {
@@ -2395,7 +2395,7 @@
                 "postaffiliate",
                 "proxy"
             ],
-            "time": "2019-09-06T14:53:35+00:00"
+            "time": "2020-05-08T15:20:03+00:00"
         },
         {
             "name": "professionalweb/integration-hub-supervisor",
