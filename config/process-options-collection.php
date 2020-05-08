@@ -337,8 +337,8 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'bitrix-get-deal',
         'mapping'      => [
-            'get-invoice.UF_DEAL_ID'  => 'deal_id',
             'original.data.FIELDS.ID' => 'deal_id',
+            'get-invoice.UF_DEAL_ID'  => 'deal_id',
         ],
         'options'      => [
             'url'  => 'citybusinessschool.bitrix24.ru',
@@ -441,7 +441,7 @@ return [
             'get-invoice.PRODUCT_ROWS.0.PRICE'        => 'products.0.price',
         ],
         'options'      => [
-            'url'  => 'citybusinessschool.bitrix24.ru',
+            'url'  => 'https://pay.e-mba.ru/',
             'hook' => '69/9amg2bwr1y7xk9fi/',
         ],
     ]))->setAttribute('id', 'paycloud-payment-link-no-convert'),

@@ -30,7 +30,7 @@ return [
                     [
                         'field'     => 'original.phone',
                         'operation' => 'in',
-                        'value1'    => ['+89124525520'],
+                        'value1'    => ['+89124525520', '+12134251453'],
                         'result'    => [],
                     ],
                     [
