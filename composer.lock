@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-buffer.git",
-                "reference": "be7c217ad083eaedac2885f0b6b5aefb219fda81"
+                "reference": "33fa7ccde44d6d05c2a1cab21f67d35008b72235"
             },
             "require": {
                 "illuminate/support": "5.*",
@@ -52,7 +52,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-05-08T15:22:19+00:00"
+            "time": "2020-05-08T15:35:26+00:00"
         },
         {
             "name": "cbs/integration-hub-lms",
