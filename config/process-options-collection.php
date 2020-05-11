@@ -61,7 +61,7 @@ return [
             'get-contact.value'                              => 'CONTACT_ID',
             'bitrix-find-contact.ID'                         => 'CONTACT_ID',
             'original.lead_id'                               => 'LEAD_ID',
-            'original.opportunity'                           => 'OPPORTUNITY',
+            'original.opportunity'                           => ['OPPORTUNITY', 'PRODUCTS.0.price'],
             'original.products'                              => 'PRODUCTS',
             'original.utm_campaign'                          => 'UTM_CAMPAIGN',
             'original.utm_content'                           => 'UTM_CONTENT',
@@ -84,21 +84,22 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'bitrix-invoice',
         'mapping'      => [
-            'original.title'                                       => ['ORDER_TOPIC', 'PRODUCT_ROWS.0.PRODUCT_NAME'],
+            'original.title'                                       => ['ORDER_TOPIC', 'PRODUCTS.0.PRODUCT_NAME'],
             'bitrix-create-deal.deal_id'                           => 'UF_DEAL_ID',
             'get-deal.value'                                       => 'UF_DEAL_ID',
             'get-contact.value'                                    => 'UF_CONTACT_ID',
             'bitrix-find-contact.ID'                               => 'UF_CONTACT_ID',
-            'original.amount'                                      => 'PRODUCT_ROWS.0.PRICE',
+            'original.amount'                                      => 'PRODUCT_ROWS.0.price',
+            'original.opportunity'                                 => 'PRODUCT_ROWS.0.price',
             'bitrix-invoice-default-value.STATUS_ID'               => 'STATUS_ID',
             'bitrix-invoice-default-value.UF_MYCOMPANY_ID'         => 'UF_MYCOMPANY_ID',
             'bitrix-invoice-default-value.PAY_SYSTEM_ID'           => 'PAY_SYSTEM_ID',
             'bitrix-invoice-default-value.PERSON_TYPE_ID'          => 'PERSON_TYPE_ID',
-            'bitrix-invoice-default-value.PRODUCT_ROWS.0.QUANTITY' => 'PRODUCT_ROWS.0.QUANTITY',
+            'bitrix-invoice-default-value.PRODUCT_ROWS.0.QUANTITY' => 'PRODUCTS.0.QUANTITY',
             'bitrix-invoice-default-value.UF_CRM_5D4AA3E8E2ECF'    => 'UF_CRM_5D4AA3E8E2ECF',
-            'original.products.0.id'                               => ['PRODUCT_ROWS.0.PRODUCT_ID', 'UF_CRM_PRODUCT_ID'],
-            'original.products.0.price'                            => 'PRODUCT_ROWS.0.PRICE',
-            'original.productName'                                 => 'PRODUCT_ROWS.0.PRODUCT_NAME',
+            'original.products.0.id'                               => ['PRODUCTS.0.PRODUCT_ID', 'UF_CRM_PRODUCT_ID'],
+            'original.products.0.price'                            => 'PRODUCTS.0.price',
+            'original.productName'                                 => 'PRODUCTS.0.product_name',
             'original.currency'                                    => 'UF_CRM_5BE54A65AC69B',
         ],
         'options'      => [
@@ -532,9 +533,10 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'mapper',
         'mapping'      => [
-            'original.products.0.id'           => 'lead_product_id',
-            'original.education'               => 'education',
-            'bitrix-product-mapper.product_id' => 'lead_product_id',
+            'original.products.0.id'               => 'lead_product_id',
+            'original.education'                   => 'education',
+            'bitrix-product-mapper.product_id'     => 'lead_product_id',
+            'lms-bitrix-product-mapper.product_id' => 'lead_product_id',
         ],
         'options'      => [
             'map' => [
@@ -717,6 +719,7 @@ return [
         'subsystem_id' => 'value-mapper',
         'mapping'      => [
             'original.orderId'           => 'key',
+            'original.order_id'          => 'key',
             'bitrix-create-deal.deal_id' => 'value',
         ],
         'options'      => [
