@@ -622,6 +622,7 @@ return [
         'subsystem_id' => 'mapper',
         'mapping'      => [
             'original.products.0.id' => 'product_id',
+            'original.product_id'    => 'product_id',
         ],
         'options'      => [
             'map' => [

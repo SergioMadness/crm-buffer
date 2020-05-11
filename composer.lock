@@ -2216,12 +2216,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-db.git",
-                "reference": "cd7f7b376eb62925930ad44c537d65fdfc9af644"
+                "reference": "8901568278133a1317b8d90ce212cfab2deb9b79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-db/zipball/cd7f7b376eb62925930ad44c537d65fdfc9af644",
-                "reference": "cd7f7b376eb62925930ad44c537d65fdfc9af644",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-db/zipball/8901568278133a1317b8d90ce212cfab2deb9b79",
+                "reference": "8901568278133a1317b8d90ce212cfab2deb9b79",
                 "shasum": ""
             },
             "require": {
@@ -2256,7 +2256,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-05-11T15:25:37+00:00"
+            "time": "2020-05-11T15:48:10+00:00"
         },
         {
             "name": "professionalweb/integration-hub-default-values",
