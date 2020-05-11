@@ -106,9 +106,9 @@ return [
                 ],
             ],
             'lms-bitrix-product-mapper'          => [
-                'id'   => 'lms-bitrix-product-mapper',
-                'next' => ['bitrix-product-mapper-deal'],
-                'prev' => ['start'],
+                'id'        => 'lms-bitrix-product-mapper',
+                'next'      => ['bitrix-product-mapper-deal'],
+                'prev'      => ['start'],
             ],
             'bitrix-product-mapper-deal'         => [
                 'id'        => 'bitrix-product-mapper-deal',
