@@ -99,7 +99,7 @@ return [
         ],
         'options'      => [
             'url'  => 'b24-nxh4lk.bitrix24.ru',
-            'hook' => '12/kg1z5mmj1827mcca/',
+            'hook' => '12/povf1c2n1mvpfz7j/',
         ],
     ]))->setAttribute('id', 'bitrix-franchise-lead'),
     (new ProcessOptions([
@@ -391,7 +391,7 @@ return [
         ],
         'options'      => [
             'url'       => 'b24-nxh4lk.bitrix24.ru',
-            'hook'      => '12/kg1z5mmj1827mcca/',
+            'hook'      => '12/povf1c2n1mvpfz7j/',
             'status_id' => 'RE_LEAD',
         ],
     ]))->setAttribute('id', 'bitrix-franchise-check-duplicates'),
