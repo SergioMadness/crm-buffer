@@ -55,6 +55,54 @@ return [
         ],
     ]))->setAttribute('id', 'bitrix-lead'),
     (new ProcessOptions([
+        'subsystem_id' => 'bitrix-lead',
+        'mapping'      => [
+            'original.title'                        => 'TITLE',
+            'original.name'                         => 'NAME',
+            'original.last_name'                    => 'LAST_NAME',
+            'original.date_of_birth'                => 'BIRTHDATE',
+            'original.email'                        => 'EMAIL.0.VALUE',
+            'original.phone'                        => 'PHONE.0.VALUE',
+            'original.comment'                      => 'COMMENTS',
+            'original.contact_id'                   => 'CLIENT_ID',
+            'original.url'                          => ['WEB', 'UF_CRM_URL'],
+            'original.products'                     => 'PRODUCTS',
+            'original.utmSource'                    => 'UTM_SOURCE',
+            'original.utmMedium'                    => 'UTM_MEDIUM',
+            'original.utmCampaign'                  => 'UTM_CAMPAIGN',
+            'original.utmContent'                   => 'UTM_CONTENT',
+            'original.utmTerm'                      => 'UTM_TERM',
+            'original.sourceId'                     => 'SOURCE_ID',
+            'original.source_id'                    => 'SOURCE_ID',
+            'original.source_description'           => 'SOURCE_DESCRIPTION',
+            'original.partner_id'                   => 'SOURCE_ID',
+            'bitrix-lead-default-value.SOURCE_ID'   => 'SOURCE_ID',
+            'original.utm_source'                   => 'UTM_SOURCE',
+            'original.utm_medium'                   => 'UTM_MEDIUM',
+            'original.utm_campaign'                 => 'UTM_CAMPAIGN',
+            'original.utm_content'                  => 'UTM_CONTENT',
+            'original.utm_term'                     => 'UTM_TERM',
+            'original.opportunity'                  => 'OPPORTUNITY',
+            'original.country'                      => 'COUNTRY',
+            'original.city'                         => 'CITY',
+            'original.position'                     => 'POST',
+            'original.company'                      => 'COMPANY_TITLE',
+            'original.currency'                     => 'CURRENCY_ID',
+            'original.cdo_cabinet_number'           => 'UF_CRM_CDO_PC',
+            'bitrix-lead-distribution.status_id'    => 'STATUS_ID',
+            'bitrix-set-assigner.assigned_by_id'    => 'ASSIGNED_BY_ID',
+            'bitrix-check-duplicates.STATUS_ID'     => 'STATUS_ID',
+            'bitrix-product-mapper.lead_product_id' => ['UF_CRM_PRODUCT_ID', 'PRODUCTS.0.id'],
+            'original.education'                    => 'UF_CRM_EDUCATION',
+            'original.cid'                          => 'UF_CRM_CLIENT_ID',
+            'original.userId'                       => 'UF_CRM_GUID',
+        ],
+        'options'      => [
+            'url'  => 'b24-nxh4lk.bitrix24.ru',
+            'hook' => '12/kg1z5mmj1827mcca/',
+        ],
+    ]))->setAttribute('id', 'bitrix-franchise-lead'),
+    (new ProcessOptions([
         'subsystem_id' => 'bitrix-create-deal',
         'mapping'      => [
             'original.title'                                 => 'TITLE',
@@ -148,6 +196,17 @@ return [
             ],
         ],
     ]))->setAttribute('id', 'bitrix-set-assigner'),
+    (new ProcessOptions([
+        'subsystem_id' => 'default-values',
+        'mapping'      => [
+            'original' => '*',
+        ],
+        'options'      => [
+            'map' => [
+                'assigned_by_id' => 6,
+            ],
+        ],
+    ]))->setAttribute('id', 'bitrix-franchise-set-assigner'),
     (new ProcessOptions([
         'subsystem_id' => 'default-values',
         'mapping'      => [
@@ -324,6 +383,18 @@ return [
             'status_id' => 'RE_LEAD',
         ],
     ]))->setAttribute('id', 'bitrix-check-duplicates'),
+    (new ProcessOptions([
+        'subsystem_id' => 'bitrix-check-duplicates',
+        'mapping'      => [
+            'original.email' => 'contacts.0',
+            'original.phone' => 'contacts.1',
+        ],
+        'options'      => [
+            'url'       => 'b24-nxh4lk.bitrix24.ru',
+            'hook'      => '12/kg1z5mmj1827mcca/',
+            'status_id' => 'RE_LEAD',
+        ],
+    ]))->setAttribute('id', 'bitrix-franchise-check-duplicates'),
     (new ProcessOptions([
         'subsystem_id' => 'bitrix-get-invoice',
         'mapping'      => [

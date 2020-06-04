@@ -106,9 +106,9 @@ return [
                 ],
             ],
             'lms-bitrix-product-mapper'          => [
-                'id'        => 'lms-bitrix-product-mapper',
-                'next'      => ['bitrix-product-mapper-deal'],
-                'prev'      => ['start'],
+                'id'   => 'lms-bitrix-product-mapper',
+                'next' => ['bitrix-product-mapper-deal'],
+                'prev' => ['start'],
             ],
             'bitrix-product-mapper-deal'         => [
                 'id'        => 'bitrix-product-mapper-deal',
@@ -122,9 +122,23 @@ return [
                 'prev' => ['start'],
             ],
             'bitrix-lead-default-value'          => [
-                'id'   => 'bitrix-lead-default-value',
-                'next' => ['bitrix-set-assigner'],
-                'prev' => ['start'],
+                'id'        => 'bitrix-lead-default-value',
+                'next'      => ['bitrix-set-assigner'],
+                'prev'      => ['start'],
+                'condition' => [
+                    [
+                        'field'     => 'original.form_name',
+                        'operation' => '=',
+                        'value1'    => 'franchise',
+                        'result'    => 'bitrix-franchise-set-assigner',
+                    ],
+                    [
+                        'field'     => 'original.form_name',
+                        'operation' => '!|=',
+                        'value1'    => 'franchise',
+                        'result'    => 'bitrix-set-assigner',
+                    ],
+                ],
             ],
             'bitrix-product-mapper'              => [
                 'id'   => 'bitrix-product-mapper',
@@ -134,6 +148,11 @@ return [
             'bitrix-set-assigner'                => [
                 'id'   => 'bitrix-set-assigner',
                 'next' => ['bitrix-check-duplicates'],
+                'prev' => ['bitrix-product-mapper'],
+            ],
+            'bitrix-franchise-set-assigner'      => [
+                'id'   => 'bitrix-franchise-set-assigner',
+                'next' => ['bitrix-franchise-check-duplicates'],
                 'prev' => ['bitrix-product-mapper'],
             ],
             'bitrix-deal-default-value'          => [
@@ -314,6 +333,17 @@ return [
                         'result'    => ['bitrix-lead'],
                     ],
                 ],
+            ],
+            'bitrix-franchise-check-duplicates'  => [
+                'id'        => 'bitrix-franchise-check-duplicates',
+                'subsystem' => 'bitrix-check-duplicates',
+                'next'      => ['bitrix-franchise-lead'],
+                'prev'      => ['bitrix-product-mapper'],
+            ],
+            'bitrix-franchise-lead'              => [
+                'id'   => 'bitrix-franchise-lead',
+                'prev' => ['bitrix-check-duplicates'],
+                'next' => [],
             ],
             'bitrix-lead'                        => [
                 'id'        => 'bitrix-lead',
