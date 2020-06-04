@@ -834,7 +834,7 @@ return [
             'bitrix-get-contact.LAST_NAME'     => 'last_name',
         ],
         'options'      => [
-            'url'      => 'http://e-mba.local',
+            'url'      => 'https://e-mba.ru',
             'clientId' => 'f3b20de5-ce47-45da-ada5-a1fca7631f76',
             'key'      => 'c186b7b8c8451b9dda685768c3409136',
         ],
@@ -845,7 +845,7 @@ return [
             'bitrix-get-contact.EMAIL.0.VALUE' => 'searchParam',
         ],
         'options'      => [
-            'url'      => 'http://e-mba.local',
+            'url'      => 'https://e-mba.ru',
             'clientId' => 'f3b20de5-ce47-45da-ada5-a1fca7631f76',
             'key'      => 'c186b7b8c8451b9dda685768c3409136',
         ],
