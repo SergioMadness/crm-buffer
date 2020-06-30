@@ -133,6 +133,7 @@ return [
         'subsystem_id' => 'bitrix-invoice',
         'mapping'      => [
             'original.title'                                       => ['ORDER_TOPIC', 'PRODUCT_ROWS.0.PRODUCT_NAME'],
+            'bitrix-find-deal.ID'                                  => 'UF_DEAL_ID',
             'bitrix-create-deal.deal_id'                           => 'UF_DEAL_ID',
             'get-deal.value'                                       => 'UF_DEAL_ID',
             'get-contact.value'                                    => 'UF_CONTACT_ID',
@@ -791,6 +792,7 @@ return [
         'mapping'      => [
             'original.orderId'           => 'key',
             'original.order_id'          => 'key',
+            'bitrix-find-deal.ID'        => 'value',
             'bitrix-create-deal.deal_id' => 'value',
         ],
         'options'      => [
@@ -800,12 +802,26 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'get-value-map',
         'mapping'      => [
-            'original.orderId' => 'key',
+            'original.orderId'  => 'key',
+            'original.order_id' => 'key',
         ],
         'options'      => [
             'namespace' => 'deals',
         ],
     ]))->setAttribute('id', 'find-deal'),
+    (new ProcessOptions([
+        'subsystem_id' => 'bitrix-search-deal',
+        'mapping'      => [
+            'get-contact.value'                          => 'conditions.CONTACT_ID',
+            'bitrix-find-contact.ID'                     => 'conditions.CONTACT_ID',
+//            'bitrix-product-mapper-deal.lead_product_id' => 'conditions.products.0',
+            'bitrix-product-mapper-deal.lead_product_id' => 'conditions.UF_CRM_PRODUCT_ID',
+        ],
+        'options'      => [
+            'url'  => 'citybusinessschool.bitrix24.ru',
+            'hook' => '69/9amg2bwr1y7xk9fi/',
+        ],
+    ]))->setAttribute('id', 'bitrix-find-deal'),
     (new ProcessOptions([
         'subsystem_id' => 'bitrix-search-contact',
         'mapping'      => [

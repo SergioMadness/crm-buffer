@@ -210,12 +210,29 @@ return [
                     [
                         'field'     => 'get-deal.value',
                         'operation' => 'empty',
-                        'result'    => ['bitrix-create-deal'],
+                        'result'    => ['bitrix-find-deal'],
                     ],
                     [
                         'field'     => 'get-deal.value',
                         'operation' => '!|empty',
                         'result'    => ['bitrix-invoice-default-value'],
+                    ],
+                ],
+            ],
+            'bitrix-find-deal'                   => [
+                'id'        => 'bitrix-find-deal',
+                'next'      => [],
+                'prev'      => [],
+                'condition' => [
+                    [
+                        'field'     => 'bitrix-find-deal.ID',
+                        'operation' => 'empty',
+                        'result'    => ['bitrix-create-deal'],
+                    ],
+                    [
+                        'field'     => 'bitrix-find-deal.ID',
+                        'operation' => '!|empty',
+                        'result'    => ['remember-deal'],
                     ],
                 ],
             ],
