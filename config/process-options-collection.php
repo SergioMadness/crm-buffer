@@ -204,7 +204,7 @@ return [
         ],
         'options'      => [
             'map' => [
-                'assigned_by_id' => 6,
+                'assigned_by_id' => 10,
             ],
         ],
     ]))->setAttribute('id', 'bitrix-franchise-set-assigner'),
