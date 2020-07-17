@@ -866,4 +866,19 @@ return [
             'key'      => 'c186b7b8c8451b9dda685768c3409136',
         ],
     ]))->setAttribute('id', 'lms-get-user'),
+    (new ProcessOptions([
+        'subsystem_id' => 'aggregation',
+        'mapping'      => [
+            'bitrix-lead.lead_id'       => 'id',
+            'bitrix-get-lead.ID'        => 'id',
+            'original.opportunity'      => 'amount',
+            'bitrix-get-lead.STATUS_ID' => 'status',
+            'original.advcake_track_id' => 'trackId',
+            'original.promo_code'       => 'promo_code',
+            'original.advcake_url'      => 'url',
+        ],
+        'options'      => [
+            'namespace' => 'leads',
+        ],
+    ]))->setAttribute('id', 'aggregation'),
 ];

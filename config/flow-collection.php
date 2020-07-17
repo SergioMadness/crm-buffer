@@ -376,8 +376,21 @@ return [
                         'field'     => 'original.a_aid',
                         'operation' => 'empty',
                         'result'    => [],
+                        'success'   => [
+                            [
+                                'field'     => 'original.utm_source',
+                                'operation' => '=',
+                                'value1'    => 'advcake',
+                                'result'    => ['aggregation'],
+                            ],
+                        ],
                     ],
                 ],
+            ],
+            'aggregation'                        => [
+                'id'   => 'aggregation',
+                'prev' => ['bitrix-lead'],
+                'next' => [],
             ],
             'bitrix-workflow'                    => [
                 'id'        => 'bitrix-workflow',
@@ -393,7 +406,7 @@ return [
             ],
             'postaffiliate-new-transaction'      => [
                 'id'        => 'postaffiliate-new-transaction',
-                'next'      => [],
+                'next'      => ['aggregation'],
                 'prev'      => ['bitrix-lead'],
                 'condition' => [
                     [
@@ -401,6 +414,12 @@ return [
                         'operation' => '=',
                         'value1'    => 'cdo_lead',
                         'result'    => ['start-create-contact-process'],
+                    ],
+                    [
+                        'field'     => 'original.utm_source',
+                        'operation' => '=',
+                        'value1'    => 'advcake',
+                        'result'    => ['aggregation'],
                     ],
                 ],
             ],
@@ -440,9 +459,17 @@ return [
                 'prev' => ['start'],
             ],
             'postaffiliate-update-event'         => [
-                'id'   => 'postaffiliate-update-event',
-                'next' => [],
-                'prev' => ['start'],
+                'id'        => 'postaffiliate-update-event',
+                'next'      => ['aggregation'],
+                'prev'      => ['start'],
+                'condition' => [
+                    [
+                        'field'     => 'bitrix-get-lead.UTM_SOURCE',
+                        'operation' => '=',
+                        'value1'    => 'advcake',
+                        'result'    => ['aggregation'],
+                    ],
+                ],
             ],
             'get-invoice'                        => [
                 'id'   => 'get-invoice',

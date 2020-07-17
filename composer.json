@@ -30,6 +30,14 @@
     {
       "type": "git",
       "url": "git@github.com:SergioMadness/integration-hub-value-mapper.git"
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:SergioMadness/integration-hub-aggregation.git"
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:SergioMadness/integration-hub-advcake.git"
     }
   ],
   "license": "MIT",
@@ -45,6 +53,7 @@
     "professionalweb/integration-hub-mapper": "dev-develop",
     "professionalweb/integration-hub-default-values": "dev-develop",
     "professionalweb/integration-hub-value-mapper": "dev-develop",
+    "professionalweb/integration-hub-advcake": "dev-develop",
     "cbs/integration-hub-buffer": "dev-develop",
     "cbs/integration-hub-paycloud": "dev-develop",
     "cbs/integration-hub-lms": "dev-develop",
