@@ -2166,12 +2166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergioMadness/integration-hub-api.git",
-                "reference": "de095eb1e2138d711d625d4c0ca7ebbd08fcb4c2"
+                "reference": "dfcb554bb86b3acc4505db2396ba9f76d80b8e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/de095eb1e2138d711d625d4c0ca7ebbd08fcb4c2",
-                "reference": "de095eb1e2138d711d625d4c0ca7ebbd08fcb4c2",
+                "url": "https://api.github.com/repos/SergioMadness/integration-hub-api/zipball/dfcb554bb86b3acc4505db2396ba9f76d80b8e86",
+                "reference": "dfcb554bb86b3acc4505db2396ba9f76d80b8e86",
                 "shasum": ""
             },
             "require": {
@@ -2206,7 +2206,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-05-07T09:18:49+00:00"
+            "time": "2020-07-17T08:25:14+00:00"
         },
         {
             "name": "professionalweb/integration-hub-bitrix24",
