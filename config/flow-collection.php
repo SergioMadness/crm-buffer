@@ -378,9 +378,8 @@ return [
                         'result'    => [],
                         'success'   => [
                             [
-                                'field'     => 'original.utm_source',
-                                'operation' => '=',
-                                'value1'    => 'advcake',
+                                'field'     => 'original.advcake_track_id',
+                                'operation' => '!|empty',
                                 'result'    => ['aggregation'],
                             ],
                         ],
@@ -416,9 +415,8 @@ return [
                         'result'    => ['start-create-contact-process'],
                     ],
                     [
-                        'field'     => 'original.utm_source',
-                        'operation' => '=',
-                        'value1'    => 'advcake',
+                        'field'     => 'original.advcake_track_id',
+                        'operation' => '!|empty',
                         'result'    => ['aggregation'],
                     ],
                 ],
@@ -460,16 +458,8 @@ return [
             ],
             'postaffiliate-update-event'         => [
                 'id'        => 'postaffiliate-update-event',
-                'next'      => ['aggregation'],
+                'next'      => ['aggregation-update'],
                 'prev'      => ['start'],
-                'condition' => [
-                    [
-                        'field'     => 'bitrix-get-lead.UTM_SOURCE',
-                        'operation' => '=',
-                        'value1'    => 'advcake',
-                        'result'    => ['aggregation'],
-                    ],
-                ],
             ],
             'get-invoice'                        => [
                 'id'   => 'get-invoice',

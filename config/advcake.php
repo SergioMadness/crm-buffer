@@ -23,7 +23,7 @@ return [
         ],
         'url'         => 'url',
         'description' => 'description',
-        'track_id'    => 'trackId',
+        'trackId'     => 'trackId',
         'promo_code'  => 'promoCode',
     ],
 ];

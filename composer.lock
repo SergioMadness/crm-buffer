@@ -2077,7 +2077,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:SergioMadness/integration-hub-advcake.git",
-                "reference": "a274eaf8a96174e3a66f35c9904b854a6a2d30cb"
+                "reference": "96cd896a39745794bbd0223217ec9e45c1ec15c6"
             },
             "require": {
                 "ext-xmlwriter": "*",
@@ -2114,7 +2114,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-07-14T11:06:15+00:00"
+            "time": "2020-07-20T10:34:32+00:00"
         },
         {
             "name": "professionalweb/integration-hub-aggregation",
@@ -2122,7 +2122,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:SergioMadness/integration-hub-aggregation.git",
-                "reference": "49e15759e965876c92c9cbe3be26de40d63ac249"
+                "reference": "d195447e384b715d0e25189bf664fda25ed78bc4"
             },
             "require": {
                 "laravel/framework": "5.7.*",
@@ -2158,7 +2158,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-07-14T11:05:49+00:00"
+            "time": "2020-07-20T10:06:38+00:00"
         },
         {
             "name": "professionalweb/integration-hub-api",
