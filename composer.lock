@@ -2077,7 +2077,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:SergioMadness/integration-hub-advcake.git",
-                "reference": "1296930c1f3539e41295813dfebea3d8611845d6"
+                "reference": "dc46f180e994795585af54b150b1960d1883523d"
             },
             "require": {
                 "ext-xmlwriter": "*",
@@ -2114,7 +2114,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-07-20T11:26:12+00:00"
+            "time": "2020-07-20T13:03:29+00:00"
         },
         {
             "name": "professionalweb/integration-hub-aggregation",
