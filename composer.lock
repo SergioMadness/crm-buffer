@@ -2122,7 +2122,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:SergioMadness/integration-hub-aggregation.git",
-                "reference": "d195447e384b715d0e25189bf664fda25ed78bc4"
+                "reference": "ee8f43e728012c60e5bbb079db4aec8f42c55596"
             },
             "require": {
                 "laravel/framework": "5.7.*",
@@ -2158,7 +2158,7 @@
                 "laravel",
                 "proxy"
             ],
-            "time": "2020-07-20T10:06:38+00:00"
+            "time": "2020-07-20T10:56:33+00:00"
         },
         {
             "name": "professionalweb/integration-hub-api",

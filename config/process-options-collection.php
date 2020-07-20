@@ -878,7 +878,8 @@ return [
             'original.advcake_url'      => 'url',
         ],
         'options'      => [
-            'namespace' => 'leads',
+            'namespace'  => 'leads',
+            'autoCreate' => true,
         ],
     ]))->setAttribute('id', 'aggregation'),
     (new ProcessOptions([
@@ -889,8 +890,7 @@ return [
             'bitrix-get-lead.STATUS_ID' => 'status',
         ],
         'options'      => [
-            'namespace'  => 'leads',
-            'autoCreate' => true,
+            'namespace' => 'leads',
         ],
     ]))->setAttribute('id', 'aggregation-update'),
 ];
