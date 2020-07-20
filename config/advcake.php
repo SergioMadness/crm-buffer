@@ -20,6 +20,7 @@ return [
                 'JUNK'              => 3,
                 'CONVERTED'         => 2,
             ],
+            'default' => 1,
         ],
         'url'         => 'url',
         'description' => 'description',
