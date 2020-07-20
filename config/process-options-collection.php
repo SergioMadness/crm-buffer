@@ -885,7 +885,6 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'aggregation',
         'mapping'      => [
-            'bitrix-lead.lead_id'       => 'id',
             'bitrix-get-lead.ID'        => 'id',
             'bitrix-get-lead.STATUS_ID' => 'status',
         ],

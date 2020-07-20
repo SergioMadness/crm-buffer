@@ -461,6 +461,11 @@ return [
                 'next'      => ['aggregation-update'],
                 'prev'      => ['start'],
             ],
+            'aggregation-update'         => [
+                'id'        => 'aggregation-update',
+                'next'      => [],
+                'prev'      => ['postaffiliate-update-event'],
+            ],
             'get-invoice'                        => [
                 'id'   => 'get-invoice',
                 'next' => ['bitrix-to-pap-status'],
