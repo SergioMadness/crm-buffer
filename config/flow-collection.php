@@ -334,22 +334,8 @@ return [
             ],
             'bitrix-check-duplicates'            => [
                 'id'        => 'bitrix-check-duplicates',
-                'next'      => ['bitrix-lead-distribution'],
+                'next'      => ['bitrix-lead'],
                 'prev'      => ['bitrix-product-mapper'],
-                'condition' => [
-                    [
-                        'field'     => 'bitrix-check-duplicates.STATUS_ID',
-                        'operation' => '=',
-                        'value1'    => 'RE_LEAD',
-                        'result'    => ['bitrix-lead'],
-                    ],
-                    [
-                        'field'     => 'bitrix-check-duplicates.STATUS_ID',
-                        'operation' => '!|=',
-                        'value1'    => 'RE_LEAD',
-                        'result'    => ['bitrix-lead'],
-                    ],
-                ],
             ],
             'bitrix-franchise-check-duplicates'  => [
                 'id'        => 'bitrix-franchise-check-duplicates',
