@@ -457,14 +457,14 @@ return [
                 'prev' => ['start'],
             ],
             'postaffiliate-update-event'         => [
-                'id'        => 'postaffiliate-update-event',
-                'next'      => ['aggregation-update'],
-                'prev'      => ['start'],
+                'id'   => 'postaffiliate-update-event',
+                'next' => ['aggregation-update'],
+                'prev' => ['start'],
             ],
-            'aggregation-update'         => [
-                'id'        => 'aggregation-update',
-                'next'      => [],
-                'prev'      => ['postaffiliate-update-event'],
+            'aggregation-update'                 => [
+                'id'   => 'aggregation-update',
+                'next' => [],
+                'prev' => ['postaffiliate-update-event'],
             ],
             'get-invoice'                        => [
                 'id'   => 'get-invoice',
@@ -528,6 +528,12 @@ return [
                         'operation' => 'in',
                         'value1'    => ['Q', 'S'],
                         'success'   => [
+                            [
+                                'field'     => 'get-invoice.PRODUCT_ROWS.0.ID',
+                                'operation' => 'in',
+                                'value1'    => [41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 1070, 1072, 1112, 5494, 11548, 11550, 10392],
+                                'result'    => ['paycloud-payment-link-cbs-edu'],
+                            ],
                             [
                                 'field'     => 'get-invoice.UF_CRM_PAY_URL',
                                 'operation' => 'empty',
@@ -605,6 +611,11 @@ return [
             ],
             'paycloud-payment-link-no-convert'   => [
                 'id'   => 'paycloud-payment-link-no-convert',
+                'next' => ['add-payment-link-to-invoice'],
+                'prev' => ['start'],
+            ],
+            'paycloud-payment-link-cbs-edu'      => [
+                'id'   => 'paycloud-payment-link-cbs-edu',
                 'next' => ['add-payment-link-to-invoice'],
                 'prev' => ['start'],
             ],

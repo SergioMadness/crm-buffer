@@ -521,6 +521,25 @@ return [
         ],
     ]))->setAttribute('id', 'paycloud-payment-link-no-convert'),
     (new ProcessOptions([
+        'subsystem_id' => 'paycloud-payment-link',
+        'mapping'      => [
+            'get-invoice.PRICE'                       => 'amount',
+            'get-invoice.UF_CRM_5C6E8D3550528'        => 'amount',
+            'get-invoice.INVOICE_PROPERTIES.EMAIL'    => 'email',
+            'get-invoice.ID'                          => 'order_id',
+            'get-invoice.CURRENCY'                    => 'currency',
+            'get-invoice.UF_CRM_5BE54A65AC69B'        => 'currency',
+            'get-invoice.PRODUCT_ROWS.0.ID'           => 'products.0.id',
+            'get-invoice.PRODUCT_ROWS.0.PRODUCT_NAME' => 'products.0.name',
+            'get-invoice.PRODUCT_ROWS.0.PRICE'        => 'products.0.price',
+        ],
+        'options'      => [
+            'url'    => 'https://pay.e-mba.ru/',
+            'token'  => '3f87241a-1055-4554-83a8-d3b43e7d6443',
+            'secret' => '94218cf78f4acfec9f7c2ffb724b8819',
+        ],
+    ]))->setAttribute('id', 'paycloud-payment-link-cbs-edu'),
+    (new ProcessOptions([
         'subsystem_id' => 'bitrix-workflow',
         'mapping'      => [
             'bitrix-lead.lead_id' => 'document_id',

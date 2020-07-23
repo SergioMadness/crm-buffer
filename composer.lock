@@ -105,7 +105,7 @@
             "source": {
                 "type": "git",
                 "url": "ssh://git@lab.systembox.org:2022/s.zinchenko/integration-hub-paycloud.git",
-                "reference": "7d263b71988e200966ed5ac3c92c933aff486b56"
+                "reference": "b830f2864406b8583b6cc31a25a4a9d2c79e9a91"
             },
             "require": {
                 "cbs/paycloud-lib": "dev-develop",
@@ -138,7 +138,7 @@
                 "paycloud",
                 "proxy"
             ],
-            "time": "2019-08-16T12:13:09+00:00"
+            "time": "2020-07-23T13:59:06+00:00"
         },
         {
             "name": "cbs/lms-b2b",
@@ -1348,16 +1348,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.25.4",
+            "version": "1.25.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "3022efff205e2448b560c833c6fbbf91c3139168"
+                "reference": "1817faadd1846cd08be9a49e905dc68823bc38c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/3022efff205e2448b560c833c6fbbf91c3139168",
-                "reference": "3022efff205e2448b560c833c6fbbf91c3139168",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1817faadd1846cd08be9a49e905dc68823bc38c0",
+                "reference": "1817faadd1846cd08be9a49e905dc68823bc38c0",
                 "shasum": ""
             },
             "require": {
@@ -1421,7 +1421,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2020-05-22T07:31:27+00:00"
+            "time": "2020-07-23T08:35:51+00:00"
         },
         {
             "name": "nesbot/carbon",
