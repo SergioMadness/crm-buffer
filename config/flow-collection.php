@@ -186,7 +186,7 @@ return [
                     [
                         'field'     => 'bitrix-find-contact.ID',
                         'operation' => 'empty',
-                        'result'    => [],
+                        'result'    => ['bitrix-contact'],
                     ],
                     [
                         'field'     => 'bitrix-find-contact.ID',
@@ -303,11 +303,11 @@ return [
                 'next' => [],
                 'prev' => ['start'],
             ],
-//            'bitrix-contact'                => [
-//                'id'   => 'bitrix-contact',
-//                'next' => ['bitrix-lead-distribution'],
-//                'prev' => ['start'],
-//            ],
+            'bitrix-contact'                     => [
+                'id'   => 'bitrix-contact',
+                'next' => ['remember-contact-after-search'],
+                'prev' => ['start'],
+            ],
             'bitrix-lead-distribution'           => [
                 'id'        => 'bitrix-lead-distribution',
                 'next'      => ['bitrix-check-duplicates', 'bitrix-lead'],
@@ -333,9 +333,9 @@ return [
                 'prev' => ['bitrix-lead-distribution'],
             ],
             'bitrix-check-duplicates'            => [
-                'id'        => 'bitrix-check-duplicates',
-                'next'      => ['bitrix-lead'],
-                'prev'      => ['bitrix-product-mapper'],
+                'id'   => 'bitrix-check-duplicates',
+                'next' => ['bitrix-lead'],
+                'prev' => ['bitrix-product-mapper'],
             ],
             'bitrix-franchise-check-duplicates'  => [
                 'id'        => 'bitrix-franchise-check-duplicates',

@@ -108,6 +108,7 @@ return [
             'original.title'                                 => 'TITLE',
             'get-contact.value'                              => 'CONTACT_ID',
             'bitrix-find-contact.ID'                         => 'CONTACT_ID',
+            'bitrix-contact.contact_id'                      => 'CONTACT_ID',
             'original.lead_id'                               => 'LEAD_ID',
             'original.opportunity'                           => ['OPPORTUNITY', 'PRODUCTS.0.price'],
             'original.products'                              => 'PRODUCTS',
@@ -138,6 +139,7 @@ return [
             'get-deal.value'                                       => 'UF_DEAL_ID',
             'get-contact.value'                                    => 'UF_CONTACT_ID',
             'bitrix-find-contact.ID'                               => 'UF_CONTACT_ID',
+            'bitrix-contact.contact_id'                            => 'UF_CONTACT_ID',
             'original.amount'                                      => 'PRODUCT_ROWS.0.PRICE',
             'original.opportunity'                                 => 'PRODUCT_ROWS.0.PRICE',
             'bitrix-invoice-default-value.STATUS_ID'               => 'STATUS_ID',
@@ -788,10 +790,11 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'value-mapper',
         'mapping'      => [
-            'original.user_id'       => 'value',
-            'bitrix-find-contact.ID' => 'key',
-            'lms-get-user.id'        => 'value',
-            'bitrix-get-contact.ID'  => 'key',
+            'original.user_id'          => 'value',
+            'bitrix-find-contact.ID'    => 'key',
+            'lms-get-user.id'           => 'value',
+            'bitrix-get-contact.ID'     => 'key',
+            'bitrix-contact.contact_id' => 'key',
         ],
         'options'      => [
             'namespace' => 'contacts',
@@ -833,6 +836,7 @@ return [
         'mapping'      => [
             'get-contact.value'                          => 'conditions.CONTACT_ID',
             'bitrix-find-contact.ID'                     => 'conditions.CONTACT_ID',
+            'bitrix-contact.contact_id'                  => 'conditions.CONTACT_ID',
 //            'bitrix-product-mapper-deal.lead_product_id' => 'conditions.products.0',
             'bitrix-product-mapper-deal.lead_product_id' => 'conditions.UF_CRM_PRODUCT_ID',
         ],
@@ -911,4 +915,17 @@ return [
             'namespace' => 'leads',
         ],
     ]))->setAttribute('id', 'aggregation-update'),
+    (new ProcessOptions([
+        'subsystem_id' => 'bitrix-contact',
+        'mapping'      => [
+            'original.user_email'     => 'EMAIL',
+            'original.user_last_name' => ['LAST_NAME', 'SECOND_NAME'],
+            'original.user_name'      => 'NAME',
+            'original.user_phone'     => 'PHONE',
+        ],
+        'options'      => [
+            'url'  => 'citybusinessschool.bitrix24.ru',
+            'hook' => '69/9amg2bwr1y7xk9fi/',
+        ],
+    ]))->setAttribute('id', 'bitrix-contact'),
 ];
