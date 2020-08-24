@@ -892,13 +892,16 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'aggregation',
         'mapping'      => [
-            'bitrix-lead.lead_id'       => 'id',
-            'bitrix-get-lead.ID'        => 'id',
-            'original.opportunity'      => 'amount',
-            'bitrix-get-lead.STATUS_ID' => 'status',
-            'original.advcake_track_id' => 'trackId',
-            'original.promo_code'       => 'promo_code',
-            'original.advcake_url'      => 'url',
+            'bitrix-lead.lead_id'                => 'id',
+            'bitrix-get-lead.ID'                 => 'id',
+            'bitrix-find-deal.ID'                => 'id',
+            'bitrix-create-deal.deal_id'         => 'id',
+            'original.opportunity'               => 'amount',
+            'bitrix-deal-default-value.STAGE_ID' => 'status',
+            'bitrix-get-lead.STATUS_ID'          => 'status',
+            'original.advcake_track_id'          => 'trackId',
+            'original.promo_code'                => 'promo_code',
+            'original.advcake_url'               => 'url',
         ],
         'options'      => [
             'namespace'  => 'leads',

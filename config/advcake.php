@@ -19,6 +19,7 @@ return [
                 'DUPLICATE'         => 3,
                 'JUNK'              => 3,
                 'CONVERTED'         => 2,
+                'WON'               => 2,
             ],
             'default' => 1,
         ],

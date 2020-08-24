@@ -294,9 +294,16 @@ return [
                 'prev' => ['bitrix-create-deal'],
             ],
             'bitrix-create-invoice'              => [
-                'id'   => 'bitrix-create-invoice',
-                'next' => [],
-                'prev' => ['bitrix-invoice-default-value'],
+                'id'        => 'bitrix-create-invoice',
+                'next'      => [],
+                'prev'      => ['bitrix-invoice-default-value'],
+                'condition' => [
+                    [
+                        'field'     => 'original.advcake_track_id',
+                        'operation' => '!|empty',
+                        'result'    => ['aggregation'],
+                    ],
+                ],
             ],
             'bitrix-approve-invoice'             => [
                 'id'   => 'bitrix-approve-invoice',
