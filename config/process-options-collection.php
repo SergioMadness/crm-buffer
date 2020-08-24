@@ -918,10 +918,11 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'bitrix-contact',
         'mapping'      => [
-            'original.user_email'     => 'EMAIL',
-            'original.user_last_name' => ['LAST_NAME', 'SECOND_NAME'],
-            'original.user_name'      => 'NAME',
-            'original.user_phone'     => 'PHONE',
+            'original.user_email'       => 'EMAIL',
+            'original.user_middle_name' => 'SECOND_NAME',
+            'original.user_last_name'   => ['LAST_NAME', 'SECOND_NAME'],
+            'original.user_name'        => 'NAME',
+            'original.user_phone'       => 'PHONE',
         ],
         'options'      => [
             'url'  => 'citybusinessschool.bitrix24.ru',
