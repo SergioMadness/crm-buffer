@@ -937,10 +937,10 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'value-mapper',
         'mapping'      => [
-            'original.advcake_track_id'  => 'key',
             'bitrix-lead.lead_id'        => 'value',
             'bitrix-create-deal.deal_id' => 'value',
-            'find-advcake.value'         => 'value',
+            'find-advcake.value'         => ['value', 'key'],
+            'original.advcake_track_id'  => 'key',
         ],
         'options'      => [
             'namespace' => 'advcake',

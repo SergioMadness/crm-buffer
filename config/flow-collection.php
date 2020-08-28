@@ -380,9 +380,21 @@ return [
                 ],
             ],
             'find-advcake'                       => [
-                'id'   => 'find-advcake',
-                'prev' => ['bitrix-lead'],
-                'next' => ['aggregation'],
+                'id'        => 'find-advcake',
+                'prev'      => ['bitrix-lead'],
+                'next'      => ['aggregation'],
+                'condition' => [
+                    [
+                        'field'     => 'original.advcake_track_id',
+                        'operation' => '!|empty',
+                        'result'    => ['aggregation'],
+                    ],
+                    [
+                        'field'     => 'find-advcake.value',
+                        'operation' => '!|empty',
+                        'result'    => ['aggregation'],
+                    ],
+                ],
             ],
             'aggregation'                        => [
                 'id'   => 'aggregation',
