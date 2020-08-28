@@ -896,6 +896,8 @@ return [
             'bitrix-get-lead.ID'                 => 'id',
             'bitrix-find-deal.ID'                => 'id',
             'bitrix-create-deal.deal_id'         => 'id',
+            'get-deal.value'                     => 'id',
+            'find-advcake.value'                 => 'id',
             'original.opportunity'               => 'amount',
             'bitrix-deal-default-value.STAGE_ID' => 'status',
             'bitrix-get-lead.STATUS_ID'          => 'status',
@@ -932,4 +934,25 @@ return [
             'hook' => '69/9amg2bwr1y7xk9fi/',
         ],
     ]))->setAttribute('id', 'bitrix-contact'),
+    (new ProcessOptions([
+        'subsystem_id' => 'value-mapper',
+        'mapping'      => [
+            'original.advcake_track_id'  => 'key',
+            'bitrix-lead.lead_id'        => 'value',
+            'bitrix-create-deal.deal_id' => 'value',
+            'find-advcake'               => 'value',
+        ],
+        'options'      => [
+            'namespace' => 'advcake',
+        ],
+    ]))->setAttribute('id', 'remember-advcake'),
+    (new ProcessOptions([
+        'subsystem_id' => 'get-value-map',
+        'mapping'      => [
+            'original.advcake_track_id' => 'key',
+        ],
+        'options'      => [
+            'namespace' => 'advcake',
+        ],
+    ]))->setAttribute('id', 'find-advcake'),
 ];

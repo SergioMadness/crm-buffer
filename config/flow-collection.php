@@ -301,7 +301,7 @@ return [
                     [
                         'field'     => 'original.advcake_track_id',
                         'operation' => '!|empty',
-                        'result'    => ['aggregation'],
+                        'result'    => ['find-advcake'],
                     ],
                 ],
             ],
@@ -373,14 +373,24 @@ return [
                             [
                                 'field'     => 'original.advcake_track_id',
                                 'operation' => '!|empty',
-                                'result'    => ['aggregation'],
+                                'result'    => ['find-advcake'],
                             ],
                         ],
                     ],
                 ],
             ],
+            'find-advcake'                       => [
+                'id'   => 'find-advcake',
+                'prev' => ['bitrix-lead'],
+                'next' => ['aggregation'],
+            ],
             'aggregation'                        => [
                 'id'   => 'aggregation',
+                'prev' => ['find-advcake'],
+                'next' => ['remember-advcake'],
+            ],
+            'remember-advcake'                   => [
+                'id'   => 'remember-advcake',
                 'prev' => ['bitrix-lead'],
                 'next' => [],
             ],
@@ -410,7 +420,7 @@ return [
                     [
                         'field'     => 'original.advcake_track_id',
                         'operation' => '!|empty',
-                        'result'    => ['aggregation'],
+                        'result'    => ['find-advcake'],
                     ],
                 ],
             ],
