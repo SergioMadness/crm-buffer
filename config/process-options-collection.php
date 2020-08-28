@@ -897,11 +897,12 @@ return [
             'bitrix-find-deal.ID'                => 'id',
             'bitrix-create-deal.deal_id'         => 'id',
             'get-deal.value'                     => 'id',
-            'find-advcake.value'                 => 'id',
+            'find-advcake.key'                   => 'id',
             'original.opportunity'               => 'amount',
             'bitrix-deal-default-value.STAGE_ID' => 'status',
             'bitrix-get-lead.STATUS_ID'          => 'status',
             'original.advcake_track_id'          => 'trackId',
+            'find-advcake.value'                 => 'trackId',
             'original.promo_code'                => 'promo_code',
             'original.advcake_url'               => 'url',
         ],
@@ -937,9 +938,10 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'value-mapper',
         'mapping'      => [
-            'bitrix-lead.lead_id'        => 'value',
-            'bitrix-create-deal.deal_id' => 'value',
             'find-advcake.value'         => ['value', 'key'],
+            'bitrix-lead.lead_id'        => 'value',
+            'bitrix-get-lead.ID'         => 'value',
+            'bitrix-create-deal.deal_id' => 'value',
             'original.advcake_track_id'  => 'key',
         ],
         'options'      => [
