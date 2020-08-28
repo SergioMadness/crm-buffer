@@ -940,7 +940,7 @@ return [
             'original.advcake_track_id'  => 'key',
             'bitrix-lead.lead_id'        => 'value',
             'bitrix-create-deal.deal_id' => 'value',
-            'find-advcake'               => 'value',
+            'find-advcake.value'         => 'value',
         ],
         'options'      => [
             'namespace' => 'advcake',
@@ -949,6 +949,7 @@ return [
     (new ProcessOptions([
         'subsystem_id' => 'get-value-map',
         'mapping'      => [
+            'bitrix-get-lead.ID'        => 'key',
             'original.advcake_track_id' => 'key',
         ],
         'options'      => [

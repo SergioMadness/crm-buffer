@@ -461,7 +461,7 @@ return [
             ],
             'postaffiliate-update-event'         => [
                 'id'   => 'postaffiliate-update-event',
-                'next' => ['aggregation-update'],
+                'next' => ['find-advcake'],
                 'prev' => ['start'],
             ],
             'aggregation-update'                 => [
